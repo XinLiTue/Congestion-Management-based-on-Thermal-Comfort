@@ -1,5 +1,13 @@
 module OptHP
 
-# Write your package code here.
+using JuMP
+using DataFrames
+using Gurobi
+
+export GEC
+
+
+include("heatpump.jl")
+include("opf.jl")
 
 end
