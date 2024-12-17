@@ -26,7 +26,6 @@ const hourly_data = [
     0.166, 0.14, 0.094, 0.046, 0.007, 0, 0, 0, 0, 0, 0, 0
 ]
 
-
 function GEC(;
     network::DataFrame,
     connections::DataFrame,
@@ -40,9 +39,10 @@ function GEC(;
     expanded_data = repeat(hourly_data, inner=4)
 
     # sets
-    H = connections[!, :Node]       # user nodes [1, 2, 3, ...]
-    T = 1:length(expanded_data)     # discrete time steps [1, 2, 3, ...]
-    B = 1:nrow(network)+1           # bus nodes [1, 2, 3, ...]
+    T = 1:length(expanded_data)         # discrete time steps [-]
+    B = 1:nrow(network)+1               # buses [-], slack bus is bus 1 (+1)
+    H = connections[!, :Node]           # user nodes [-]
+    notH = setdiff(B, H)                # non-user nodes [-]
 
     # create the model
     model = Model(Gurobi.Optimizer)
@@ -80,5 +80,57 @@ function GEC(;
         [t in T], P[1, t]^2 + Q[1, t]^2 <= s_trafo^2, (base_name = "TrafoLimit")
     end)
 
-    # non-slack bus, power balance
+    # power balance of real power
+    @constraint(model,
+        [t in T, j in B],
+        P[j, t] ==
+        sum(PLine[i, t] for i in B[1:end-1] if network[i, :EndNode] == j) -                 # real power into bus
+        sum(I[i, t] * network[i, :R] for i in B[1:end-1] if network[i, :EndNode] == j) -    # ohmic losses
+        sum(PLine[i, t] for i in B[1:end-1] if network[i, :StartNode] == j)                 # power out of bus
+    )
+
+    # power balance of reactive power
+    @constraint(model,
+        [t in T, j in B],
+        Q[j, t] ==
+        sum(QLine[i, t] for i in B[1:end-1] if network[i, :EndNode] == j) -                 # reactive power into bus
+        sum(I[i, t] * network[i, :X] for i in B[1:end-1] if network[i, :EndNode] == j) -    # reactive losses
+        sum(QLine[i, t] for i in B[1:end-1] if network[i, :StartNode] == j)                 # reactive power out of bus
+    )
+
+    # electrical
+    @constraints(model, begin
+
+        # voltage relation
+        [t in T, i in B[1:end-1]],
+        V[network[i, :EndNode], t] == V[network[i, :StartNode], t] -
+                                      2 * (network[i, :R] * PLine[i, t] + network[i, :X] * QLine[i, t]) +
+                                      (network[i, :R]^2 + network[i, :X]^2) * I[i, t]
+        # bus SOCP
+        [t in T, i in B[1:end-1]],
+        PLine[i, t]^2 + QLine[i, t]^2 <= V[network[i, :StartNode], t] * I[i, t]
+
+        # line current limit
+        [t in T, i in B[1:end-1]], I[i, t] <= network[i, :Inom]
+
+        # load constraints for non-user nodes are set to zero
+        [t in T, i in notH[2:end]], P[i, t] == 0
+        [t in T, i in notH[2:end]], Q[i, t] == 0
+
+        # load constraints for users 
+        [t in T, i in H], P[i, t] == 0
+    end)
+
+
+
+
+    # # load constraints
+    # for i in range(n_bus):
+    #     if i not in user_index and i != 0: # slack bus + residential loads
+    #         m.addConstr(p[i,t] == 0,"busP=0")
+    #         m.addConstr(q[i,t] == 0,"busQ=0")
+    #     if i in user_index:
+    #         m.addConstr(p[i,t] ==  p_baseload[i-(n_bus-n_user)] - p_pv[i-(n_bus-n_user),t] + p_hp[i-(n_bus-n_user),t], "LoadP")
+    #         m.addConstr(q[i,t] ==  q_baseload[i-(n_bus-n_user)]  - q_pv[i-(n_bus-n_user),t] + q_hp[i-(n_bus-n_user),t], "LoadQ") 
+
 end

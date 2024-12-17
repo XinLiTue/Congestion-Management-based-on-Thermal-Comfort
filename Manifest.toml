@@ -361,7 +361,7 @@ uuid = "efe28fd5-8261-553b-a9e1-b2916fc3738e"
 version = "0.5.5+0"
 
 [[deps.OptHP]]
-deps = ["DataFrames", "Gurobi", "JuMP"]
+deps = ["DataFrames", "Gurobi", "Gurobi_jll", "JuMP"]
 path = "OptHP"
 uuid = "2d871509-80d7-40b2-9719-baed66fee68a"
 version = "1.0.0-DEV"
