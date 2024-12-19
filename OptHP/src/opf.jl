@@ -29,6 +29,8 @@ const hourly_data = [
 function GEC(;
     network::DataFrame,
     connections::DataFrame,
+    loads_real::DataFrame,
+    loads_reactive::DataFrame,
     limit::Tuple=(40:48, -15 * 1e-3),
 )
     # setup congestion limit
@@ -36,101 +38,131 @@ function GEC(;
     congestion_limit[limit[1]] .= limit[2]
 
     # setup data
-    expanded_data = repeat(hourly_data, inner=4)
+    pv_eff = repeat(hourly_data, inner=4)
+
+    # check that loads / generation have equal length
+    @assert nrow(loads_real) == nrow(loads_reactive) == length(pv_eff)
 
     # sets
-    T = 1:length(expanded_data)         # discrete time steps [-]
-    B = 1:nrow(network)+1               # buses [-], slack bus is bus 1 (+1)
-    H = connections[!, :Node]           # user nodes [-]
-    notH = setdiff(B, H)                # non-user nodes [-]
+    T = 1:length(pv_eff)                            # discrete time steps [-]
+    B = 1:nrow(network)+1                           # all buses [-], slack bus is bus 1 (+1)
+    H = connections[!, :Node]                       # user buses [-]
+    notH = setdiff(B, H)                            # non-user buses [-]
+    H_HP = connections[connections.HP.==1, :Node]   # buses with HP [-]
+
+    # offset load data by user bus index
+    P_base = OffsetArray(Array(loads_real), 1:length(T), maximum(notH)+1:maximum(H))
+    Q_base = OffsetArray(Array(loads_reactive), 1:length(T), maximum(notH)+1:maximum(H))
+
+    # PV capacity from DACS-HW data 
+    pv_cap = connections[!, :PV] * 1e-3 # [kW]   
+    pv_cap = OffsetArray(pv_cap, minimum(H):maximum(H))
 
     # create the model
     model = Model(Gurobi.Optimizer)
     set_silent(model)
 
     @variables(model, begin
-        P[B, T], (base_name = "PBusInjection")
-        Q[B, T], (base_name = "QBusInjection")
+        P[T, B], (base_name = "PBusInjection")
+        Q[T, B], (base_name = "QBusInjection")
 
-        # power flow
-        PLine[B[1:end-1], T], (base_name = "PLine")
-        QLine[B[1:end-1], T], (base_name = "QLine")
+        # power flow end-1 because graph is a tree with |B| - 1 edges
+        PLine[T, B[1:end-1]], (base_name = "PLine")
+        QLine[T, B[1:end-1]], (base_name = "QLine")
 
         # squared voltage and current
-        (V_lb * V_ref)^2 <= V[B, T] <= (V_ub * V_ref)^2, (base_name = "VoltSquare")
-        0 <= I[B[1:end-1], T], (base_name = "CurrentSquare")
+        (V_lb * V_ref)^2 <= V[T, B] <= (V_ub * V_ref)^2, (base_name = "VoltSquare")
+        0 <= I[T, B[1:end-1]], (base_name = "CurrentSquare")
 
         # photovoltaics
-        0 <= P_pv[H, T], (base_name = "PVactivePower")
-        Q_pv[H, T], (base_name = "PVreactivePower")
+        0 <= P_pv[T, H], (base_name = "PVactivePower")
+        Q_pv[T, H], (base_name = "PVreactivePower")
+        0 <= P_pv_down[T, H], (base_name = "PVcurtailedActivePower")
 
         # heat pumps
-        0 <= P_hp[H, T], (base_name = "HPactivePower")
-        0 <= Q_hp[H, T], (base_name = "HPreactivePower")
+        0 <= P_hp[T, H_HP], (base_name = "HPactivePower")
+        0 <= Q_hp[T, H_HP], (base_name = "HPreactivePower")
+        z_hp[T, H_HP], Bin, (base_name = "HPOnOff")
+        0 <= P_hp_down[T, H_HP], (base_name = "HPcurtailedActivePower")
 
-        # curtailed power
-        0 <= P_pv_down[H, T], (base_name = "PVcurtailedActivePower")
-        b_hp[H, T], Bin, (base_name = "HP_Open")
-        0 <= P_hp_down[H, T], (base_name = "HPcurtailedActivePower")
     end)
 
     # slack bus
     @constraints(model, begin
-        [t in T], P[1, t] >= congestion_limit[t], (base_name = "TransPowerLimitForCongestion")
-        [t in T], P[1, t]^2 + Q[1, t]^2 <= s_trafo^2, (base_name = "TrafoLimit")
+        [t in T], P[t, 1] >= congestion_limit[t], (base_name = "TransPowerLimitForCongestion")
+        [t in T], P[t, 1]^2 + Q[t, 1]^2 <= s_trafo^2, (base_name = "TrafoLimit")
     end)
 
     # power balance of real power
     @constraint(model,
         [t in T, j in B],
-        P[j, t] ==
-        sum(PLine[i, t] for i in B[1:end-1] if network[i, :EndNode] == j) -                 # real power into bus
-        sum(I[i, t] * network[i, :R] for i in B[1:end-1] if network[i, :EndNode] == j) -    # ohmic losses
-        sum(PLine[i, t] for i in B[1:end-1] if network[i, :StartNode] == j)                 # power out of bus
+        P[t, j] ==
+        sum(PLine[t, i] for i in B[1:end-1] if network[i, :EndNode] == j) -                 # real power into bus
+        sum(I[t, i] * network[i, :R] for i in B[1:end-1] if network[i, :EndNode] == j) -    # ohmic losses
+        sum(PLine[t, i] for i in B[1:end-1] if network[i, :StartNode] == j)                 # power out of bus
     )
 
     # power balance of reactive power
     @constraint(model,
         [t in T, j in B],
-        Q[j, t] ==
-        sum(QLine[i, t] for i in B[1:end-1] if network[i, :EndNode] == j) -                 # reactive power into bus
-        sum(I[i, t] * network[i, :X] for i in B[1:end-1] if network[i, :EndNode] == j) -    # reactive losses
-        sum(QLine[i, t] for i in B[1:end-1] if network[i, :StartNode] == j)                 # reactive power out of bus
+        Q[t, j] ==
+        sum(QLine[t, i] for i in B[1:end-1] if network[i, :EndNode] == j) -                 # reactive power into bus
+        sum(I[t, i] * network[i, :X] for i in B[1:end-1] if network[i, :EndNode] == j) -    # reactive losses
+        sum(QLine[t, i] for i in B[1:end-1] if network[i, :StartNode] == j)                 # reactive power out of bus
     )
 
     # electrical
     @constraints(model, begin
 
         # voltage relation
-        [t in T, i in B[1:end-1]],
-        V[network[i, :EndNode], t] == V[network[i, :StartNode], t] -
-                                      2 * (network[i, :R] * PLine[i, t] + network[i, :X] * QLine[i, t]) +
-                                      (network[i, :R]^2 + network[i, :X]^2) * I[i, t]
+        [t in T, b in B[1:end-1]],
+        V[t, network[b, :EndNode]] == V[t, network[b, :StartNode]] -
+                                      2 * (network[b, :R] * PLine[t, b] + network[b, :X] * QLine[t, b]) +
+                                      (network[b, :R]^2 + network[b, :X]^2) * I[t, b]
+
         # bus SOCP
-        [t in T, i in B[1:end-1]],
-        PLine[i, t]^2 + QLine[i, t]^2 <= V[network[i, :StartNode], t] * I[i, t]
+        [t in T, b in B[1:end-1]],
+        PLine[t, b]^2 + QLine[t, b]^2 <= V[t, network[b, :StartNode]] * I[t, b]
 
         # line current limit
-        [t in T, i in B[1:end-1]], I[i, t] <= network[i, :Inom]
+        [t in T, b in B[1:end-1]], I[t, b] <= network[b, :Inom]
 
         # load constraints for non-user nodes are set to zero
-        [t in T, i in notH[2:end]], P[i, t] == 0
-        [t in T, i in notH[2:end]], Q[i, t] == 0
+        [t in T, h in notH[2:end]], P[t, h] == 0
+        [t in T, h in notH[2:end]], Q[t, h] == 0
 
-        # load constraints for users 
-        [t in T, i in H], P[i, t] == 0
+        # load constraints for users *without* a HP
+        [t in T, h in H; h ∉ H_HP], P[t, h] == P_base[t, h] - P_pv[t, h]
+        [t in T, h in H; h ∉ H_HP], Q[t, h] == Q_base[t, h] - Q_pv[t, h]
+
+        # load constraints for users *with* a HP
+        [t in T, h in H_HP], P[t, h] == P_base[t, h] - P_pv[t, h] + P_hp[t, h]
+        [t in T, h in H_HP], Q[t, h] == Q_base[t, h] - Q_pv[t, h] + Q_hp[t, h]
+
+        # photovoltaics
+        [t in T, h in H], -P_pv[t, h] * tan_phi_pv <= Q_pv[t, h]    # pv_tan-
+        [t in T, h in H], Q_pv[t, h] <= P_pv[t, h] * tan_phi_pv     # pv_tan+
+        [t in T, h in H], P_pv[t, h] <= pv_cap[h] * pv_eff[t]       # pvMax
+        [t in T, h in H], P_pv_down[t, h] == pv_cap[h] * pv_eff[t] - P_pv[t, h] # pv_down
+
+        # heat pumps
+        [t in T, h in H_HP], Q_hp[t, h] == P_hp[t, h] * tan_phi_load
+        [t in T, h in H_HP], P_hp[t, h] <= z_hp[t, h] * p_hp_max # hp_max
+        [t in T, h in H_HP], P_hp[t, h] >= z_hp[t, h] * p_hp_min # hp_min
+        [t in T, h in H_HP], P_hp_down[t, h] >= p_hp_max - P_hp[t, h] # hp_down
     end)
 
+    # define objective functions 
+    @expressions(model, begin
+        J_loss, sum(network[i, :R] * I[t, i]^2 for t in T, i in B[1:end-1])
+        J_pv, sum(P_pv_down[t, i] for t in T, i in H)
+        J_hp, sum(P_hp_down[t, i] for t in T, i in H_HP)
+    end)
 
+    @objective(model, Min, c_loss * J_loss + c_pv * J_pv + c_hp_down * J_hp)
 
+    optimize!(model)
+    @assert is_solved_and_feasible(model)
 
-    # # load constraints
-    # for i in range(n_bus):
-    #     if i not in user_index and i != 0: # slack bus + residential loads
-    #         m.addConstr(p[i,t] == 0,"busP=0")
-    #         m.addConstr(q[i,t] == 0,"busQ=0")
-    #     if i in user_index:
-    #         m.addConstr(p[i,t] ==  p_baseload[i-(n_bus-n_user)] - p_pv[i-(n_bus-n_user),t] + p_hp[i-(n_bus-n_user),t], "LoadP")
-    #         m.addConstr(q[i,t] ==  q_baseload[i-(n_bus-n_user)]  - q_pv[i-(n_bus-n_user),t] + q_hp[i-(n_bus-n_user),t], "LoadQ") 
-
+    return model
 end

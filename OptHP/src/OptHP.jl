@@ -3,6 +3,7 @@ module OptHP
 using JuMP
 using DataFrames
 using Gurobi
+using OffsetArrays
 
 export GEC
 
