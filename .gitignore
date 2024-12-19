@@ -1,2 +1,7 @@
 .vscode
 Manifest.toml
+*.lp
+solution.json
+Manifest.toml
+model_jl_test.txt
+Manifest.toml

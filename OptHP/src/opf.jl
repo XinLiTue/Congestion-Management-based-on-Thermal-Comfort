@@ -8,12 +8,12 @@ const p_hp_min = 1e-3 # 1 [kW]
 # costs
 const c_loss = 40
 const c_grid = 500
-const c_hp_down = 200
+const c_hp = 200
 const c_pv = 400
 
 # pv constraints
-const pf_pV_limit = 0.95
-const tan_phi_pv = (sqrt(1 - pf_pV_limit^2)) / pf_pV_limit
+const pf_pv_limit = 0.95
+const tan_phi_pv = (sqrt(1 - pf_pv_limit^2)) / pf_pv_limit
 
 # voltage constraints
 const V_ref = 0.23 # [kV]
@@ -45,14 +45,24 @@ function GEC(;
 
     # sets
     T = 1:length(pv_eff)                            # discrete time steps [-]
+    # T = 1:1                                       # discrete time steps [-]
     B = 1:nrow(network)+1                           # all buses [-], slack bus is bus 1 (+1)
     H = connections[!, :Node]                       # user buses [-]
     notH = setdiff(B, H)                            # non-user buses [-]
     H_HP = connections[connections.HP.==1, :Node]   # buses with HP [-]
+    #print all sets
+    # println("T: ", T)
+    # println("B: ", B)
+    # println("H: ", H)
+    # println("notH: ", notH)
+    # println("H_HP: ", H_HP)
+    @assert issubset(H_HP, H)
 
     # offset load data by user bus index
-    P_base = OffsetArray(Array(loads_real), 1:length(T), maximum(notH)+1:maximum(H))
-    Q_base = OffsetArray(Array(loads_reactive), 1:length(T), maximum(notH)+1:maximum(H))
+    loads_real = Array(loads_real)[1:length(T), :]
+    loads_reactive = Array(loads_reactive)[1:length(T), :]
+    P_base = OffsetArray(loads_real, 1:length(T), maximum(notH)+1:maximum(H))
+    Q_base = OffsetArray(loads_reactive, 1:length(T), maximum(notH)+1:maximum(H))
 
     # PV capacity from DACS-HW data 
     pv_cap = connections[!, :PV] * 1e-3 # [kW]   
@@ -84,7 +94,6 @@ function GEC(;
         0 <= Q_hp[T, H_HP], (base_name = "HPreactivePower")
         z_hp[T, H_HP], Bin, (base_name = "HPOnOff")
         0 <= P_hp_down[T, H_HP], (base_name = "HPcurtailedActivePower")
-
     end)
 
     # slack bus
@@ -95,20 +104,20 @@ function GEC(;
 
     # power balance of real power
     @constraint(model,
-        [t in T, j in B],
-        P[t, j] ==
-        sum(PLine[t, i] for i in B[1:end-1] if network[i, :EndNode] == j) -                 # real power into bus
-        sum(I[t, i] * network[i, :R] for i in B[1:end-1] if network[i, :EndNode] == j) -    # ohmic losses
-        sum(PLine[t, i] for i in B[1:end-1] if network[i, :StartNode] == j)                 # power out of bus
+        [t in T, b in B],
+        P[t, b] ==
+        sum(PLine[t, i] for i in B[1:end-1] if network[i, :EndNode] == b) -                 # real power into bus
+        sum(I[t, i] * network[i, :R] for i in B[1:end-1] if network[i, :EndNode] == b) -    # ohmic losses
+        sum(PLine[t, i] for i in B[1:end-1] if network[i, :StartNode] == b)                 # power out of bus
     )
 
     # power balance of reactive power
     @constraint(model,
-        [t in T, j in B],
-        Q[t, j] ==
-        sum(QLine[t, i] for i in B[1:end-1] if network[i, :EndNode] == j) -                 # reactive power into bus
-        sum(I[t, i] * network[i, :X] for i in B[1:end-1] if network[i, :EndNode] == j) -    # reactive losses
-        sum(QLine[t, i] for i in B[1:end-1] if network[i, :StartNode] == j)                 # reactive power out of bus
+        [t in T, b in B],
+        Q[t, b] ==
+        sum(QLine[t, i] for i in B[1:end-1] if network[i, :EndNode] == b) -                 # reactive power into bus
+        sum(I[t, i] * network[i, :X] for i in B[1:end-1] if network[i, :EndNode] == b) -    # reactive losses
+        sum(QLine[t, i] for i in B[1:end-1] if network[i, :StartNode] == b)                 # reactive power out of bus
     )
 
     # electrical
@@ -140,26 +149,26 @@ function GEC(;
         [t in T, h in H_HP], Q[t, h] == Q_base[t, h] - Q_pv[t, h] + Q_hp[t, h]
 
         # photovoltaics
-        [t in T, h in H], -P_pv[t, h] * tan_phi_pv <= Q_pv[t, h]    # pv_tan-
-        [t in T, h in H], Q_pv[t, h] <= P_pv[t, h] * tan_phi_pv     # pv_tan+
-        [t in T, h in H], P_pv[t, h] <= pv_cap[h] * pv_eff[t]       # pvMax
-        [t in T, h in H], P_pv_down[t, h] == pv_cap[h] * pv_eff[t] - P_pv[t, h] # pv_down
+        [t in T, h in H], -P_pv[t, h] * tan_phi_pv <= Q_pv[t, h], (base_name = "pv_pf-")
+        [t in T, h in H], Q_pv[t, h] <= P_pv[t, h] * tan_phi_pv, (base_name = "pv_pf+")
+        [t in T, h in H], P_pv[t, h] <= pv_cap[h] * pv_eff[t], (base_name = "pv_max")
+        [t in T, h in H], P_pv_down[t, h] == pv_cap[h] * pv_eff[t] - P_pv[t, h], (base_name = "pv_down")
 
         # heat pumps
-        [t in T, h in H_HP], Q_hp[t, h] == P_hp[t, h] * tan_phi_load
-        [t in T, h in H_HP], P_hp[t, h] <= z_hp[t, h] * p_hp_max # hp_max
-        [t in T, h in H_HP], P_hp[t, h] >= z_hp[t, h] * p_hp_min # hp_min
-        [t in T, h in H_HP], P_hp_down[t, h] >= p_hp_max - P_hp[t, h] # hp_down
+        [t in T, h in H_HP], Q_hp[t, h] == P_hp[t, h] * tan_phi_load, (base_name = "hp_pf")
+        [t in T, h in H_HP], P_hp[t, h] <= z_hp[t, h] * p_hp_max, (base_name = "hp_max")
+        [t in T, h in H_HP], P_hp[t, h] >= z_hp[t, h] * p_hp_min, (base_name = "hp_min")
+        [t in T, h in H_HP], P_hp_down[t, h] >= p_hp_max - P_hp[t, h], (base_name = "hp_down")
     end)
 
     # define objective functions 
     @expressions(model, begin
-        J_loss, sum(network[i, :R] * I[t, i]^2 for t in T, i in B[1:end-1])
+        J_loss, sum(network[i, :R] * I[t, i] for t in T, i in B[1:end-1])
         J_pv, sum(P_pv_down[t, i] for t in T, i in H)
         J_hp, sum(P_hp_down[t, i] for t in T, i in H_HP)
     end)
 
-    @objective(model, Min, c_loss * J_loss + c_pv * J_pv + c_hp_down * J_hp)
+    @objective(model, Min, c_loss * J_loss + c_pv * J_pv + c_hp * J_hp)
 
     optimize!(model)
     @assert is_solved_and_feasible(model)
