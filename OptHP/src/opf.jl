@@ -45,17 +45,10 @@ function GEC(;
 
     # sets
     T = 1:length(pv_eff)                            # discrete time steps [-]
-    # T = 1:1                                       # discrete time steps [-]
     B = 1:nrow(network)+1                           # all buses [-], slack bus is bus 1 (+1)
     H = connections[!, :Node]                       # user buses [-]
     notH = setdiff(B, H)                            # non-user buses [-]
     H_HP = connections[connections.HP.==1, :Node]   # buses with HP [-]
-    #print all sets
-    # println("T: ", T)
-    # println("B: ", B)
-    # println("H: ", H)
-    # println("notH: ", notH)
-    # println("H_HP: ", H_HP)
     @assert issubset(H_HP, H)
 
     # offset load data by user bus index
@@ -126,7 +119,8 @@ function GEC(;
         # voltage relation
         [t in T, b in B[1:end-1]],
         V[t, network[b, :EndNode]] == V[t, network[b, :StartNode]] -
-                                      2 * (network[b, :R] * PLine[t, b] + network[b, :X] * QLine[t, b]) +
+                                      2 * (network[b, :R] * PLine[t, b] +
+                                           network[b, :X] * QLine[t, b]) +
                                       (network[b, :R]^2 + network[b, :X]^2) * I[t, b]
 
         # bus SOCP
@@ -160,6 +154,10 @@ function GEC(;
         [t in T, h in H_HP], P_hp[t, h] >= z_hp[t, h] * p_hp_min, (base_name = "hp_min")
         [t in T, h in H_HP], P_hp_down[t, h] >= p_hp_max - P_hp[t, h], (base_name = "hp_down")
     end)
+
+    # expression for debugging
+    @expression(model, P_load_user[t in T], sum(P[t, h] for h in H))
+    @expression(model, P_loss[t in T], sum(network[i, :R] * I[t, i] for i in B[1:end-1]))
 
     # define objective functions 
     @expressions(model, begin
