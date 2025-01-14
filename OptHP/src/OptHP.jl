@@ -9,6 +9,7 @@ export GEC
 
 
 include("heatpump.jl")
-include("opf.jl")
+include("constants.jl")
+include("user.jl")
 
 end
