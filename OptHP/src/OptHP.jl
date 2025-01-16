@@ -3,13 +3,13 @@ module OptHP
 using JuMP
 using DataFrames
 using Gurobi
-using OffsetArrays
 
 export GEC
 
 
 include("heatpump.jl")
 include("constants.jl")
-include("user.jl")
+include("grid.jl")
+include("model.jl")
 
 end
