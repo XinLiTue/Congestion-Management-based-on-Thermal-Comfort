@@ -1,20 +1,20 @@
 """Constants used in the optimization problem."""
 
-const s_trafo = 0.23 * 0.16 * 3 # data from DACS area 7
+const S_trafo = 0.23 * 0.16 * 3 # data from DACS area 7
 const pf = 0.92 # baseload & HP power factor
 const tan_phi_load = (sqrt(1 - pf^2)) / pf
-const p_hp_max = 4.5 * 1e-3  # 4.5 [kW]
+const P_hp_max = 4.5 * 1e-3  # 4.5 [kW]
 const p_hp_min = 1e-3 # 1 [kW]
 
 # costs
-const c_loss = 40
-const c_grid = 500
-const c_hp = 200
-const c_pv = 400
+const c_loss = 40.0
+const c_grid = 500.0
+const c_hp = 200.0
+const c_pv = 400.0
 
 # pv constraints
 const pf_pv_limit = 0.95
-const tan_phi_pv = (sqrt(1 - pf_pv_limit^2)) / pf_pv_limit
+const PV_tan_phi = (sqrt(1 - pf_pv_limit^2)) / pf_pv_limit
 
 # voltage constraints
 const V_ref = 0.23 # [kV]

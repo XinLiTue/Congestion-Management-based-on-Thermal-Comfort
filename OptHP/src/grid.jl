@@ -53,7 +53,7 @@ end
 struct HeatPumpBus <: User
     node::Int
     adjacent::Set{Int}
-    PV::Float64
+    PV::Float64         # PV capacity [MW]
     A::Matrix{Float64}
     B::Matrix{Float64}
 
@@ -87,9 +87,21 @@ end
 struct Grid
     buses::NTuple{N,AbstractBus} where {N}  # Tuple with N elements of AbstractBus
     lines::NTuple{M,Line} where {M}         # Tuple with M elements of Line
+    T::UnitRange{Int}                       # Set of discrete time steps
+    ΔT::Float64                             # Time step duration
+
+    # constructor with default time step duration
+    function Grid(
+        buses::NTuple{N,AbstractBus},
+        lines::NTuple{M,Line},
+        T::UnitRange{Int}, ΔT::Float64=1.0) where {N,M}
+
+        new(buses, lines, T, ΔT)
+    end
 end
 
 
+# show methods for pretty printing
 function Base.show(io::IO, b::AbstractBus)
     println(io, "$(split(string(typeof(b)),'.')[2]): $(b.node) with adjacent: [$(join(b.adjacent|>collect|>sort,','))]")
 end
@@ -103,8 +115,9 @@ function Base.show(io::IO, l::Line)
 end
 
 function Base.show(io::IO, g::Grid)
-    println(io, "Grid with $(length(g.buses)) buses and $(length(g.lines)) lines")
+    println(io, "Grid with $(length(g.buses)) buses and $(length(g.lines)) lines over $(length(g.T)) time steps")
 end
+
 
 # figure out which buses are connected to this bus
 function connected_buses(bus::Int, lines::Set{Tuple{Int64,Int64}})
@@ -120,11 +133,37 @@ function connected_buses(bus::Int, lines::Set{Tuple{Int64,Int64}})
 end
 
 
+# get the slack bus and verify it's unique
+function get_slack_bus(grid::Grid)
+    slack_buses = [bus for bus in grid.buses if bus isa SlackBus]
+    @assert length(slack_buses) == 1
+    return slack_buses[1]
+end
 
+
+# get the user buses without heat pumps
+function get_nonhp_buses(grid::Grid)
+    return [bus for bus in grid.buses if bus isa UserBus]
+end
+
+
+# get the user buses with heat pumps
+function get_hp_buses(grid::Grid)
+    return [bus for bus in grid.buses if bus isa HeatPumpBus]
+end
+
+# get user buses
+function get_user_buses(grid::Grid)
+    return [bus for bus in grid.buses if bus isa User]
+end
+
+# build the grid network consisting of buses and lines, 
+# defined by the network and connections dataframes
 function build_grid(
     network::DataFrame,
     connections::DataFrame,
-    meta::Dict
+    meta::Dict,
+    T::UnitRange{Int}
 )
     # a graph G = (V, E) is made of buses (V) and lines (E)
     V = Set([network.StartNode; network.EndNode])
@@ -150,11 +189,12 @@ function build_grid(
     for row in eachrow(connections)
         node = row.Node
         adjacent = connected_buses(node, E)
+        PV = row.PV * 1e-3
 
         if row.HP == 1
-            users[node] = Bus(node, adjacent, row.PV, meta["H14"]["A"], meta["H14"]["B"])
+            users[node] = Bus(node, adjacent, PV, meta["H14"]["A"], meta["H14"]["B"])
         else
-            users[node] = Bus(node, adjacent, row.PV)
+            users[node] = Bus(node, adjacent, PV)
         end
     end
 
@@ -162,6 +202,36 @@ function build_grid(
     lines = [Line(users[row.StartNode], users[row.EndNode],
         row.Length, row.Inom, row.R, row.X) for row in eachrow(network)]
 
-    grid = Grid(Tuple(values(users)), Tuple(lines))
+    grid = Grid(Tuple(values(users)), Tuple(lines), T)
     return grid
+end
+
+# get the sets of buses and users
+function get_sets(grid::Grid)
+    B = Set(getfield.(grid.buses, :node))
+    H = Set([bus.node for bus in grid.buses if bus isa User])
+    H_HP = Set([bus.node for bus in grid.buses if bus isa HeatPumpBus])
+    notH = setdiff(B, H)
+    return (B=B, H=H, H_HP=H_HP, notH=notH, T=grid.T)
+end
+
+# get the set of lines indexed by (start, stop) bus pairs
+function get_line_set(grid::Grid)
+    return Set([(line.start.node, line.stop.node) for line in grid.lines])
+end
+
+# get the buses going into or outgoing of this bus
+function get_incoming_buses(bus::Int, grid::Grid)
+    return Set([line.start.node for line in grid.lines if line.stop.node == bus])
+end
+function get_outgoing_buses(bus::Int, grid::Grid)
+    return Set([line.stop.node for line in grid.lines if line.start.node == bus])
+end
+
+# get lines going into or out of this bus
+function get_incoming_lines(bus::Int, grid::Grid)
+    return [line for line in grid.lines if line.stop.node == bus]
+end
+function get_outgoing_lines(bus::Int, grid::Grid)
+    return [line for line in grid.lines if line.start.node == bus]
 end
