@@ -90,17 +90,17 @@ function add_bus_constraints(
         Q_loss = @expression(model, [t in T], sum(I_line[t, (l.start.node, l.stop.node)] * l.X for l in L_in))
 
         @constraints(model, begin
-            # real power balance (3a)
+            # real power balance (1a)
             [t in T], P[t, b] == P_in[t] - P_out[t] - P_loss[t], (base_name = "GridRealPowerBalance")
-            # reactive power balance (3b)
+            # reactive power balance (1b)
             [t in T], Q[t, b] == Q_in[t] - Q_out[t] - Q_loss[t], (base_name = "GridReactivePowerBalance")
         end)
     end
 
     # load constraints for non-user nodes are set to zero
     @constraints(model, begin
-        [t in T, h in notH; h ≠ 0], P[t, h] == 0
-        [t in T, h in notH; h ≠ 0], Q[t, h] == 0
+        [t in T, h in notH; h ≠ 0], P[t, h] == 0, (base_name = "NonUserRealPowerBalance")
+        [t in T, h in notH; h ≠ 0], Q[t, h] == 0, (base_name = "NonUserReactivePowerBalance")
     end)
 end
 
@@ -132,7 +132,7 @@ function add_load_constraints(
     for bus in get_nonhp_buses(grid)
         b = bus.node
         @constraints(model, begin
-            # load constraints
+            # load constraints (1a, 1b)
             [t in T], P[t, b] == P_base[t, "$b"] - P_pv[t, b], (base_name = "UserRealPowerBalance")
             [t in T], Q[t, b] == Q_base[t, "$b"] - Q_pv[t, b], (base_name = "UserReactivePowerBalance")
         end)
@@ -142,9 +142,9 @@ function add_load_constraints(
     for bus in get_hp_buses(grid)
         b = bus.node
         @constraints(model, begin
-            # load constraints 
-            [t in T], P[t, b] == P_base[t, "$b"] - P_pv[t, b] + P_hp[t, b]
-            [t in T], Q[t, b] == Q_base[t, "$b"] - Q_pv[t, b] + Q_hp[t, b]
+            # load constraints (1a, 1b)
+            [t in T], P[t, b] == P_base[t, "$b"] - P_pv[t, b] + P_hp[t, b], (base_name = "P")
+            [t in T], Q[t, b] == Q_base[t, "$b"] - Q_pv[t, b] + Q_hp[t, b], (base_name = "Q")
             # heat pump constraints
             [t in T], Q_hp[t, b] == P_hp[t, b] * tan_phi_load, (base_name = "hp_pf")
             [t in T], P_hp[t, b] <= z_hp[t, b] * P_hp_max, (base_name = "hp_max")
@@ -237,6 +237,7 @@ function GEC(;
     connections::DataFrame,
     loads_real::DataFrame,
     loads_reactive::DataFrame,
+    weather::DataFrame,
     limit::Tuple=(40:48, -15 * 1e-3),
     meta::Dict=Dict(),
     silent=true
@@ -260,21 +261,27 @@ function GEC(;
     congestion_limit = ones(96) * (-50 * 1e-3)
     congestion_limit[limit[1]] .= limit[2]
 
-    # variables
+    ### GRID ###
+    # grid variables
     add_bus_variables(model, grid)
     add_line_variables(model, grid)
 
-    # constraints
+    # grid constraints
     add_bus_constraints(model, grid, congestion_limit)
     add_line_constraints(model, grid)
     add_load_constraints(model, grid, loads_real, loads_reactive, pv_eff)
 
-    # objective functions
+    # grid objective functions
     add_objectives(model, grid)
     @objective(model, Min, model[:J_loss] * c_loss +
                            model[:J_pv] * c_pv +
                            model[:J_hp] * c_hp
     )
+    ### END GRID ###
+
+    ### HEAT PUMP ###
+    add_heatpump_variables(model, grid, weather)
+    ### END HEAT PUMP ###
 
     # helper expressions
     add_helper_expressions(model, grid, loads_real)

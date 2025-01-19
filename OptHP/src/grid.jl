@@ -56,12 +56,20 @@ struct HeatPumpBus <: User
     PV::Float64         # PV capacity [MW]
     A::Matrix{Float64}
     B::Matrix{Float64}
+    T_supply::Float64   # supply temperature [°C]
 
-    function HeatPumpBus(node::Int, adjacent::Set{Int}, PV::Float64, A::Matrix{Float64}, B::Matrix{Float64})
+    function HeatPumpBus(
+        node::Int,
+        adjacent::Set{Int},
+        PV::Float64,
+        A::Matrix{Float64},
+        B::Matrix{Float64},
+        T_supply::Float64=40.0
+    )
         if size(A) != (3, 3) || size(B) != (3, 3)
             throw(ArgumentError("A and B must be 3x3 matrices"))
         end
-        new(node, adjacent, PV, A, B)
+        new(node, adjacent, PV, A, B, T_supply)
     end
 end
 
@@ -88,15 +96,16 @@ struct Grid
     buses::NTuple{N,AbstractBus} where {N}  # Tuple with N elements of AbstractBus
     lines::NTuple{M,Line} where {M}         # Tuple with M elements of Line
     T::UnitRange{Int}                       # Set of discrete time steps
-    ΔT::Float64                             # Time step duration
+    Δt::Float64                             # Time step duration
 
     # constructor with default time step duration
     function Grid(
         buses::NTuple{N,AbstractBus},
         lines::NTuple{M,Line},
-        T::UnitRange{Int}, ΔT::Float64=1.0) where {N,M}
+        T::UnitRange{Int},
+        Δt::Float64=1.0) where {N,M}
 
-        new(buses, lines, T, ΔT)
+        new(buses, lines, T, Δt)
     end
 end
 
