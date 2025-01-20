@@ -209,7 +209,7 @@ function build_grid(
 
     # create grid
     lines = [Line(users[row.StartNode], users[row.EndNode],
-        row.Length, row.Inom, row.R, row.X) for row in eachrow(network)]
+        row.Length, 1E3 * row.Inom, row.R, row.X) for row in eachrow(network)]
 
     grid = Grid(Tuple(values(users)), Tuple(lines), T)
     return grid

@@ -27,7 +27,7 @@ function add_heatpump_variables(
     model::Model,
     grid::Grid,
     df::DataFrame;
-    use_boiler::Bool=true
+    use_boiler::Bool=false
 )
     # sets
     sets = get_sets(grid)
@@ -36,19 +36,19 @@ function add_heatpump_variables(
     Δt = grid.Δt
 
     @variables(model, begin
-        0 <= Φ_CV[T, H_HP] <= Φ_CV_max
-        0 <= z_CV[T, H_HP] <= 1, Bin
-        0 <= Φ_HP[T, H_HP] <= Φ_HP_max
-        0 <= z_HP[T, H_HP] <= 1, Bin
-        0 <= P_HP[T, H_HP] <= P_HP_max
-        Te[T, H_HP, [:i, :e, :h]]   # indoor, envelope, emission temperature [°C]
+        0 <= Φ_CV[T, H_HP] <= Φ_CV_max, (base_name = "CVthermalPower")
+        0 <= z_CV[T, H_HP] <= 1, Bin, (base_name = "CVonoff")
+        0 <= Φ_HP[T, H_HP] <= Φ_HP_max, (base_name = "HPthermalPower")
+        0 <= z_HP[T, H_HP] <= 1, Bin, (base_name = "HPonoff")
+        0 <= P_HP[T, H_HP] <= P_HP_max, (base_name = "HPactivePower")
+        Te[T, H_HP, [:i, :e, :h]], (base_name = "StateSpaceModel")
     end)
     set_lower_bound.(Te[:, :, :h], 0.0)
     set_upper_bound.(Te[:, :, :h], 55)
 
     # if the boiler is not used, set z_CV to 0
     if !use_boiler
-        fix(z_CV, 0; force=true)
+        fix.(z_CV, 0; force=true)
     end
 
     # set initial values for the state variables
