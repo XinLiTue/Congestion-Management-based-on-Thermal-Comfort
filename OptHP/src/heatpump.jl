@@ -16,7 +16,7 @@ const H_g = 9.77
 
 # Comfort constraints
 const T_i_max = 25.0           # Maximum upper comfort violation [°C]
-const T_i_min = 20.7           # Maximum lower comfort violation [°C]
+const T_i_min = 20.0           # Maximum lower comfort violation [°C]
 
 
 # default COP model 
@@ -57,7 +57,6 @@ function add_heatpump_variables(
         :e => 21.0,
         :h => 21.0
     )
-        # fix(T[1, k], v; force=true)
         fix.(Te[1, :, k], v; force=true)
     end
 
@@ -119,10 +118,11 @@ function add_heatpump_constraints(
             [t in T], Φ_HP[t, b] == η_COP[t, b] * P_HP[t, b]
 
             # comfort 
-            [t in T], T_i_max >= Te[t, b, :i] >= T_i_min
+            [t in T], Te[t, b, :i] <= T_i_max
+            [t in T], Te[t, b, :i] >= T_i_min
 
             # state-space model dynamics
-            [t in T[1:25]], Te[t+1, b, :].data .== A_d * Te[t, b, :].data + B_d * u[t, b]
+            [t in T[1:end-1]], Te[t+1, b, :].data .== A_d * Te[t, b, :].data + B_d * u[t, b]
         end)
     end
 end
