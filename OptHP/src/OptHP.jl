@@ -6,7 +6,7 @@ using Dates
 using DataFrames
 using Gurobi
 
-export GEC
+export GEC, interpolate_data
 
 
 include("constants.jl")

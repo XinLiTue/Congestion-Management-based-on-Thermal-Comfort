@@ -208,15 +208,15 @@ function add_objectives(
     B, H, H_HP, notH, T = sets.B, sets.H, sets.H_HP, sets.notH, sets.T
 
     # variables
-    P_pv_down = model[:P_pv_down]
-    P_hp_down = model[:P_hp_down]
     I_line = model[:I_line]
+
+    # heat pump energy cost 
+    J_c = model[:J_c]
 
     # define objective functions
     @expressions(model, begin
         J_loss, sum(l.R * I_line[t, (l.start.node, l.stop.node)] for t in T, l in grid.lines)
-        J_pv, sum(P_pv_down[t, i] for t in T, i in H)
-        J_hp, sum(P_hp_down[t, i] for t in T, i in H_HP)
+        J_hp_c, sum(J_c[i] for i in H_HP)
     end)
 end
 
@@ -270,21 +270,24 @@ function GEC(;
     add_bus_constraints(model, grid, congestion_limit)
     add_line_constraints(model, grid)
     add_load_constraints(model, grid, loads_real, loads_reactive, pv_eff)
-
-    # grid objective functions
-    add_objectives(model, grid)
-    @objective(model, Min, model[:J_loss] * c_loss +
-                           model[:J_pv] * c_pv +
-                           model[:J_hp] * c_hp
-    )
     ### END GRID ###
 
     ### HEAT PUMP ###
     add_heatpump_variables(model, grid, weather)
+    add_heatpump_constraints(model, grid, weather)
     ### END HEAT PUMP ###
 
     # helper expressions
     add_helper_expressions(model, grid, loads_real)
+
+    # objective functions
+    add_objectives(model, grid)
+    @objective(
+        model,
+        Min,
+        model[:J_loss] * c_loss +
+        model[:J_hp_c] * c_hp
+    )
 
     # optimize the model and return it
     optimize!(model)
