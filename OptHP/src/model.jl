@@ -81,18 +81,6 @@ function add_bus_constraints(
         Q_out = @expression(model, [t in T], sum(Q_line[t, (l.start.node, l.stop.node)] for l in L_out))
         Q_loss = @expression(model, [t in T], sum(I_line[t, (l.start.node, l.stop.node)] * l.X for l in L_in))
 
-        # if b=0 print everything
-        if b == 0
-            println("P_in: ", P_in)
-            println("P_out: ", P_out)
-            println("P_loss: ", P_loss)
-            println("Q_in: ", Q_in)
-            println("Q_out: ", Q_out)
-            println("Q_loss: ", Q_loss)
-            println("L_in: ", L_in)
-            println("L_out: ", L_out)
-        end
-
         @constraints(model, begin
             # real power balance (1a)
             [t in T], P[t, b] == P_in[t] - P_out[t] - P_loss[t], (base_name = "GridRealPowerBalance")
