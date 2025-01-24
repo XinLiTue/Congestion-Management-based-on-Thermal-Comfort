@@ -13,7 +13,7 @@ function add_grid_model(
     L = get_line_set(grid)
     T = get_sets(grid).T
 
-    I_max = 1.0 # [A]
+    I_max = 1e4 # [A]
 
 
     # base loads 
@@ -49,7 +49,7 @@ function add_grid_model(
 
     # slack bus constraints
     @constraints(model, begin
-        TrafoPowerLimitForCongestion[t in T], P[SB, t] <= limit[t]
+        #     TrafoPowerLimitForCongestion[t in T], P[SB, t] <= limit[t]
         TrafoLimit[t in T], P[SB, t]^2 + Q[SB, t]^2 <= S_max^2
     end)
 
@@ -66,14 +66,18 @@ function add_grid_model(
                    sum(Q_line[(i, j), t] - X[(i, j)] * I_line[(i, j), t] for i in bus_in(j, grid))
 
         # voltage drop eq. (3)
-        # VoltageDrop[(i, j) in L, t in T],
-        # v[j, t] == v[i, t] - 2 * (P_line[(i, j), t] * R[(i, j)] + Q_line[(i, j), t] * X[(i, j)]) +
-        #            (R[(i, j)]^2 + X[(i, j)]^2) * I_line[(i, j), t]
         VoltageDrop[(i, j) in L, t in T],
-        v[j, t] == v[i, t]
+        v[j, t] == v[i, t] - 2 * (P_line[(i, j), t] * R[(i, j)] + Q_line[(i, j), t] * X[(i, j)]) +
+                   (R[(i, j)]^2 + X[(i, j)]^2) * I_line[(i, j), t]
 
         # conic OPF eq. (4)
-        ConicOPF[(i, j) in L, t in T], I_line[(i, j), t] * v[i, t] >= (P_line[(i, j), t]^2 + Q_line[(i, j), t]^2)
+        ConicOPF[(i, j) in L, t in T],
+        [
+            I_line[(i, j), t] + v[i, t],
+            2 * P_line[(i, j), t],
+            2 * Q_line[(i, j), t],
+            I_line[(i, j), t] - v[i, t],
+        ] in SecondOrderCone()
 
         # line current limit eq. (6)
         LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= I_max
