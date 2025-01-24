@@ -109,66 +109,9 @@ struct Grid
     end
 end
 
-
-# show methods for pretty printing
-function Base.show(io::IO, b::AbstractBus)
-    println(io, "$(split(string(typeof(b)),'.')[2]): $(b.node) with adjacent: [$(join(b.adjacent|>collect|>sort,','))]")
-end
-
-function Base.show(io::IO, b::UserBus)
-    println(io, "UserBus: $(b.node) with PV: $(b.PV) and adjacent: [$(join(b.adjacent|>collect|>sort,','))]")
-end
-
-function Base.show(io::IO, l::Line)
-    println(io, "$(l.start.node) -> $(l.stop.node) [X: $(l.X), R: $(l.R), Inom: $(l.Inom)]")
-end
-
-function Base.show(io::IO, g::Grid)
-    println(io, "Grid with $(length(g.buses)) buses and $(length(g.lines)) lines over $(length(g.T)) time steps")
-end
-
-
-# figure out which buses are connected to this bus
-function connected_buses(bus::Int, lines::Set{Tuple{Int64,Int64}})
-    connected = Set{Int}()
-    for line in lines
-        for idx in [1, 2]
-            if line[idx] == bus
-                push!(connected, line[3-idx])
-            end
-        end
-    end
-    return connected
-end
-
-
-# get the slack bus and verify it's unique
-function get_slack_bus(grid::Grid)
-    slack_buses = [bus for bus in grid.buses if bus isa SlackBus]
-    @assert length(slack_buses) == 1
-    return slack_buses[1]
-end
-
-
-# get the user buses without heat pumps
-function get_nonhp_buses(grid::Grid)
-    return [bus for bus in grid.buses if bus isa UserBus]
-end
-
-
-# get the user buses with heat pumps
-function get_hp_buses(grid::Grid)
-    return [bus for bus in grid.buses if bus isa HeatPumpBus]
-end
-
-# get user buses
-function get_user_buses(grid::Grid)
-    return [bus for bus in grid.buses if bus isa User]
-end
-
 # build the grid network consisting of buses and lines, 
 # defined by the network and connections dataframes
-function build_grid(
+function Grid(
     network::DataFrame,
     connections::DataFrame,
     meta::Dict,
@@ -230,10 +173,10 @@ function get_line_set(grid::Grid)
 end
 
 # get the buses going into or outgoing of this bus
-function get_incoming_buses(bus::Int, grid::Grid)
+function bus_in(bus::Int, grid::Grid)
     return Set([line.start.node for line in grid.lines if line.stop.node == bus])
 end
-function get_outgoing_buses(bus::Int, grid::Grid)
+function bus_out(bus::Int, grid::Grid)
     return Set([line.stop.node for line in grid.lines if line.start.node == bus])
 end
 
@@ -243,4 +186,56 @@ function get_incoming_lines(bus::Int, grid::Grid)
 end
 function get_outgoing_lines(bus::Int, grid::Grid)
     return [line for line in grid.lines if line.start.node == bus]
+end
+
+# show methods for pretty printing
+function Base.show(io::IO, b::AbstractBus)
+    println(io, "$(split(string(typeof(b)),'.')[2]): $(b.node) with adjacent: [$(join(b.adjacent|>collect|>sort,','))]")
+end
+
+function Base.show(io::IO, b::UserBus)
+    println(io, "UserBus: $(b.node) with PV: $(b.PV) and adjacent: [$(join(b.adjacent|>collect|>sort,','))]")
+end
+
+function Base.show(io::IO, l::Line)
+    println(io, "$(l.start.node) -> $(l.stop.node) [X: $(l.X), R: $(l.R), Inom: $(l.Inom)]")
+end
+
+function Base.show(io::IO, g::Grid)
+    println(io, "Grid with $(length(g.buses)) buses and $(length(g.lines)) lines over $(length(g.T)) time steps")
+end
+
+# figure out which buses are connected to this bus
+function connected_buses(bus::Int, lines::Set{Tuple{Int64,Int64}})
+    connected = Set{Int}()
+    for line in lines
+        for idx in [1, 2]
+            if line[idx] == bus
+                push!(connected, line[3-idx])
+            end
+        end
+    end
+    return connected
+end
+
+# get the slack bus and verify it's unique
+function get_slack_bus(grid::Grid)
+    slack_buses = [bus for bus in grid.buses if bus isa SlackBus]
+    @assert length(slack_buses) == 1
+    return slack_buses[1]
+end
+
+# get the user buses without heat pumps
+function get_nonhp_buses(grid::Grid)
+    return [bus for bus in grid.buses if bus isa UserBus]
+end
+
+# get the user buses with heat pumps
+function get_hp_buses(grid::Grid)
+    return [bus for bus in grid.buses if bus isa HeatPumpBus]
+end
+
+# get user buses
+function get_user_buses(grid::Grid)
+    return [bus for bus in grid.buses if bus isa User]
 end

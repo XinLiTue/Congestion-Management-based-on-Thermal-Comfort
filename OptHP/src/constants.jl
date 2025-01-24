@@ -1,6 +1,6 @@
 """Constants used in the optimization problem."""
 
-const S_trafo = 1E3 * 0.23 * 0.16 * 3 # [kVA]
+const S_max = 1E3 * 0.23 * 0.16 * 3 # [kVA]
 const pf = 0.92 # baseload & HP power factor
 const tan_phi_load = (sqrt(1 - pf^2)) / pf
 
