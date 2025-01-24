@@ -46,14 +46,12 @@ end
 struct UserBus <: User
     node::Int
     adjacent::Set{Int}
-    PV::Float64
 end
 
 # user bus with a heat pump
 struct HeatPumpBus <: User
     node::Int
     adjacent::Set{Int}
-    PV::Float64         # PV capacity [MW]
     A::Matrix{Float64}
     B::Matrix{Float64}
     T_supply::Float64   # supply temperature [°C]
@@ -61,7 +59,6 @@ struct HeatPumpBus <: User
     function HeatPumpBus(
         node::Int,
         adjacent::Set{Int},
-        PV::Float64,
         A::Matrix{Float64},
         B::Matrix{Float64},
         T_supply::Float64=40.0
@@ -69,17 +66,18 @@ struct HeatPumpBus <: User
         if size(A) != (3, 3) || size(B) != (3, 3)
             throw(ArgumentError("A and B must be 3x3 matrices"))
         end
-        new(node, adjacent, PV, A, B, T_supply)
+        new(node, adjacent, A, B, T_supply)
     end
 end
 
-# outer constructors for Bus structs
+# # outer constructors for Bus structs
+# Bus(node::Int, adjacent::Set{Int}) = JunctionBus(node, adjacent)
+# Bus(node::Int, adjacent::Vector{Int}) = JunctionBus(node, Set(adjacent))
+# Bus(node::Int, adjacent::Set{Int}) = UserBus(node, adjacent)
 Bus(node::Int, adjacent::Set{Int}) = JunctionBus(node, adjacent)
-Bus(node::Int, adjacent::Vector{Int}) = JunctionBus(node, Set(adjacent))
-Bus(node::Int, adjacent::Set{Int}, PV::Float64) = UserBus(node, adjacent, PV)
-Bus(node::Int, adjacent::Vector{Int}, PV::Float64) = UserBus(node, Set(adjacent), PV)
-Bus(node::Int, adjacent::Set{Int}, PV::Float64, A::Matrix{Float64}, B::Matrix{Float64}) =
-    HeatPumpBus(node, adjacent, PV, A, B)
+Bus(node::Int, adjacent::Set{Int}, ::Bool) = UserBus(node, adjacent)
+Bus(node::Int, adjacent::Set{Int}, A::Matrix{Float64}, B::Matrix{Float64}) =
+    HeatPumpBus(node, adjacent, A, B)
 
 # a single line connects two buses
 struct Line
@@ -141,12 +139,11 @@ function Grid(
     for row in eachrow(connections)
         node = row.Node
         adjacent = connected_buses(node, E)
-        PV = row.PV * 1e-3
 
         if row.HP == 1
-            users[node] = Bus(node, adjacent, PV, meta["H14"]["A"], meta["H14"]["B"])
+            users[node] = Bus(node, adjacent, meta["H14"]["A"], meta["H14"]["B"])
         else
-            users[node] = Bus(node, adjacent, PV)
+            users[node] = Bus(node, adjacent, true)
         end
     end
 
@@ -194,7 +191,7 @@ function Base.show(io::IO, b::AbstractBus)
 end
 
 function Base.show(io::IO, b::UserBus)
-    println(io, "UserBus: $(b.node) with PV: $(b.PV) and adjacent: [$(join(b.adjacent|>collect|>sort,','))]")
+    println(io, "UserBus: $(b.node) adjacent: [$(join(b.adjacent|>collect|>sort,','))]")
 end
 
 function Base.show(io::IO, l::Line)

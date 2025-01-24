@@ -11,7 +11,7 @@ const c_hp = 2000.0
 const c_pv = 400.0
 
 # voltage constraints
-const V_ref = 0.23 # [kV]
+const V_ref = 230.0 # [kV]
 const V_lb = 0.96 # [pu]
 const V_ub = 1.04
 

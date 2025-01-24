@@ -13,6 +13,9 @@ function add_grid_model(
     L = get_line_set(grid)
     T = get_sets(grid).T
 
+    I_max = 1.0 # [A]
+
+
     # base loads 
     P_base = loads_real
     Q_base = loads_reactive
@@ -41,54 +44,56 @@ function add_grid_model(
         0 <= I_line[L, T], (base_name = "CurrentSquare")
 
         # heat pump electrical power consumption
-        P_HP[H_HP, T], (base_name = "HPElectricalPower")
+        # P_HP[H_HP, T], (base_name = "HPElectricalPower")
     end)
 
     # slack bus constraints
     @constraints(model, begin
-        [t in T], P[SB, t] <= limit[t], (base_name = "TransPowerLimitForCongestion")
-        [t in T], P[SB, t]^2 + Q[SB, t]^2 <= S_max^2, (base_name = "TrafoLimit")
+        TrafoPowerLimitForCongestion[t in T], P[SB, t] <= limit[t]
+        TrafoLimit[t in T], P[SB, t]^2 + Q[SB, t]^2 <= S_max^2
     end)
 
     # bus / line constraints
     @constraints(model, begin
         # real power balance eq. (1)
-        [j in B, t in T],
+        RealPowerBalance[j in B, t in T],
         P[j, t] == sum(P_line[(j, k), t] for k in bus_out(j, grid)) -
-                   sum(P_line[(i, j), t] - R[(i, j)] * I_line[(i, j), t] for i in bus_in(j, grid)),
-        (base_name = "RealPowerBalance")
+                   sum(P_line[(i, j), t] - R[(i, j)] * I_line[(i, j), t] for i in bus_in(j, grid))
 
         # reactive power balance eq. (2)
-        [j in B, t in T],
+        ReactivePowerBalance[j in B, t in T],
         Q[j, t] == sum(Q_line[(j, k), t] for k in bus_out(j, grid)) -
-                   sum(Q_line[(i, j), t] - X[(i, j)] * I_line[(i, j), t] for i in bus_in(j, grid)),
-        (base_name = "ReactivePowerBalance")
+                   sum(Q_line[(i, j), t] - X[(i, j)] * I_line[(i, j), t] for i in bus_in(j, grid))
 
         # voltage drop eq. (3)
-        [(i, j) in L, t in T],
-        v[j, t] == v[i, t] - 2 * (P_line[(i, j), t] * R[(i, j)] + Q_line[(i, j), t] * X[(i, j)]) +
-                   (R[(i, j)]^2 + X[(i, j)]^2) * I_line[(i, j), t]
+        # VoltageDrop[(i, j) in L, t in T],
+        # v[j, t] == v[i, t] - 2 * (P_line[(i, j), t] * R[(i, j)] + Q_line[(i, j), t] * X[(i, j)]) +
+        #            (R[(i, j)]^2 + X[(i, j)]^2) * I_line[(i, j), t]
+        VoltageDrop[(i, j) in L, t in T],
+        v[j, t] == v[i, t]
 
         # conic OPF eq. (4)
-        [(i, j) in L, t in T], I_line[(i, j), t] * v[i, t] >= (P_line[(i, j), t]^2 + Q_line[(i, j), t]^2)
+        ConicOPF[(i, j) in L, t in T], I_line[(i, j), t] * v[i, t] >= (P_line[(i, j), t]^2 + Q_line[(i, j), t]^2)
 
-        # TODO: line current limit eq. (6)
+        # line current limit eq. (6)
+        LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= I_max
     end)
 
     # load constraints
     @constraints(model, begin
-        [i in B, t in T; i ∉ H && i ≠ SB], P[i, t] == 0
-        [i in H, t in T; i ∉ H_HP], P[i, t] == -P_base[t, "$i"]
-        [i in H_HP, t in T], P[i, t] == -P_base[t, "$i"] - P_HP[i, t]
-        [i in H, t in T], Q[i, t] == -Q_base[t, "$i"]
+        Transmission[i in B, t in T; i ∉ H && i ≠ SB], P[i, t] == 0
+        RealBaseLoad[i in H, t in T], P[i, t] == -P_base[t, "$i"]
+        # [i in H, t in T; i ∉ H_HP], P[i, t] == -P_base[t, "$i"]
+        # [i in H_HP, t in T], P[i, t] == -P_base[t, "$i"] - P_HP[i, t]
+        ReactiveBaseLoad[i in H, t in T], Q[i, t] == -Q_base[t, "$i"]
     end)
 
-    ### TESTING ###
-    @constraints(model, begin
-        # for testing we set P_hp to zero
-        [i in H_HP, t in T], P_HP[i, t] == 0
-    end)
-    ### TESTING ###
+    # ### TESTING ###
+    # @constraints(model, begin
+    #     # for testing we set P_hp to zero
+    #     [i in H_HP, t in T], P_HP[i, t] == 0
+    # end)
+    # ### TESTING ###
 end
 
 
@@ -126,6 +131,9 @@ function GEC(;
         loads_real,
         loads_reactive,
     )
+    println("grid: ", grid)
+    println("grid.buses: \n", grid.buses)
+    println("grid.lines: \n", grid.lines)
 
     # variables
     I_line = model[:I_line]
