@@ -1,6 +1,6 @@
 """Constants used in the optimization problem."""
 
-const S_max = 1E3 * 0.23 * 0.16 * 3 # [kVA]
+S_max = 1E6 * 0.23 * 0.16 * 3 # [kVA]
 const pf = 0.92 # baseload & HP power factor
 const tan_phi_load = (sqrt(1 - pf^2)) / pf
 
@@ -11,7 +11,7 @@ const c_hp = 2000.0
 const c_pv = 400.0
 
 # voltage constraints
-const V_ref = 230.0 # [kV]
+V_ref = 230.0 # [kV]
 const V_lb = 0.96 # [pu]
 const V_ub = 1.04
 

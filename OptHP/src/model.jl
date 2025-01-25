@@ -3,7 +3,7 @@
 function add_grid_model(
     model::Model,
     grid::Grid,
-    limit::Vector{Float64},
+    limit::Tuple,
     loads_real::DataFrame,
     loads_reactive::DataFrame
 )
@@ -49,8 +49,8 @@ function add_grid_model(
 
     # slack bus constraints
     @constraints(model, begin
-        #     TrafoPowerLimitForCongestion[t in T], P[SB, t] <= limit[t]
-        TrafoLimit[t in T], P[SB, t]^2 + Q[SB, t]^2 <= S_max^2
+        TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
+        TrafoLimit[t in T], [S_max, P[SB, t], Q[SB, t]] in SecondOrderCone()
     end)
 
     # bus / line constraints
@@ -107,7 +107,7 @@ function GEC(;
     loads_real::DataFrame,
     loads_reactive::DataFrame,
     weather::DataFrame,
-    limit::Tuple=(40:48, 250),
+    limit::Tuple=(1:96, 250 * 1e6),
     meta::Dict=Dict(),
     silent=true,
     T=1:96
@@ -118,10 +118,6 @@ function GEC(;
         set_silent(model)
     end
 
-    # setup congestion limit
-    congestion_limit = ones(96) * (250)
-    congestion_limit[limit[1]] .= limit[2]
-
     # apply T to all dataframes 
     loads_real = loads_real[T, :]
     loads_reactive = loads_reactive[T, :]
@@ -131,13 +127,10 @@ function GEC(;
     grid = Grid(network, connections, meta, T)
     add_grid_model(model,
         grid,
-        congestion_limit,
+        limit,
         loads_real,
         loads_reactive,
     )
-    println("grid: ", grid)
-    println("grid.buses: \n", grid.buses)
-    println("grid.lines: \n", grid.lines)
 
     # variables
     I_line = model[:I_line]
