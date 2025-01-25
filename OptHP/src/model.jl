@@ -78,6 +78,9 @@ function add_grid_model(
             2 * Q_line[(i, j), t],
             I_line[(i, j), t] - v[i, t],
         ] in SecondOrderCone()
+        # ConicOPF[(i, j) in L, t in T],
+        # I_line[(i, j), t] >= (P_line[(i, j), t]^2 + Q_line[(i, j), t]^2) / v[i, t]
+
 
         # line current limit eq. (6)
         LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= I_max
@@ -107,7 +110,7 @@ function GEC(;
     loads_real::DataFrame,
     loads_reactive::DataFrame,
     weather::DataFrame,
-    limit::Tuple=(1:96, 250 * 1e6),
+    limit::Tuple=(1:96, 250 * 1e3),
     meta::Dict=Dict(),
     silent=true,
     T=1:96
@@ -132,16 +135,22 @@ function GEC(;
         loads_real,
         loads_reactive,
     )
-    println("grid.lines: ", grid.lines)
+    # println("grid.lines: ", grid.lines)
 
     # variables
     I_line = model[:I_line]
+    P = model[:P]
 
     # define objective functions
     @expressions(model, begin
         J_loss, sum(l.R * I_line[(l.start.node, l.stop.node), t] for t in grid.T, l in grid.lines)
+        J_gen, sum(P[0, T]) * 1e3
     end)
-    @objective(model, Min, J_loss)
+    @objective(model, Min, J_gen)
+    # set_attribute(model, "BarHomogeneous", 1)
+    # set_attribute(model, "NumericFocus", 3)
+    # MOI.set(model, MOI.RelativeGapTolerance(), 1E-3)
+
 
     # optimize the model and return it
     optimize!(model)
