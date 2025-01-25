@@ -1,6 +1,6 @@
 """Define model related functions."""
 
-function add_grid_model(
+function add_grid_model(;
     model::Model,
     grid::Grid,
     limit::Tuple,
@@ -11,7 +11,6 @@ function add_grid_model(
     sets = get_sets(grid)
     B, H, H_HP, T = sets.B, sets.H, sets.H_HP, sets.T
     L = get_line_set(grid)
-    T = get_sets(grid).T
 
     I_max = 1e4 # [A]
 
@@ -129,11 +128,11 @@ function GEC(;
 
     # add grid model 
     grid = Grid(network, connections, meta, T)
-    add_grid_model(model,
-        grid,
-        limit,
-        loads_real,
-        loads_reactive,
+    add_grid_model(model=model,
+        grid=grid,
+        limit=limit,
+        loads_real=loads_real,
+        loads_reactive=loads_reactive,
     )
     # println("grid.lines: ", grid.lines)
 
@@ -150,6 +149,7 @@ function GEC(;
     # set_attribute(model, "BarHomogeneous", 1)
     # set_attribute(model, "NumericFocus", 3)
     # MOI.set(model, MOI.RelativeGapTolerance(), 1E-3)
+    set_optimizer_attribute(model, "LogFile", "my_log_file.txt")
 
 
     # optimize the model and return it
