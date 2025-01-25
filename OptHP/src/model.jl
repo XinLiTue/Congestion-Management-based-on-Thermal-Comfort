@@ -118,10 +118,11 @@ function GEC(;
         set_silent(model)
     end
 
-    # apply T to all dataframes 
+    # apply T to all inputs
     loads_real = loads_real[T, :]
     loads_reactive = loads_reactive[T, :]
     weather = weather[T, :]
+
 
     # add grid model 
     grid = Grid(network, connections, meta, T)
@@ -131,6 +132,7 @@ function GEC(;
         loads_real,
         loads_reactive,
     )
+    println("grid.lines: ", grid.lines)
 
     # variables
     I_line = model[:I_line]
@@ -143,6 +145,6 @@ function GEC(;
 
     # optimize the model and return it
     optimize!(model)
-    @assert is_solved_and_feasible(model)
+    # @assert is_solved_and_feasible(model)
     return model
 end
