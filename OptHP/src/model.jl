@@ -11,8 +11,6 @@ function add_grid_model(;
     B, H, H_HP, T = sets.B, sets.H, sets.H_HP, sets.T
     L = get_line_set(grid)
 
-    I_max = 1e4 # [A]
-
     # base loads 
     P_base = df.usage_total_pu
     Q_base = zeros(T)
@@ -23,6 +21,7 @@ function add_grid_model(;
     # real and reactive line impedances
     R = Dict((line.start.node, line.stop.node) => line.R for line in grid.lines)
     X = Dict((line.start.node, line.stop.node) => line.X for line in grid.lines)
+    Inom = Dict((line.start.node, line.stop.node) => line.Inom for line in grid.lines)
 
     # variables
     @variables(model, begin
@@ -46,8 +45,8 @@ function add_grid_model(;
 
     # slack bus constraints
     @constraints(model, begin
-        # TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
-        # TrafoLimit[t in T], [S_max, P[SB, t], Q[SB, t]] in SecondOrderCone()
+        TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
+        TrafoLimit[t in T], [S_max, P[SB, t], Q[SB, t]] in SecondOrderCone()
     end)
 
     # bus / line constraints
@@ -77,7 +76,7 @@ function add_grid_model(;
         ] in SecondOrderCone()
 
         # line current limit eq. (6)
-        LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= I_max
+        LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= Inom[(i, j)]^2
     end)
 
     # load constraints
@@ -125,14 +124,13 @@ function GEC(;
         J_gen, sum(P[0, T])
     end)
     @objective(model, Min, J_gen)
-    # set_attribute(model, "BarHomogeneous", 1)
-    # set_attribute(model, "NumericFocus", 3)
-    # MOI.set(model, MOI.RelativeGapTolerance(), 1E-3)
+    set_attribute(model, "BarHomogeneous", 1)
+    set_attribute(model, "NumericFocus", 3)
     set_optimizer_attribute(model, "LogFile", "my_log_file.txt")
 
 
     # optimize the model and return it
     optimize!(model)
-    # @assert is_solved_and_feasible(model)
+    @assert is_solved_and_feasible(model)
     return model
 end
