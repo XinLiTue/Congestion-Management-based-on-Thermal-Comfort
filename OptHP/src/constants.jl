@@ -1,6 +1,12 @@
 """Constants used in the optimization problem."""
 
-S_max = 1E6 * 0.23 * 0.16 * 3 # [kVA]
+# p.u. base values
+S_base = 1E6 # [VA]
+V_base = 230.0 # [V]
+Z_base = V_base^2 / S_base # [Ohm]
+I_base = S_base / (V_base * sqrt(3)) # [A]
+
+S_max = 1E6 * 0.23 * 0.16 * 3 / S_base # [pu]
 const pf = 0.92 # baseload & HP power factor
 const tan_phi_load = (sqrt(1 - pf^2)) / pf
 
@@ -8,15 +14,7 @@ const tan_phi_load = (sqrt(1 - pf^2)) / pf
 const c_loss = 1.0
 const c_grid = 500.0
 const c_hp = 2000.0
-const c_pv = 400.0
 
 # voltage constraints
-V_ref = 230.0 # [kV]
 const V_lb = 0.96 # [pu]
 const V_ub = 1.04
-
-# pv efficiency data for date "2024-02-01"
-const hourly_data = [
-    0, 0, 0, 0, 0, 0, 0, 0, 0.006, 0.053, 0.129, 0.179,
-    0.166, 0.14, 0.094, 0.046, 0.007, 0, 0, 0, 0, 0, 0, 0
-]

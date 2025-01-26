@@ -7,6 +7,7 @@ using DataFrames
 using Gurobi
 
 export GEC, interpolate_data
+export S_base, V_base, Z_base, I_base
 
 # Constants used in the optimization problem
 include("constants.jl")

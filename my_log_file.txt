@@ -174,3 +174,899 @@ Optimal objective 6.11255122e+06
 
 
 User-callback calls 90, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 16:55:30 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 16:55:45 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 16:55:46 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 78432 rows, 83136 columns and 210720 nonzeros
+Model fingerprint: 0x5b7eb7e3
+Model has 8352 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-09, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+03, 1e+03]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-02, 3e+08]
+Presolve removed 42096 rows and 37056 columns
+Presolve time: 0.10s
+Presolved: 36336 rows, 46176 columns, 129984 nonzeros
+Presolved model has 8352 second-order cone constraints
+Ordering time: 0.01s
+
+Barrier statistics:
+ AA' NZ     : 2.404e+05
+ Factor NZ  : 3.658e+05 (roughly 36 MB of memory)
+ Factor Ops : 4.326e+06 (less than 1 second per iteration)
+ Threads    : 16
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   3.11200508e+06 -2.61277138e+07  4.97e+02 3.45e+00  1.44e+03     0s
+   1   3.25614634e+06 -2.28170786e+07  7.97e+02 6.20e+00  1.23e+03     0s
+   2   3.24010275e+06 -2.42836375e+06  1.63e+02 5.14e-01  2.44e+02     0s
+   3   2.77275799e+06  1.81450876e+06  9.17e+01 2.11e-02  8.38e+01     0s
+   4   2.69476391e+06  2.04542414e+06  8.31e+01 1.08e-02  6.82e+01     0s
+   5   2.68347585e+06  2.21240682e+06  8.17e+01 6.75e-03  6.52e+01     0s
+   6   2.66376357e+06  2.57255198e+06  7.83e+01 5.07e-03  6.26e+01     0s
+   7   2.64749669e+06  3.55926460e+06  7.60e+01 4.31e-03  6.10e+01     0s
+   8   2.64024641e+06  7.58176767e+06  7.50e+01 3.87e-03  6.17e+01     0s
+   9   2.63674931e+06  7.27826573e+07  7.45e+01 2.91e-03  8.19e+01     0s
+  10   2.63262662e+06  7.85003567e+08  7.39e+01 2.58e-03  1.76e+02     0s
+  11   2.63042622e+06  2.76787354e+10  7.36e+01 3.95e-03  1.25e+03     0s
+  12   2.63034986e+06  2.41747459e+13  7.35e+01 2.13e+00  5.74e+05     1s
+  13   3.11200508e+06 -2.61277138e+07  4.97e+02 3.45e+00  1.44e+03     1s
+  14   2.98946756e+06 -1.63657549e+07  7.55e+02 2.27e+01  1.01e+03     1s
+  15   2.73077565e+06  1.11845428e+06  2.13e+02 1.80e+00  1.57e+02     1s
+  16   2.54173970e+06  1.89701644e+06  1.28e+02 5.95e-01  8.30e+01     1s
+  17   2.45277885e+06  2.01195714e+06  9.05e+01 4.19e-01  5.23e+01     1s
+  18   2.43651426e+06  2.17814138e+06  8.12e+01 1.90e-01  4.44e+01     1s
+  19   2.47453208e+06  2.26266063e+06  8.15e+01 1.29e-01  4.73e+01     1s
+  20   2.50107517e+06  2.69542406e+06  7.67e+01 1.35e-01  6.52e+01     1s
+  21   4.25010786e+06  4.36670190e+06  7.70e+01 1.36e-01  1.83e+02     1s
+  22   5.92496273e+06  1.07788334e+07  7.76e+01 1.40e-01  5.45e+02     1s
+  23   6.16072399e+06  1.43906898e+07  8.15e+01 1.52e-01  1.36e+03     1s
+  24   8.02678567e+06  1.74168163e+07  1.14e+02 1.86e-01  4.93e+03     1s
+  25*  1.08375752e+07  3.15772015e+08  6.07e+01 4.05e-02  1.05e+01     1s
+  26*  1.52130804e+07  6.88720544e+09  1.54e-01 3.64e-08  2.17e-02     1s
+  27*  1.52095803e+07  7.66266859e+12  1.69e-04 9.81e-10  2.38e-05     1s
+  28*  1.52095803e+07  6.96431498e+15  1.86e-07 6.17e-10  2.62e-08     1s
+
+Barrier performed 28 iterations in 1.00 seconds (0.66 work units)
+Infeasible model
+
+
+User-callback calls 167, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:03:45 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:03:45 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 2976 rows, 3168 columns and 7584 nonzeros
+Model fingerprint: 0x6c671acc
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-04, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 1824 rows and 1728 columns
+Presolve time: 0.00s
+Presolved: 1152 rows, 1440 columns, 3456 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   4.73856733e+02 -1.18636536e+04  2.56e+01 9.11e-02  7.27e+00     0s
+   1   2.28063508e+02 -6.97519101e+01  9.44e+00 1.00e-07  3.04e-01     0s
+   2   4.05235306e-01 -7.78373178e+00  6.13e-03 1.16e-12  4.04e-03     0s
+   3   1.20957076e-01  9.65686587e-02  7.88e-06 1.37e-15  1.16e-05     0s
+   4   1.20412919e-01  1.20178989e-01  3.04e-10 1.55e-14  1.11e-07     0s
+   5   1.20355987e-01  1.20351070e-01  4.62e-12 1.61e-12  2.33e-09     0s
+   6   1.20353201e-01  1.20352494e-01  1.44e-09 3.05e-11  3.34e-10     0s
+
+Barrier solved model in 6 iterations and 0.01 seconds (0.01 work units)
+Optimal objective 1.20353201e-01
+
+
+User-callback calls 83, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:04:16 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:04:16 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 78048 rows, 82848 columns and 210144 nonzeros
+Model fingerprint: 0x131e2491
+Model has 8256 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-09, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 41664 rows and 36960 columns
+Presolve time: 0.09s
+Presolved: 36384 rows, 45888 columns, 130752 nonzeros
+Presolved model has 8256 second-order cone constraints
+Ordering time: 0.01s
+
+Barrier statistics:
+ AA' NZ     : 2.475e+05
+ Factor NZ  : 3.737e+05 (roughly 36 MB of memory)
+ Factor Ops : 4.411e+06 (less than 1 second per iteration)
+ Threads    : 16
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.95189578e+03 -4.43063719e+05  1.58e+02 1.00e-01  2.32e+01     0s
+   1   2.19844947e+03 -4.93676365e+04  5.39e+01 9.80e-03  2.83e+00     0s
+   2   1.91372798e+03 -2.85831935e+03  7.60e+00 3.92e-04  2.69e-01     0s
+   3   7.92339226e+01 -1.66102118e+02  2.90e-02 3.11e-06  8.54e-03     0s
+   4   1.10504763e+01 -3.01599420e+01  2.75e-03 4.63e-07  1.34e-03     0s
+   5   3.30011706e+00 -5.22238716e+00  2.82e-04 1.03e-07  2.74e-04     0s
+   6   2.45026132e+00  3.57399616e-01  4.67e-05 2.60e-08  6.72e-05     0s
+   7   2.28762414e+00  1.86117327e+00  1.11e-05 5.15e-09  1.37e-05     0s
+   8   2.23720389e+00  2.19637509e+00  1.47e-06 4.31e-10  1.31e-06     0s
+   9   2.23040698e+00  2.22370284e+00  4.42e-07 4.94e-11  2.16e-07     0s
+  10   2.22808202e+00  2.22718713e+00  7.37e-08 2.99e-12  2.89e-08     0s
+  11   2.22763048e+00  2.22746729e+00  5.81e-09 9.82e-13  5.24e-09     0s
+  12   2.22757177e+00  2.22750429e+00  2.87e-09 7.95e-12  2.16e-09     0s
+  13   2.22754368e+00  2.22751125e+00  2.16e-09 4.86e-11  1.04e-09     0s
+  14   2.22752989e+00  2.22751386e+00  1.35e-09 6.20e-12  5.14e-10     1s
+  15   2.22752067e+00  2.22751525e+00  2.82e-09 1.64e-11  1.74e-10     1s
+  16   2.22751822e+00  2.22751555e+00  5.84e-08 1.24e-09  8.57e-11     1s
+
+Barrier solved model in 16 iterations and 0.72 seconds (0.50 work units)
+Optimal objective 2.22751822e+00
+
+
+User-callback calls 127, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:08:43 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:08:43 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 2976 rows, 3168 columns and 7584 nonzeros
+Model fingerprint: 0x6c671acc
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-04, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 1824 rows and 1728 columns
+Presolve time: 0.00s
+Presolved: 1152 rows, 1440 columns, 3456 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   4.73856733e+02 -1.18636536e+04  2.56e+01 9.11e-02  7.27e+00     0s
+   1   2.28063508e+02 -6.97519101e+01  9.44e+00 1.00e-07  3.04e-01     0s
+   2   4.05235306e-01 -7.78373178e+00  6.13e-03 1.16e-12  4.04e-03     0s
+   3   1.20957076e-01  9.65686587e-02  7.88e-06 1.37e-15  1.16e-05     0s
+   4   1.20412919e-01  1.20178989e-01  3.04e-10 1.55e-14  1.11e-07     0s
+   5   1.20355987e-01  1.20351070e-01  4.62e-12 1.61e-12  2.33e-09     0s
+   6   1.20353201e-01  1.20352494e-01  1.44e-09 3.05e-11  3.34e-10     0s
+
+Barrier solved model in 6 iterations and 0.01 seconds (0.01 work units)
+Optimal objective 1.20353201e-01
+
+
+User-callback calls 84, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:09:31 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:09:31 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 3264 rows, 3456 columns and 8064 nonzeros
+Model fingerprint: 0x7d2da1c5
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-04, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 2016 rows and 1920 columns
+Presolve time: 0.00s
+Presolved: 1344 rows, 1728 columns, 4032 nonzeros
+Presolved model has 384 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 5.760e+03
+ Factor NZ  : 1.008e+04 (roughly 1 MB of memory)
+ Factor Ops : 9.744e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   4.84898197e+02 -1.18647875e+04  2.64e+01 9.11e-02  6.37e+00     0s
+   1   4.84898197e+02 -1.18647875e+04  2.64e+01 9.11e-02  6.37e+00     0s
+   2   1.61559916e+04 -1.20032245e+08  1.11e+03 1.00e+03  6.85e+05     0s
+   3   1.61559916e+04 -1.20032245e+08  1.11e+03 1.00e+03  6.85e+05     0s
+   4   1.61559916e+04 -1.20032245e+08  1.11e+03 1.00e+03  6.85e+05     0s
+   5   1.61559916e+04 -1.20032245e+08  1.11e+03 1.00e+03  6.85e+05     0s
+
+Barrier performed 5 iterations in 0.02 seconds (0.01 work units)
+Numerical trouble encountered
+
+Model may be infeasible or unbounded.  Consider using the
+homogeneous algorithm (through parameter 'BarHomogeneous')
+
+
+User-callback calls 85, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:09:42 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:09:42 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 2976 rows, 3168 columns and 7584 nonzeros
+Model fingerprint: 0x6c671acc
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-04, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 1824 rows and 1728 columns
+Presolve time: 0.00s
+Presolved: 1152 rows, 1440 columns, 3456 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   4.73856733e+02 -1.18636536e+04  2.56e+01 9.11e-02  7.27e+00     0s
+   1   2.28063508e+02 -6.97519101e+01  9.44e+00 1.00e-07  3.04e-01     0s
+   2   4.05235306e-01 -7.78373178e+00  6.13e-03 1.16e-12  4.04e-03     0s
+   3   1.20957076e-01  9.65686587e-02  7.88e-06 1.37e-15  1.16e-05     0s
+   4   1.20412919e-01  1.20178989e-01  3.04e-10 1.55e-14  1.11e-07     0s
+   5   1.20355987e-01  1.20351070e-01  4.62e-12 1.61e-12  2.33e-09     0s
+   6   1.20353201e-01  1.20352494e-01  1.44e-09 3.05e-11  3.34e-10     0s
+
+Barrier solved model in 6 iterations and 0.01 seconds (0.01 work units)
+Optimal objective 1.20353201e-01
+
+
+User-callback calls 83, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:11:36 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:11:36 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 78048 rows, 82848 columns and 210144 nonzeros
+Model fingerprint: 0x131e2491
+Model has 8256 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-09, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 41664 rows and 36960 columns
+Presolve time: 0.08s
+Presolved: 36384 rows, 45888 columns, 130752 nonzeros
+Presolved model has 8256 second-order cone constraints
+Ordering time: 0.01s
+
+Barrier statistics:
+ AA' NZ     : 2.475e+05
+ Factor NZ  : 3.737e+05 (roughly 36 MB of memory)
+ Factor Ops : 4.411e+06 (less than 1 second per iteration)
+ Threads    : 16
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.95189578e+03 -4.43063719e+05  1.58e+02 1.00e-01  2.32e+01     0s
+   1   2.19844947e+03 -4.93676365e+04  5.39e+01 9.80e-03  2.83e+00     0s
+   2   1.91372798e+03 -2.85831935e+03  7.60e+00 3.92e-04  2.69e-01     0s
+   3   7.92339226e+01 -1.66102118e+02  2.90e-02 3.11e-06  8.54e-03     0s
+   4   1.10504763e+01 -3.01599420e+01  2.75e-03 4.63e-07  1.34e-03     0s
+   5   3.30011706e+00 -5.22238716e+00  2.82e-04 1.03e-07  2.74e-04     0s
+   6   2.45026132e+00  3.57399616e-01  4.67e-05 2.60e-08  6.72e-05     0s
+   7   2.28762414e+00  1.86117327e+00  1.11e-05 5.15e-09  1.37e-05     0s
+   8   2.23720389e+00  2.19637509e+00  1.47e-06 4.31e-10  1.31e-06     0s
+   9   2.23040698e+00  2.22370284e+00  4.42e-07 4.94e-11  2.16e-07     0s
+  10   2.22808202e+00  2.22718713e+00  7.37e-08 2.99e-12  2.89e-08     0s
+  11   2.22763048e+00  2.22746729e+00  5.81e-09 9.82e-13  5.24e-09     0s
+  12   2.22757177e+00  2.22750429e+00  2.87e-09 7.95e-12  2.16e-09     0s
+  13   2.22754368e+00  2.22751125e+00  2.16e-09 4.86e-11  1.04e-09     0s
+  14   2.22752989e+00  2.22751386e+00  1.35e-09 6.20e-12  5.14e-10     1s
+  15   2.22752067e+00  2.22751525e+00  2.82e-09 1.64e-11  1.74e-10     1s
+  16   2.22751822e+00  2.22751555e+00  5.84e-08 1.24e-09  8.57e-11     1s
+
+Barrier solved model in 16 iterations and 0.72 seconds (0.50 work units)
+Optimal objective 2.22751822e+00
+
+
+User-callback calls 130, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:12:46 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:12:46 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 2976 rows, 3168 columns and 7584 nonzeros
+Model fingerprint: 0x6c671acc
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-04, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 1824 rows and 1728 columns
+Presolve time: 0.00s
+Presolved: 1152 rows, 1440 columns, 3456 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   4.73856733e+02 -1.18636536e+04  2.56e+01 9.11e-02  7.27e+00     0s
+   1   2.28063508e+02 -6.97519101e+01  9.44e+00 1.00e-07  3.04e-01     0s
+   2   4.05235306e-01 -7.78373178e+00  6.13e-03 1.16e-12  4.04e-03     0s
+   3   1.20957076e-01  9.65686587e-02  7.88e-06 1.37e-15  1.16e-05     0s
+   4   1.20412919e-01  1.20178989e-01  3.04e-10 1.55e-14  1.11e-07     0s
+   5   1.20355987e-01  1.20351070e-01  4.62e-12 1.61e-12  2.33e-09     0s
+   6   1.20353201e-01  1.20352494e-01  1.44e-09 3.05e-11  3.34e-10     0s
+
+Barrier solved model in 6 iterations and 0.01 seconds (0.01 work units)
+Optimal objective 1.20353201e-01
+
+
+User-callback calls 84, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:13:21 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:13:21 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 78048 rows, 82848 columns and 210144 nonzeros
+Model fingerprint: 0x131e2491
+Model has 8256 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-09, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 41664 rows and 36960 columns
+Presolve time: 0.08s
+Presolved: 36384 rows, 45888 columns, 130752 nonzeros
+Presolved model has 8256 second-order cone constraints
+Ordering time: 0.01s
+
+Barrier statistics:
+ AA' NZ     : 2.475e+05
+ Factor NZ  : 3.737e+05 (roughly 36 MB of memory)
+ Factor Ops : 4.411e+06 (less than 1 second per iteration)
+ Threads    : 16
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.95189578e+03 -4.43063719e+05  1.58e+02 1.00e-01  2.32e+01     0s
+   1   2.19844947e+03 -4.93676365e+04  5.39e+01 9.80e-03  2.83e+00     0s
+   2   1.91372798e+03 -2.85831935e+03  7.60e+00 3.92e-04  2.69e-01     0s
+   3   7.92339226e+01 -1.66102118e+02  2.90e-02 3.11e-06  8.54e-03     0s
+   4   1.10504763e+01 -3.01599420e+01  2.75e-03 4.63e-07  1.34e-03     0s
+   5   3.30011706e+00 -5.22238716e+00  2.82e-04 1.03e-07  2.74e-04     0s
+   6   2.45026132e+00  3.57399616e-01  4.67e-05 2.60e-08  6.72e-05     0s
+   7   2.28762414e+00  1.86117327e+00  1.11e-05 5.15e-09  1.37e-05     0s
+   8   2.23720389e+00  2.19637509e+00  1.47e-06 4.31e-10  1.31e-06     0s
+   9   2.23040698e+00  2.22370284e+00  4.42e-07 4.94e-11  2.16e-07     0s
+  10   2.22808202e+00  2.22718713e+00  7.37e-08 2.99e-12  2.89e-08     0s
+  11   2.22763048e+00  2.22746729e+00  5.81e-09 9.82e-13  5.24e-09     0s
+  12   2.22757177e+00  2.22750429e+00  2.87e-09 7.95e-12  2.16e-09     0s
+  13   2.22754368e+00  2.22751125e+00  2.16e-09 4.86e-11  1.04e-09     0s
+  14   2.22752989e+00  2.22751386e+00  1.35e-09 6.20e-12  5.14e-10     0s
+  15   2.22752067e+00  2.22751525e+00  2.82e-09 1.64e-11  1.74e-10     1s
+  16   2.22751822e+00  2.22751555e+00  5.84e-08 1.24e-09  8.57e-11     1s
+
+Barrier solved model in 16 iterations and 0.70 seconds (0.50 work units)
+Optimal objective 2.22751822e+00
+
+
+User-callback calls 123, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:16:58 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:16:58 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 78048 rows, 82848 columns and 210144 nonzeros
+Model fingerprint: 0x131e2491
+Model has 8256 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-09, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 41664 rows and 36960 columns
+Presolve time: 0.08s
+Presolved: 36384 rows, 45888 columns, 130752 nonzeros
+Presolved model has 8256 second-order cone constraints
+Ordering time: 0.01s
+
+Barrier statistics:
+ AA' NZ     : 2.475e+05
+ Factor NZ  : 3.737e+05 (roughly 36 MB of memory)
+ Factor Ops : 4.411e+06 (less than 1 second per iteration)
+ Threads    : 16
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.95189578e+03 -4.43063719e+05  1.58e+02 1.00e-01  2.32e+01     0s
+   1   2.19844947e+03 -4.93676365e+04  5.39e+01 9.80e-03  2.83e+00     0s
+   2   1.91372798e+03 -2.85831935e+03  7.60e+00 3.92e-04  2.69e-01     0s
+   3   7.92339226e+01 -1.66102118e+02  2.90e-02 3.11e-06  8.54e-03     0s
+   4   1.10504763e+01 -3.01599420e+01  2.75e-03 4.63e-07  1.34e-03     0s
+   5   3.30011706e+00 -5.22238716e+00  2.82e-04 1.03e-07  2.74e-04     0s
+   6   2.45026132e+00  3.57399616e-01  4.67e-05 2.60e-08  6.72e-05     0s
+   7   2.28762414e+00  1.86117327e+00  1.11e-05 5.15e-09  1.37e-05     0s
+   8   2.23720389e+00  2.19637509e+00  1.47e-06 4.31e-10  1.31e-06     0s
+   9   2.23040698e+00  2.22370284e+00  4.42e-07 4.94e-11  2.16e-07     0s
+  10   2.22808202e+00  2.22718713e+00  7.37e-08 2.99e-12  2.89e-08     0s
+  11   2.22763048e+00  2.22746729e+00  5.81e-09 9.82e-13  5.24e-09     0s
+  12   2.22757177e+00  2.22750429e+00  2.87e-09 7.95e-12  2.16e-09     0s
+  13   2.22754368e+00  2.22751125e+00  2.16e-09 4.86e-11  1.04e-09     0s
+  14   2.22752989e+00  2.22751386e+00  1.35e-09 6.20e-12  5.14e-10     0s
+  15   2.22752067e+00  2.22751525e+00  2.82e-09 1.64e-11  1.74e-10     1s
+  16   2.22751822e+00  2.22751555e+00  5.84e-08 1.24e-09  8.57e-11     1s
+
+Barrier solved model in 16 iterations and 0.69 seconds (0.50 work units)
+Optimal objective 2.22751822e+00
+
+
+User-callback calls 128, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:17:10 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:17:10 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 78048 rows, 82848 columns and 210144 nonzeros
+Model fingerprint: 0x131e2491
+Model has 8256 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-09, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 41664 rows and 36960 columns
+Presolve time: 0.08s
+Presolved: 36384 rows, 45888 columns, 130752 nonzeros
+Presolved model has 8256 second-order cone constraints
+Ordering time: 0.01s
+
+Barrier statistics:
+ AA' NZ     : 2.475e+05
+ Factor NZ  : 3.737e+05 (roughly 36 MB of memory)
+ Factor Ops : 4.411e+06 (less than 1 second per iteration)
+ Threads    : 16
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.95189578e+03 -4.43063719e+05  1.58e+02 1.00e-01  2.32e+01     0s
+   1   2.19844947e+03 -4.93676365e+04  5.39e+01 9.80e-03  2.83e+00     0s
+   2   1.91372798e+03 -2.85831935e+03  7.60e+00 3.92e-04  2.69e-01     0s
+   3   7.92339226e+01 -1.66102118e+02  2.90e-02 3.11e-06  8.54e-03     0s
+   4   1.10504763e+01 -3.01599420e+01  2.75e-03 4.63e-07  1.34e-03     0s
+   5   3.30011706e+00 -5.22238716e+00  2.82e-04 1.03e-07  2.74e-04     0s
+   6   2.45026132e+00  3.57399616e-01  4.67e-05 2.60e-08  6.72e-05     0s
+   7   2.28762414e+00  1.86117327e+00  1.11e-05 5.15e-09  1.37e-05     0s
+   8   2.23720389e+00  2.19637509e+00  1.47e-06 4.31e-10  1.31e-06     0s
+   9   2.23040698e+00  2.22370284e+00  4.42e-07 4.94e-11  2.16e-07     0s
+  10   2.22808202e+00  2.22718713e+00  7.37e-08 2.99e-12  2.89e-08     0s
+  11   2.22763048e+00  2.22746729e+00  5.81e-09 9.82e-13  5.24e-09     0s
+  12   2.22757177e+00  2.22750429e+00  2.87e-09 7.95e-12  2.16e-09     0s
+  13   2.22754368e+00  2.22751125e+00  2.16e-09 4.86e-11  1.04e-09     0s
+  14   2.22752989e+00  2.22751386e+00  1.35e-09 6.20e-12  5.14e-10     1s
+  15   2.22752067e+00  2.22751525e+00  2.82e-09 1.64e-11  1.74e-10     1s
+  16   2.22751822e+00  2.22751555e+00  5.84e-08 1.24e-09  8.57e-11     1s
+
+Barrier solved model in 16 iterations and 0.73 seconds (0.50 work units)
+Optimal objective 2.22751822e+00
+
+
+User-callback calls 134, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:17:24 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:17:24 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 78048 rows, 82848 columns and 210144 nonzeros
+Model fingerprint: 0x131e2491
+Model has 8256 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-09, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 41664 rows and 36960 columns
+Presolve time: 0.08s
+Presolved: 36384 rows, 45888 columns, 130752 nonzeros
+Presolved model has 8256 second-order cone constraints
+Ordering time: 0.01s
+
+Barrier statistics:
+ AA' NZ     : 2.475e+05
+ Factor NZ  : 3.737e+05 (roughly 36 MB of memory)
+ Factor Ops : 4.411e+06 (less than 1 second per iteration)
+ Threads    : 16
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.95189578e+03 -4.43063719e+05  1.58e+02 1.00e-01  2.32e+01     0s
+   1   2.19844947e+03 -4.93676365e+04  5.39e+01 9.80e-03  2.83e+00     0s
+   2   1.91372798e+03 -2.85831935e+03  7.60e+00 3.92e-04  2.69e-01     0s
+   3   7.92339226e+01 -1.66102118e+02  2.90e-02 3.11e-06  8.54e-03     0s
+   4   1.10504763e+01 -3.01599420e+01  2.75e-03 4.63e-07  1.34e-03     0s
+   5   3.30011706e+00 -5.22238716e+00  2.82e-04 1.03e-07  2.74e-04     0s
+   6   2.45026132e+00  3.57399616e-01  4.67e-05 2.60e-08  6.72e-05     0s
+   7   2.28762414e+00  1.86117327e+00  1.11e-05 5.15e-09  1.37e-05     0s
+   8   2.23720389e+00  2.19637509e+00  1.47e-06 4.31e-10  1.31e-06     0s
+   9   2.23040698e+00  2.22370284e+00  4.42e-07 4.94e-11  2.16e-07     0s
+  10   2.22808202e+00  2.22718713e+00  7.37e-08 2.99e-12  2.89e-08     0s
+  11   2.22763048e+00  2.22746729e+00  5.81e-09 9.82e-13  5.24e-09     0s
+  12   2.22757177e+00  2.22750429e+00  2.87e-09 7.95e-12  2.16e-09     0s
+  13   2.22754368e+00  2.22751125e+00  2.16e-09 4.86e-11  1.04e-09     0s
+  14   2.22752989e+00  2.22751386e+00  1.35e-09 6.20e-12  5.14e-10     1s
+  15   2.22752067e+00  2.22751525e+00  2.82e-09 1.64e-11  1.74e-10     1s
+  16   2.22751822e+00  2.22751555e+00  5.84e-08 1.24e-09  8.57e-11     1s
+
+Barrier solved model in 16 iterations and 0.71 seconds (0.50 work units)
+Optimal objective 2.22751822e+00
+
+
+User-callback calls 128, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:19:39 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:19:39 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 78048 rows, 82848 columns and 210144 nonzeros
+Model fingerprint: 0x22cd8e0f
+Model has 8256 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-09, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+02]
+Presolve removed 41664 rows and 36960 columns
+Presolve time: 0.08s
+Presolved: 36384 rows, 45888 columns, 130752 nonzeros
+Presolved model has 8256 second-order cone constraints
+Ordering time: 0.01s
+
+Barrier statistics:
+ AA' NZ     : 2.475e+05
+ Factor NZ  : 3.737e+05 (roughly 36 MB of memory)
+ Factor Ops : 4.411e+06 (less than 1 second per iteration)
+ Threads    : 16
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   3.53215552e+01 -5.17936632e+03  2.65e+00 1.00e-01  3.15e-01     0s
+   1   3.32433015e+01 -8.61432545e+02  4.01e-01 1.00e-02  3.94e-02     0s
+   2   2.12161436e+01 -5.34557671e+01  2.51e-07 2.14e-04  2.47e-03     0s
+   3   2.72628266e+00  5.13957465e-01  2.78e-13 5.81e-06  7.18e-05     0s
+   4   2.27727621e+00  2.19894342e+00  4.76e-14 9.03e-08  2.52e-06     0s
+   5   2.24862030e+00  2.22640582e+00  4.62e-13 1.29e-09  7.11e-07     0s
+   6   2.23562688e+00  2.22701322e+00  2.31e-11 3.95e-13  2.76e-07     0s
+   7   2.23049149e+00  2.22723224e+00  6.61e-11 6.99e-13  1.04e-07     0s
+   8   2.22814468e+00  2.22740019e+00  2.68e-10 2.19e-12  2.38e-08     0s
+   9   2.22773783e+00  2.22746600e+00  1.50e-10 5.16e-12  8.70e-09     0s
+  10   2.22758203e+00  2.22749974e+00  4.44e-11 8.48e-14  2.63e-09     0s
+  11   2.22754279e+00  2.22750934e+00  2.68e-10 1.29e-12  1.07e-09     0s
+  12   2.22752747e+00  2.22751305e+00  2.20e-09 4.36e-12  4.62e-10     1s
+  13   2.22752272e+00  2.22751455e+00  7.33e-08 6.18e-10  2.62e-10     1s
+  14   2.22758659e+00  2.22751455e+00  1.76e-07 6.18e-10  2.31e-09     1s
+  15   2.22757524e+00  2.22751453e+00  1.87e-07 4.41e-10  1.94e-09     1s
+  16   2.22755221e+00  2.22751452e+00  1.04e-07 5.09e-10  1.21e-09     1s
+  17   2.22754338e+00  2.22751495e+00  7.88e-08 4.88e-10  9.10e-10     1s
+  18   2.22752874e+00  2.22751529e+00  3.67e-08 1.16e-10  4.31e-10     1s
+  19   2.22752029e+00  2.22751567e+00  1.24e-08 9.46e-11  1.48e-10     1s
+  20   2.22751738e+00  2.22751594e+00  1.13e-07 1.98e-09  4.65e-11     1s
+
+Barrier solved model in 20 iterations and 1.22 seconds (0.90 work units)
+Optimal objective 2.22751738e+00
+
+
+User-callback calls 138, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:22:46 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:22:46 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 78048 rows, 82848 columns and 210144 nonzeros
+Model fingerprint: 0xf2d3304b
+Model has 8256 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-09, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-02, 1e+04]
+Presolve removed 41904 rows and 36960 columns
+Presolve time: 0.09s
+Presolved: 36144 rows, 45888 columns, 130272 nonzeros
+Presolved model has 8256 second-order cone constraints
+Ordering time: 0.01s
+
+Barrier statistics:
+ AA' NZ     : 2.445e+05
+ Factor NZ  : 3.781e+05 (roughly 36 MB of memory)
+ Factor Ops : 4.561e+06 (less than 1 second per iteration)
+ Threads    : 16
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   6.29214851e+03 -4.40924065e+05  4.98e+02 1.00e-01  4.30e+01     0s
+   1   7.60449600e+03 -7.75261144e+04  1.73e+02 9.62e-03  6.61e+00     0s
+   2   7.15780180e+03 -1.52012495e+04  4.25e+01 1.68e-03  1.51e+00     0s
+   3   5.29655655e+03  1.56597239e+03  2.09e+01 6.63e-05  4.37e-01     0s
+   4   4.32200787e+03  2.19032276e+03  1.34e+01 2.19e-05  2.75e-01     0s
+   5   4.03788734e+03  2.46298544e+03  1.13e+01 1.09e-05  2.29e-01     0s
+   6   3.90714898e+03  2.59757316e+03  1.03e+01 7.62e-06  2.07e-01     0s
+   7   3.79626461e+03  2.69251653e+03  9.32e+00 5.90e-06  1.88e-01     0s
+   8   3.71649632e+03  2.79293605e+03  8.51e+00 4.48e-06  1.72e-01     0s
+   9   3.67036592e+03  2.90176693e+03  8.06e+00 3.27e-06  1.63e-01     0s
+  10   3.62807022e+03  2.98155889e+03  7.63e+00 2.63e-06  1.55e-01     0s
+  11   3.60475207e+03  3.03652144e+03  7.38e+00 2.30e-06  1.50e-01     0s
+  12   3.58331147e+03  3.08673668e+03  7.16e+00 2.06e-06  1.46e-01     0s
+  13   3.57315576e+03  3.12029812e+03  7.06e+00 1.94e-06  1.44e-01     0s
+  14   3.55288921e+03  3.13255079e+03  6.84e+00 1.91e-06  1.40e-01     1s
+  15   3.53556797e+03  3.15311054e+03  6.65e+00 1.87e-06  1.35e-01     1s
+  16   3.51190521e+03  3.27035131e+03  6.39e+00 1.75e-06  1.31e-01     1s
+  17   3.49491132e+03  3.30820760e+03  6.20e+00 1.71e-06  1.27e-01     1s
+  18   3.48084429e+03  3.34875006e+03  6.04e+00 1.68e-06  1.24e-01     1s
+  19   3.47034981e+03  3.41953115e+03  5.92e+00 1.64e-06  1.21e-01     1s
+  20   3.45807747e+03  3.52633555e+03  5.78e+00 1.60e-06  1.18e-01     1s
+  21   3.44877570e+03  3.62935882e+03  5.66e+00 1.57e-06  1.16e-01     1s
+  22   3.44575660e+03  3.74541791e+03  5.61e+00 1.55e-06  1.15e-01     1s
+  23   3.44365510e+03  3.85743906e+03  5.56e+00 1.53e-06  1.14e-01     1s
+  24   3.44250008e+03  3.95562649e+03  5.50e+00 1.51e-06  1.13e-01     1s
+  25   3.44219555e+03  4.04857182e+03  5.46e+00 1.49e-06  1.12e-01     1s
+  26   3.44245889e+03  4.14375186e+03  5.43e+00 1.48e-06  1.11e-01     1s
+  27   3.44326033e+03  4.26410487e+03  5.41e+00 1.46e-06  1.11e-01     1s
+  28   3.44418572e+03  4.34391480e+03  5.38e+00 1.45e-06  1.10e-01     1s
+  29   3.44480350e+03  4.44938400e+03  5.37e+00 1.45e-06  1.10e-01     1s
+  30   3.44646806e+03  4.51722515e+03  5.31e+00 1.45e-06  1.09e-01     1s
+  31   3.44829993e+03  5.00208448e+03  5.29e+00 1.43e-06  1.08e-01     1s
+  32   3.45061614e+03  5.30017342e+03  5.26e+00 1.43e-06  1.08e-01     1s
+  33   3.45141745e+03  6.82202909e+03  5.26e+00 1.43e-06  1.08e-01     1s
+  34   3.45118437e+03  1.31512015e+04  5.25e+00 1.42e-06  1.08e-01     1s
+  35   3.45275068e+03  8.65104892e+04  5.25e+00 1.42e-06  1.13e-01     1s
+  36   3.45328603e+03  6.50256608e+05  5.24e+00 2.03e-06  1.21e-01     1s
+  37   3.45346926e+03  8.84737952e+06  5.24e+00 2.44e-05  1.72e-01     1s
+  38   6.29214851e+03 -4.40924065e+05  4.98e+02 1.00e-01  4.30e+01     1s
+  39   6.71325732e+03 -6.57265643e+04  2.48e+02 1.68e-02  8.65e+00     1s
+  40   5.10340781e+03 -6.07903055e+03  3.68e+01 2.60e-03  1.01e+00     2s
+  41   3.22675427e+03  1.72332838e+03  1.86e+01 3.69e-04  2.53e-01     2s
+  42   3.01594427e+03  2.42371691e+03  1.16e+01 5.79e-05  1.36e-01     2s
+  43   3.05085354e+03  2.58713646e+03  9.85e+00 2.83e-05  1.22e-01     2s
+  44   3.15370346e+03  2.94940450e+03  7.14e+00 1.05e-05  1.13e-01     2s
+  45   3.44259837e+03  3.40944775e+03  6.53e+00 8.15e-06  1.55e-01     2s
+  46   3.73713084e+03  4.49377657e+03  5.94e+00 7.03e-06  2.70e-01     2s
+  47   4.22627403e+03  5.06304551e+03  5.91e+00 6.89e-06  3.82e-01     2s
+  48   5.52751575e+03  7.70994324e+03  5.95e+00 6.95e-06  9.73e-01     2s
+  49   6.59301614e+03  1.06303658e+04  6.08e+00 7.34e-06  2.33e+00     2s
+  50   7.46278538e+03  1.76417712e+04  6.25e+00 8.42e-06  9.51e+00     2s
+  51   8.51355546e+03  3.17051318e+04  6.47e+00 9.99e-06  9.00e+01     2s
+  52   9.27961534e+03  1.77636659e+05  6.57e+00 1.61e-05  6.07e+04     2s
+  53*  9.28014312e+03  3.29085418e+06  5.11e-03 1.32e-07  1.88e-03     2s
+  54*  9.28014312e+03  2.51124949e+09  6.32e-06 4.95e-08  2.33e-06     2s
+  55*  9.28014312e+03  2.02709685e+12  7.83e-09 2.89e-08  2.89e-09     2s
+
+Barrier performed 55 iterations in 1.97 seconds (1.22 work units)
+Infeasible model
+
+
+User-callback calls 253, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:23:22 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 17:23:22 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 78048 rows, 82848 columns and 210144 nonzeros
+Model fingerprint: 0x131e2491
+Model has 8256 quadratic constraints
+Coefficient statistics:
+  Matrix range     [4e-09, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [5e-05, 1e+04]
+Presolve removed 41664 rows and 36960 columns
+Presolve time: 0.09s
+Presolved: 36384 rows, 45888 columns, 130752 nonzeros
+Presolved model has 8256 second-order cone constraints
+Ordering time: 0.01s
+
+Barrier statistics:
+ AA' NZ     : 2.475e+05
+ Factor NZ  : 3.737e+05 (roughly 36 MB of memory)
+ Factor Ops : 4.411e+06 (less than 1 second per iteration)
+ Threads    : 16
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.95189578e+03 -4.43063719e+05  1.58e+02 1.00e-01  2.32e+01     0s
+   1   2.19844947e+03 -4.93676365e+04  5.39e+01 9.80e-03  2.83e+00     0s
+   2   1.91372798e+03 -2.85831935e+03  7.60e+00 3.92e-04  2.69e-01     0s
+   3   7.92339226e+01 -1.66102118e+02  2.90e-02 3.11e-06  8.54e-03     0s
+   4   1.10504763e+01 -3.01599420e+01  2.75e-03 4.63e-07  1.34e-03     0s
+   5   3.30011706e+00 -5.22238716e+00  2.82e-04 1.03e-07  2.74e-04     0s
+   6   2.45026132e+00  3.57399616e-01  4.67e-05 2.60e-08  6.72e-05     0s
+   7   2.28762414e+00  1.86117327e+00  1.11e-05 5.15e-09  1.37e-05     0s
+   8   2.23720389e+00  2.19637509e+00  1.47e-06 4.31e-10  1.31e-06     0s
+   9   2.23040698e+00  2.22370284e+00  4.42e-07 4.94e-11  2.16e-07     0s
+  10   2.22808202e+00  2.22718713e+00  7.37e-08 2.99e-12  2.89e-08     0s
+  11   2.22763048e+00  2.22746729e+00  5.81e-09 9.82e-13  5.24e-09     0s
+  12   2.22757177e+00  2.22750429e+00  2.87e-09 7.95e-12  2.16e-09     0s
+  13   2.22754368e+00  2.22751125e+00  2.16e-09 4.86e-11  1.04e-09     1s
+  14   2.22752989e+00  2.22751386e+00  1.35e-09 6.20e-12  5.14e-10     1s
+  15   2.22752067e+00  2.22751525e+00  2.82e-09 1.64e-11  1.74e-10     1s
+  16   2.22751822e+00  2.22751555e+00  5.84e-08 1.24e-09  8.57e-11     1s
+
+Barrier solved model in 16 iterations and 0.74 seconds (0.50 work units)
+Optimal objective 2.22751822e+00
+
+
+User-callback calls 134, time in user-callback 0.00 sec

@@ -4,8 +4,7 @@ function add_grid_model(;
     model::Model,
     grid::Grid,
     limit::Tuple,
-    loads_real::DataFrame,
-    loads_reactive::DataFrame
+    df::DataFrame
 )
     # sets
     sets = get_sets(grid)
@@ -14,10 +13,9 @@ function add_grid_model(;
 
     I_max = 1e4 # [A]
 
-
     # base loads 
-    P_base = loads_real
-    Q_base = loads_reactive
+    P_base = df.usage_total_pu
+    Q_base = zeros(T)
 
     # slack bus ID
     SB = get_slack_bus(grid).node
@@ -29,7 +27,7 @@ function add_grid_model(;
     # variables
     @variables(model, begin
         # voltage squared eq. (7)
-        (V_lb * V_ref)^2 <= v[B, T] <= (V_ub * V_ref)^2
+        V_lb^2 <= v[B, T] <= V_ub^2
 
         # bus power injections
         P[B, T], (base_name = "PBusInjection")
@@ -48,8 +46,8 @@ function add_grid_model(;
 
     # slack bus constraints
     @constraints(model, begin
-        TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
-        TrafoLimit[t in T], [S_max, P[SB, t], Q[SB, t]] in SecondOrderCone()
+        # TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
+        # TrafoLimit[t in T], [S_max, P[SB, t], Q[SB, t]] in SecondOrderCone()
     end)
 
     # bus / line constraints
@@ -77,9 +75,6 @@ function add_grid_model(;
             2 * Q_line[(i, j), t],
             I_line[(i, j), t] - v[i, t],
         ] in SecondOrderCone()
-        # ConicOPF[(i, j) in L, t in T],
-        # I_line[(i, j), t] >= (P_line[(i, j), t]^2 + Q_line[(i, j), t]^2) / v[i, t]
-
 
         # line current limit eq. (6)
         LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= I_max
@@ -88,27 +83,16 @@ function add_grid_model(;
     # load constraints
     @constraints(model, begin
         Transmission[i in B, t in T; i ∉ H && i ≠ SB], P[i, t] == 0
-        RealBaseLoad[i in H, t in T], P[i, t] == -P_base[t, "$i"]
-        # [i in H, t in T; i ∉ H_HP], P[i, t] == -P_base[t, "$i"]
-        # [i in H_HP, t in T], P[i, t] == -P_base[t, "$i"] - P_HP[i, t]
-        ReactiveBaseLoad[i in H, t in T], Q[i, t] == -Q_base[t, "$i"]
+        RealBaseLoad[i in H, t in T], P[i, t] == -P_base[t]
+        ReactiveBaseLoad[i in H, t in T], Q[i, t] == -Q_base[t]
     end)
-
-    # ### TESTING ###
-    # @constraints(model, begin
-    #     # for testing we set P_hp to zero
-    #     [i in H_HP, t in T], P_HP[i, t] == 0
-    # end)
-    # ### TESTING ###
 end
 
 
 function GEC(;
     network::DataFrame,
     connections::DataFrame,
-    loads_real::DataFrame,
-    loads_reactive::DataFrame,
-    weather::DataFrame,
+    df::DataFrame,
     limit::Tuple=(1:96, 250 * 1e3),
     meta::Dict=Dict(),
     silent=true,
@@ -121,20 +105,15 @@ function GEC(;
     end
 
     # apply T to all inputs
-    loads_real = loads_real[T, :]
-    loads_reactive = loads_reactive[T, :]
-    weather = weather[T, :]
-
+    df = df[T, :]
 
     # add grid model 
     grid = Grid(network, connections, meta, T)
     add_grid_model(model=model,
         grid=grid,
         limit=limit,
-        loads_real=loads_real,
-        loads_reactive=loads_reactive,
+        df=df
     )
-    # println("grid.lines: ", grid.lines)
 
     # variables
     I_line = model[:I_line]
@@ -143,7 +122,7 @@ function GEC(;
     # define objective functions
     @expressions(model, begin
         J_loss, sum(l.R * I_line[(l.start.node, l.stop.node), t] for t in grid.T, l in grid.lines)
-        J_gen, sum(P[0, T]) * 1e3
+        J_gen, sum(P[0, T])
     end)
     @objective(model, Min, J_gen)
     # set_attribute(model, "BarHomogeneous", 1)
