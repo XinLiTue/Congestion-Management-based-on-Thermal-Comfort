@@ -45,7 +45,7 @@ function add_grid_model(;
 
     # slack bus constraints
     @constraints(model, begin
-        TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
+        # TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
         TrafoLimit[t in T], [S_max, P[SB, t], Q[SB, t]] in SecondOrderCone()
     end)
 
@@ -76,7 +76,7 @@ function add_grid_model(;
         ] in SecondOrderCone()
 
         # line current limit eq. (6)
-        LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= Inom[(i, j)]^2
+        LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= Inom[(i, j)]
     end)
 
     # load constraints
@@ -99,6 +99,7 @@ function GEC(;
 )
     # create the model
     model = Model(Gurobi.Optimizer)
+    # model = Model(Clarabel.Optimizer)
     if silent
         set_silent(model)
     end
@@ -125,8 +126,9 @@ function GEC(;
     end)
     @objective(model, Min, J_gen)
     set_attribute(model, "BarHomogeneous", 1)
-    set_attribute(model, "NumericFocus", 3)
-    set_optimizer_attribute(model, "LogFile", "my_log_file.txt")
+    set_attribute(model, "Presolve", 0)
+    # # set_attribute(model, "NumericFocus", 3)
+    # set_optimizer_attribute(model, "LogFile", "my_log_file.txt")
 
 
     # optimize the model and return it

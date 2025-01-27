@@ -8029,3 +8029,1850 @@ Barrier solved model in 0 iterations and 0.00 seconds (0.00 work units)
 Model is infeasible or unbounded
 
 User-callback calls 60, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:54:43 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:54:43 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0x3c967df5
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-02, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [1e-01, 3e+05]
+Presolve removed 2112 rows and 1920 columns
+Presolve time: 0.00s
+Presolved: 1344 rows, 1728 columns, 4032 nonzeros
+Presolved model has 384 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 5.760e+03
+ Factor NZ  : 1.008e+04 (roughly 1 MB of memory)
+ Factor Ops : 9.744e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.61288423e+05 -1.20045946e+08  1.11e+03 1.00e+03  6.85e+05     0s
+   1   1.61288423e+05 -1.20045946e+08  1.11e+03 1.00e+03  6.85e+05     0s
+   2   1.60278668e+06 -1.20127628e+09  1.10e+04 1.00e+04  6.50e+07     0s
+   3   1.60278668e+06 -1.20127628e+09  1.10e+04 1.00e+04  6.51e+07     0s
+   4   1.60278668e+06 -1.20127628e+09  1.10e+04 1.00e+04  6.51e+07     0s
+   5   1.60278668e+06 -1.20127628e+09  1.10e+04 1.00e+04  6.51e+07     0s
+
+Barrier performed 5 iterations in 0.02 seconds (0.01 work units)
+Numerical trouble encountered
+
+
+User-callback calls 88, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:55:21 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:55:21 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0x37bd667e
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-02, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [1e-01, 3e+05]
+Presolve removed 2112 rows and 1920 columns
+Presolve time: 0.00s
+Presolved: 1344 rows, 1728 columns, 4032 nonzeros
+Presolved model has 384 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 5.760e+03
+ Factor NZ  : 1.008e+04 (roughly 1 MB of memory)
+ Factor Ops : 9.744e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.61287216e+05 -1.20045948e+08  1.11e+03 1.00e+03  6.85e+05     0s
+   1   6.71655858e+04 -4.00638727e+07  5.53e+02 2.09e+02  1.90e+05     0s
+   2   1.16488503e+04 -5.04610658e+06  8.37e+01 2.28e+01  2.76e+04     0s
+   3   1.35792867e+03 -8.15850678e+05  9.29e+00 2.49e+00  3.16e+03     0s
+   4   1.44232243e+02 -7.80187879e+04  4.94e-01 2.32e+01  1.01e+02     0s
+   5   5.67846391e+01 -1.46645690e+04  5.84e-02 2.40e+01  9.41e+00     0s
+   6   3.81147507e+01 -2.45932026e+03  6.39e-03 5.24e+00  1.19e+00     0s
+   7   3.50888770e+01 -5.03565155e+02  7.23e-04 2.20e+00  2.22e-01     0s
+   8   3.31332523e+01 -5.31617002e+01  7.82e-05 3.71e-01  3.46e-02     0s
+   9   2.56449250e+01  3.20453703e+00  8.66e-06 1.06e-01  8.98e-03     0s
+  10   2.15204600e+01  1.70915228e+01  2.51e-06 1.12e-02  1.78e-03     0s
+  11   2.07351803e+01  1.93964189e+01  6.69e-07 1.70e-01  5.30e-04     0s
+  12   2.04248582e+01  2.00787984e+01  1.00e-07 6.89e-02  1.36e-04     0s
+  13   2.03453119e+01  2.02994371e+01  1.35e-08 8.69e-03  1.81e-05     0s
+  14   2.03303848e+01  2.03252296e+01  1.57e-09 9.56e-04  2.04e-06     0s
+  15   2.03287271e+01  2.03281173e+01  2.09e-10 1.05e-04  2.41e-07     0s
+  16   2.03285383e+01  2.03284568e+01  3.96e-11 1.16e-05  3.23e-08     0s
+  17   2.03285149e+01  2.03285045e+01  2.14e-11 1.27e-06  4.12e-09     0s
+  18   2.03285122e+01  2.03285108e+01  1.29e-11 1.41e-07  5.53e-10     0s
+
+Barrier solved model in 18 iterations and 0.04 seconds (0.03 work units)
+Optimal objective 2.03285122e+01
+
+
+User-callback calls 113, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:55:27 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:55:27 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0x37bd667e
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-02, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [1e-01, 3e+05]
+Presolve removed 2112 rows and 1920 columns
+Presolve time: 0.00s
+Presolved: 1344 rows, 1728 columns, 4032 nonzeros
+Presolved model has 384 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 5.760e+03
+ Factor NZ  : 1.008e+04 (roughly 1 MB of memory)
+ Factor Ops : 9.744e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.61287216e+05 -1.20045948e+08  1.11e+03 1.00e+03  6.85e+05     0s
+   1   6.71655858e+04 -4.00638727e+07  5.53e+02 2.09e+02  1.90e+05     0s
+   2   1.16488503e+04 -5.04610658e+06  8.37e+01 2.28e+01  2.76e+04     0s
+   3   1.35792867e+03 -8.15850678e+05  9.29e+00 2.49e+00  3.16e+03     0s
+   4   1.44232243e+02 -7.80187879e+04  4.94e-01 2.32e+01  1.01e+02     0s
+   5   5.67846391e+01 -1.46645690e+04  5.84e-02 2.40e+01  9.41e+00     0s
+   6   3.81147507e+01 -2.45932026e+03  6.39e-03 5.24e+00  1.19e+00     0s
+   7   3.50888770e+01 -5.03565155e+02  7.23e-04 2.20e+00  2.22e-01     0s
+   8   3.31332523e+01 -5.31617002e+01  7.82e-05 3.71e-01  3.46e-02     0s
+   9   2.56449250e+01  3.20453703e+00  8.66e-06 1.06e-01  8.98e-03     0s
+  10   2.15204600e+01  1.70915228e+01  2.51e-06 1.12e-02  1.78e-03     0s
+  11   2.07351803e+01  1.93964189e+01  6.69e-07 1.70e-01  5.30e-04     0s
+  12   2.04248582e+01  2.00787984e+01  1.00e-07 6.89e-02  1.36e-04     0s
+  13   2.03453119e+01  2.02994371e+01  1.35e-08 8.69e-03  1.81e-05     0s
+  14   2.03303848e+01  2.03252296e+01  1.57e-09 9.56e-04  2.04e-06     0s
+  15   2.03287271e+01  2.03281173e+01  2.09e-10 1.05e-04  2.41e-07     0s
+  16   2.03285383e+01  2.03284568e+01  3.96e-11 1.16e-05  3.23e-08     0s
+  17   2.03285149e+01  2.03285045e+01  2.14e-11 1.27e-06  4.12e-09     0s
+  18   2.03285122e+01  2.03285108e+01  1.29e-11 1.41e-07  5.53e-10     0s
+
+Barrier solved model in 18 iterations and 0.04 seconds (0.03 work units)
+Optimal objective 2.03285122e+01
+
+
+User-callback calls 114, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:55:50 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:55:50 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0xc1e62017
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-02, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [1e-03, 3e+05]
+Presolve removed 2114 rows and 1922 columns
+Presolve time: 0.00s
+Presolved: 1342 rows, 1726 columns, 4028 nonzeros
+Presolved model has 384 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 5.748e+03
+ Factor NZ  : 1.005e+04 (roughly 1 MB of memory)
+ Factor Ops : 9.708e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.60169264e+05 -1.23795957e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   1   1.60169264e+05 -1.23795957e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   2   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.50e+07     0s
+   3   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   4   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   5   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+
+Barrier performed 5 iterations in 0.02 seconds (0.01 work units)
+Numerical trouble encountered
+
+
+User-callback calls 88, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:55:59 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:55:59 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0xeada2294
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-02, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [1e-04, 3e+05]
+Presolve removed 2114 rows and 1922 columns
+Presolve time: 0.00s
+Presolved: 1342 rows, 1726 columns, 4028 nonzeros
+Presolved model has 384 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 5.748e+03
+ Factor NZ  : 1.005e+04 (roughly 1 MB of memory)
+ Factor Ops : 9.708e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.60162944e+05 -1.23795966e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   1   1.60162944e+05 -1.23795966e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   2   1.59039949e+06 -1.23877630e+09  1.15e+04 1.00e+04  6.50e+07     0s
+   3   1.59039949e+06 -1.23877630e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   4   1.59039949e+06 -1.23877630e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   5   1.59039949e+06 -1.23877630e+09  1.15e+04 1.00e+04  6.51e+07     0s
+
+Barrier performed 5 iterations in 0.02 seconds (0.01 work units)
+Numerical trouble encountered
+
+
+User-callback calls 87, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:56:13 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:56:13 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0xeada2294
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-02, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [1e-04, 3e+05]
+Presolve removed 2114 rows and 1922 columns
+Presolve time: 0.00s
+Presolved: 1342 rows, 1726 columns, 4028 nonzeros
+Presolved model has 384 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 5.748e+03
+ Factor NZ  : 1.005e+04 (roughly 1 MB of memory)
+ Factor Ops : 9.708e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.60162944e+05 -1.23795966e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   1   1.60162944e+05 -1.23795966e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   2   1.59039949e+06 -1.23877630e+09  1.15e+04 1.00e+04  6.50e+07     0s
+   3   1.59039949e+06 -1.23877630e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   4   1.59039949e+06 -1.23877630e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   5   1.59039949e+06 -1.23877630e+09  1.15e+04 1.00e+04  6.51e+07     0s
+
+Barrier performed 5 iterations in 0.02 seconds (0.01 work units)
+Numerical trouble encountered
+
+
+User-callback calls 86, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:56:29 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:56:29 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0xc9306793
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-02, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [1e-02, 3e+05]
+Presolve removed 2114 rows and 1922 columns
+Presolve time: 0.00s
+
+Barrier solved model in 0 iterations and 0.00 seconds (0.00 work units)
+Model is infeasible or unbounded
+
+User-callback calls 60, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:56:34 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:56:34 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0x05bd051e
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-02, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [1e-01, 3e+05]
+Presolve removed 2114 rows and 1922 columns
+Presolve time: 0.00s
+
+Barrier solved model in 0 iterations and 0.00 seconds (0.00 work units)
+Model is infeasible or unbounded
+
+User-callback calls 60, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:56:41 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:56:41 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0xc1e62017
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-02, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [1e-03, 3e+05]
+Presolve removed 2114 rows and 1922 columns
+Presolve time: 0.00s
+Presolved: 1342 rows, 1726 columns, 4028 nonzeros
+Presolved model has 384 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 5.748e+03
+ Factor NZ  : 1.005e+04 (roughly 1 MB of memory)
+ Factor Ops : 9.708e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.60169264e+05 -1.23795957e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   1   1.60169264e+05 -1.23795957e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   2   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.50e+07     0s
+   3   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   4   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   5   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+
+Barrier performed 5 iterations in 0.02 seconds (0.01 work units)
+Numerical trouble encountered
+
+
+User-callback calls 89, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:56:54 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:56:54 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0xc1e62017
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-02, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [1e-03, 3e+05]
+Presolve removed 2114 rows and 1922 columns
+Presolve time: 0.00s
+Presolved: 1342 rows, 1726 columns, 4028 nonzeros
+Presolved model has 384 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 5.748e+03
+ Factor NZ  : 1.005e+04 (roughly 1 MB of memory)
+ Factor Ops : 9.708e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.60169264e+05 -1.23795957e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   1   1.60169264e+05 -1.23795957e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   2   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.50e+07     0s
+   3   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   4   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   5   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+
+Barrier performed 5 iterations in 0.02 seconds (0.01 work units)
+Numerical trouble encountered
+
+
+User-callback calls 88, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:57:19 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:57:19 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0xc1e62017
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-02, 2e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [9e-01, 1e+00]
+  RHS range        [1e-03, 3e+05]
+Presolve removed 2114 rows and 1922 columns
+Presolve time: 0.00s
+Presolved: 1342 rows, 1726 columns, 4028 nonzeros
+Presolved model has 384 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 5.748e+03
+ Factor NZ  : 1.005e+04 (roughly 1 MB of memory)
+ Factor Ops : 9.708e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.60169264e+05 -1.23795957e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   1   1.60169264e+05 -1.23795957e+08  1.40e+03 1.00e+03  6.87e+05     0s
+   2   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.50e+07     0s
+   3   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   4   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+   5   1.59040581e+06 -1.23877629e+09  1.15e+04 1.00e+04  6.51e+07     0s
+
+Barrier performed 5 iterations in 0.02 seconds (0.01 work units)
+Numerical trouble encountered
+
+
+User-callback calls 87, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:58:49 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:58:49 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0x55f3c635
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-03, 3e+05]
+Presolve removed 2114 rows and 1922 columns
+Presolve time: 0.00s
+
+Barrier solved model in 0 iterations and 0.00 seconds (0.00 work units)
+Model is infeasible or unbounded
+
+User-callback calls 60, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:59:37 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:59:37 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3360 rows, 3456 columns and 8160 nonzeros
+Model fingerprint: 0x3278acca
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-03, 3e+05]
+Presolve removed 2114 rows and 1922 columns
+Presolve time: 0.00s
+
+Barrier solved model in 0 iterations and 0.00 seconds (0.00 work units)
+Model is infeasible or unbounded
+
+User-callback calls 60, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:59:48 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:59:48 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 3072 rows, 3456 columns and 7872 nonzeros
+Model fingerprint: 0xeaf10f0e
+Model has 384 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-03, 3e+05]
+Presolve removed 1922 rows and 2018 columns
+Presolve time: 0.00s
+
+Barrier solved model in 0 iterations and 0.00 seconds (0.00 work units)
+Model is infeasible or unbounded
+
+User-callback calls 59, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:59:59 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 20:59:59 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 2784 rows, 3168 columns and 7392 nonzeros
+Model fingerprint: 0xf82854a8
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-03, 3e+05]
+Presolve removed 1634 rows and 1730 columns
+Presolve time: 0.00s
+Presolved: 1150 rows, 1438 columns, 3356 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 3.928e+03
+ Factor NZ  : 7.465e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.214e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.15938308e+07 -4.80000576e+10  8.56e+05 1.00e+03  2.84e+08     0s
+   1   3.37138533e+06 -8.83286976e+09  2.48e+05 1.09e+02  7.35e+07     0s
+   2   3.86483477e+05 -9.77595883e+08  2.93e+04 1.19e+01  8.57e+06     0s
+   3   4.27412558e+04 -1.07641445e+08  3.22e+03 1.30e+00  9.43e+05     0s
+   4   4.70798423e+03 -1.19637257e+07  3.58e+02 1.44e-01  1.04e+05     0s
+   5   5.73470230e+02 -1.45435660e+06  4.30e+01 1.73e-02  1.20e+04     0s
+   6   9.88951175e+01 -2.42126666e+05  6.91e+00 4.86e-02  1.43e+03     0s
+   7   2.03324046e+01 -4.63062581e+04  1.29e+00 9.06e-03  1.35e+02     0s
+   8   1.17471297e+01 -2.12448021e+04  7.28e-01 2.43e-04  5.71e+01     0s
+   9   7.21239024e+00 -4.77687773e+03  2.86e-01 1.91e+02  2.52e+01     0s
+  10   7.52366647e+00  5.82376865e+03  3.22e-01 2.75e-05  2.31e+02     0s
+  11   7.53549736e+00  2.01597335e+04  3.23e-01 2.75e-05  2.10e+03     0s
+  12*  7.53564072e+00  1.53200384e+05  3.50e-02 1.93e+01  4.43e-01     0s
+  13*  7.53564246e+00  1.36700922e+06  3.85e-03 3.18e+00  4.87e-02     0s
+  14*  7.53564248e+00  1.23621200e+07  4.23e-04 3.42e-01  5.36e-03     0s
+  15*  7.53564248e+00  1.12024653e+08  4.65e-05 1.56e+00  5.90e-04     0s
+  16*  7.53564249e+00  1.02071091e+09  5.12e-06 1.80e-01  6.49e-05     0s
+  17*  7.53564249e+00  9.25656272e+09  5.63e-07 1.66e+00  7.14e-06     0s
+  18*  7.53564249e+00  8.41050658e+10  6.20e-08 1.94e+00  7.86e-07     0s
+  19*  7.53564250e+00  7.64518161e+11  6.82e-09 1.99e+00  8.66e-08     0s
+  20*  7.53564251e+00  6.94999464e+12  7.50e-10 2.00e+00  9.53e-09     0s
+  21*  7.53564253e+00  6.31811820e+13  8.25e-11 2.01e+00  1.05e-09     0s
+  22*  7.53564254e+00  5.76114743e+14  9.07e-12 2.28e-01  1.15e-10     0s
+  23*  7.53564254e+00  5.22480076e+15  9.98e-13 1.69e+00  1.27e-11     0s
+  24*  7.53564254e+00  4.76159887e+16  1.10e-13 1.93e-01  1.40e-12     0s
+  25*  7.53564254e+00  4.31801497e+17  1.21e-14 1.69e+00  1.54e-13     0s
+  26*  7.53564255e+00  3.92333687e+18  1.33e-15 1.97e+00  1.69e-14     0s
+  27*  7.53564256e+00  3.56631903e+19  1.46e-16 2.02e+00  1.86e-15     0s
+  28*  7.53564257e+00  3.24203377e+20  1.61e-17 2.03e+00  2.05e-16     0s
+  29*  7.53564258e+00  2.94727326e+21  1.77e-18 2.04e+00  2.26e-17     0s
+  30*  7.53564259e+00  2.67930414e+22  1.94e-19 2.04e+00  2.48e-18     0s
+  31*  7.53564260e+00  2.43571018e+23  2.14e-20 2.05e+00  2.74e-19     0s
+  32*  7.53564262e+00  2.22116372e+24  2.35e-21 2.32e-01  3.01e-20     0s
+  33*  7.53564262e+00  2.01993145e+25  2.59e-22 3.17e-02  3.31e-21     0s
+  34*  7.53564262e+00  1.83125112e+26  2.85e-23 1.69e+00  3.64e-22     0s
+  35*  7.53564262e+00  1.66352631e+27  3.13e-24 2.07e+00  4.01e-23     0s
+  36*  7.53564263e+00  1.51008221e+28  3.44e-25 2.73e+00  4.41e-24     0s
+  37*  7.52917305e+00  1.26237276e+29  3.79e-26 3.91e+01  4.87e-25     0s
+  38*  7.50499954e+00  1.02991755e+30  4.19e-27 8.10e+01  5.39e-26     0s
+  39*  7.44024319e+00 -2.18023285e+30  4.74e-28 5.53e+02  6.18e-27     0s
+  40*  6.79452916e+00 -3.67442122e+33  3.83e-28 1.51e+05  1.02e-26     0s
+  41*  6.19704770e+00 -2.38494800e+33  5.68e-28 1.65e+05  9.83e-27     0s
+  42*  9.00027459e+00 -2.53925845e+33  3.06e-27 2.81e+05  1.51e-26     0s
+  43*  1.11544073e+01 -2.75510772e+32  4.52e-27 2.86e+05  1.39e-26     0s
+  44*  1.62592026e+01  4.47439574e+33  9.08e-27 6.30e+05  1.58e-26     0s
+  45*  1.91333824e+01  6.27914107e+33  1.81e-26 9.56e+05  1.83e-26     0s
+  46*  2.01905867e+01  8.32808017e+33  2.02e-26 1.47e+06  2.29e-26     0s
+  47*  2.16696507e+01  8.87696576e+33  2.46e-26 1.82e+06  2.77e-26     0s
+  48*  2.36695880e+01  9.69867284e+33  3.05e-26 2.41e+06  3.64e-26     0s
+  49*  2.75828674e+01  8.44863996e+33  4.35e-26 2.92e+06  5.24e-26     0s
+  50*  2.93405213e+01  1.20828735e+34  5.06e-26 3.80e+06  7.01e-26     0s
+  51*  3.27305287e+01  1.04639485e+34  6.53e-26 4.18e+06  9.34e-26     0s
+
+Barrier performed 51 iterations in 0.10 seconds (0.06 work units)
+Numerical trouble encountered
+
+
+User-callback calls 181, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:00:07 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:00:07 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+NumericFocus  3
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0x8b3198cc
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-03, 1e-01]
+Presolve removed 1538 rows and 1730 columns
+Presolve time: 0.00s
+Presolved: 1150 rows, 1438 columns, 3548 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 3.928e+03
+ Factor NZ  : 7.465e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.214e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.01107842e+05 -7.68000000e+04  2.11e+03 1.00e+03  6.31e+05     0s
+   1   3.66716360e+04 -2.18385229e+05  6.23e+02 1.09e+02  1.82e+05     0s
+   2   4.18447816e+03 -2.35432295e+05  7.02e+01 1.19e+01  2.05e+04     0s
+   3   4.89635844e+02 -2.22429504e+05  8.01e+00 1.30e+00  2.40e+03     0s
+   4   3.43435862e+01 -1.24202614e+04  3.85e-01 6.84e-02  2.30e+01     0s
+   5   1.72187082e+01 -1.16206422e+03  1.60e-01 6.87e-03  6.30e+00     0s
+   6   1.75248154e+01  1.60540241e+03  1.36e-01 5.23e+02  2.69e+01     0s
+   7   1.73554460e+01  1.32866648e+04  1.34e-01 8.18e+02  2.35e+02     0s
+   8   1.73497639e+01  1.13136224e+05  1.33e-01 1.13e+03  2.13e+03     0s
+   9*  1.73497519e+01  1.01410562e+06  9.69e-03 5.61e+01  2.35e-01     0s
+  10*  1.73497522e+01  9.20292223e+06  1.07e-03 6.22e+00  2.58e-02     0s
+  11*  1.73497522e+01  8.37212464e+07  1.17e-04 3.55e+00  2.84e-03     0s
+  12*  1.73497522e+01  7.61207798e+08  1.29e-05 3.64e+00  3.13e-04     0s
+  13*  1.73497523e+01  6.92060375e+09  1.42e-06 3.69e+00  3.44e-05     0s
+  14*  1.73497524e+01  6.28627694e+10  1.56e-07 4.09e-01  3.79e-06     0s
+  15*  1.73497524e+01  5.71938613e+11  1.72e-08 2.85e+00  4.17e-07     0s
+  16*  1.73497525e+01  5.20022327e+12  1.89e-09 3.56e+00  4.59e-08     0s
+  17*  1.73497526e+01  4.72784523e+13  2.08e-10 3.69e+00  5.05e-09     0s
+  18*  1.73497527e+01  4.29834266e+14  2.28e-11 3.71e+00  5.56e-10     0s
+  19*  1.73497527e+01  3.90785482e+15  2.51e-12 3.72e+00  6.12e-11     0s
+  20*  1.73497528e+01  3.55284080e+16  2.76e-13 3.72e+00  6.74e-12     0s
+  21*  1.73497529e+01  3.23007833e+17  3.04e-14 3.73e+00  7.42e-13     0s
+  22*  1.73497530e+01  2.93401331e+18  3.35e-15 4.13e-01  8.17e-14     0s
+  23*  1.73497530e+01  2.66942633e+19  3.68e-16 2.87e+00  8.99e-15     0s
+  24*  1.73497531e+01  2.42711529e+20  4.05e-17 3.59e+00  9.90e-16     0s
+  25*  1.73497532e+01  2.20664031e+21  4.45e-18 3.72e+00  1.09e-16     0s
+  26*  1.73497532e+01  2.00617680e+22  4.90e-19 3.74e+00  1.20e-17     0s
+  27*  1.73497533e+01  1.82392287e+23  5.39e-20 3.74e+00  1.32e-18     0s
+  28*  1.73497534e+01  1.65674414e+24  5.93e-21 4.16e-01  1.45e-19     0s
+  29*  1.73497534e+01  1.50734021e+25  6.52e-22 2.89e+00  1.60e-20     0s
+  30*  1.73497535e+01  1.37051459e+26  7.17e-23 3.60e+00  1.76e-21     0s
+  31*  1.73497536e+01  1.24601878e+27  7.89e-24 3.74e+00  1.94e-22     0s
+  32*  1.73497537e+01  1.13281941e+28  8.68e-25 3.83e+00  2.13e-23     0s
+  33*  1.73497538e+01  1.02987294e+29  9.55e-26 4.50e+00  2.35e-24     0s
+  34*  1.73457235e+01  9.36032245e+29  1.05e-26 2.77e+01  2.59e-25     0s
+  35*  1.73269626e+01  8.48061291e+30  1.16e-27 8.86e+01  2.88e-26     0s
+  36*  1.79736802e+01  7.47012935e+31  5.40e-28 4.25e+04  3.73e-26     0s
+  37*  1.21873412e+01  4.14864150e+31  4.93e-28 1.14e+05  1.58e-26     0s
+  38*  1.22621991e+01  3.56930737e+31  4.57e-28 1.05e+05  1.45e-26     0s
+  39*  1.22751402e+01  3.20804665e+31  6.17e-28 1.19e+05  1.40e-26     0s
+  40*  1.19505104e+01  2.31576605e+31  1.57e-27 6.19e+05  1.49e-26     0s
+  41*  1.17665477e+01  1.89500697e+31  2.26e-27 1.54e+06  1.28e-26     0s
+  42*  1.15431713e+01  1.60488638e+31  3.45e-27 6.45e+06  1.23e-26     0s
+  43*  1.14767479e+01  1.40220510e+31  4.18e-27 1.31e+07  1.27e-26     0s
+  44*  1.13472885e+01  1.32355645e+31  5.20e-27 1.46e+07  1.36e-26     0s
+  45*  1.12130271e+01  1.26933786e+31  5.64e-27 1.60e+07  1.45e-26     0s
+  46*  1.10906406e+01  1.23135537e+31  5.87e-27 1.70e+07  1.54e-26     0s
+  47*  1.05029265e+01  1.20039857e+31  6.69e-27 1.83e+07  1.77e-26     0s
+  48*  1.03192509e+01  1.17057106e+31  6.94e-27 1.93e+07  1.94e-26     0s
+  49*  1.00627019e+01  1.12930365e+31  7.28e-27 2.08e+07  2.21e-26     0s
+  50*  9.66580141e+00  1.08163161e+31  7.96e-27 2.27e+07  2.48e-26     0s
+  51*  9.36584698e+00  1.02427764e+31  8.57e-27 2.51e+07  2.79e-26     0s
+
+Barrier performed 51 iterations in 0.10 seconds (0.06 work units)
+Numerical trouble encountered
+
+
+User-callback calls 181, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:00:44 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:00:44 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0x8b3198cc
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-03, 1e-01]
+Presolve removed 1538 rows and 1730 columns
+Presolve time: 0.00s
+Presolved: 1150 rows, 1438 columns, 3452 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.118e+03
+ Factor NZ  : 7.465e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.214e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.47442243e+02 -1.49690316e+01  1.07e+00 5.40e-01  2.26e-01     0s
+   1   1.85817529e+01  5.82508323e+00  1.17e-01 1.39e-01  3.06e-02     0s
+   2   1.62712125e+01  7.22145406e+00  1.03e-01 5.99e-02  2.10e-02     0s
+   3   1.39620155e+01  9.63793183e+00  7.73e-02 5.16e-02  1.65e-02     0s
+   4   1.25746825e+01  1.65878039e+01  8.77e-02 3.35e-02  1.27e-02     0s
+   5   1.24079371e+01  2.53052354e+01  8.76e-02 2.78e-02  1.20e-02     0s
+   6   1.23814104e+01  3.54207434e+01  8.76e-02 2.64e-02  1.20e-02     0s
+   7   1.23648077e+01  4.41997035e+01  8.77e-02 2.61e-02  1.19e-02     0s
+   8   1.23536237e+01  5.92607987e+01  8.77e-02 2.59e-02  1.17e-02     0s
+   9   1.23503030e+01  5.32251517e+02  8.77e-02 2.57e-02  1.19e-02     0s
+  10   1.23515543e+01  2.34662785e+05  8.77e-02 2.55e-02  4.90e-02     0s
+  11   1.47442243e+02 -1.49690316e+01  1.07e+00 5.40e-01  2.66e-01     0s
+  12   2.66733252e+01 -5.05200648e+00  1.43e-01 1.18e-01  5.56e-02     0s
+  13   2.33836474e+01  5.40151137e+00  9.41e-02 2.43e-04  3.74e-02     0s
+  14   2.96508576e+01  2.35957162e+02  8.44e-02 9.57e+01  9.89e-01     0s
+  15   3.05282309e+01  1.43274269e+01  8.46e-02 4.80e-10  7.89e+00     0s
+  16*  3.04666664e+01  3.02460919e+04  7.81e-05 7.33e+00  7.30e-06     0s
+  17*  3.04249351e+01  1.94494095e+07  9.04e-08 6.68e-01  8.73e-09     0s
+  18*  3.04248740e+01  1.73720681e+10  9.94e-11 3.12e-01  9.77e-12     0s
+  19*  3.04248674e+01  1.57198328e+13  1.09e-13 2.23e-01  1.09e-14     0s
+  20*  3.04248652e+01  1.41129003e+16  1.20e-16 1.04e-03  1.20e-17     0s
+  21*  3.04248652e+01  1.28291985e+19  1.32e-19 5.40e-04  1.32e-20     0s
+  22*  3.04248652e+01  1.16625766e+22  1.46e-22 5.62e-04  1.45e-23     0s
+  23*  3.04248652e+01  1.06018531e+25  1.60e-25 3.46e-04  1.59e-26     0s
+  24* -1.80234936e+01  9.49448349e+27  5.70e-27 3.10e-01  3.97e-29     0s
+  25* -1.12193286e+02  5.93833716e+29  5.42e-28 1.94e+01  8.66e-30     0s
+  26* -1.04053003e+02  1.37018622e+31  4.84e-28 1.95e+03  2.25e-28     0s
+  27* -1.06158049e+02  4.70781994e+30  5.02e-28 2.93e+03  8.40e-29     0s
+  28* -1.03629106e+02  2.02888686e+30  5.04e-28 2.40e+03  4.28e-29     0s
+  29* -1.03270813e+02  1.02316396e+30  5.07e-28 1.42e+03  1.67e-29     0s
+  30* -1.03883501e+02  3.12723958e+29  5.09e-28 9.41e+02  8.22e-30     0s
+  31* -1.03200522e+02  7.17872590e+29  5.14e-28 3.32e+02  2.28e-30     0s
+  32* -5.03822828e+01  1.74647911e+29  5.34e-28 4.05e+02  2.18e-30     0s
+  33* -4.53402780e+01 -5.91557445e+28  5.66e-28 2.76e+02  1.53e-30     0s
+  34* -3.31682498e+01 -9.32462737e+28  6.23e-28 2.33e+02  1.29e-30     0s
+  35* -2.80638645e+01 -8.71478557e+28  6.38e-28 2.49e+02  1.02e-30     0s
+  36* -3.34660833e+01 -9.44249331e+28  7.74e-28 2.39e+02  9.18e-31     0s
+  37* -3.97070396e+01 -9.49105454e+28  9.03e-28 2.10e+02  8.26e-31     0s
+  38* -4.90631780e+01 -9.13085044e+28  1.10e-27 1.69e+02  7.29e-31     0s
+  39* -7.72318750e+01 -8.50577554e+28  1.55e-27 1.23e+02  6.62e-31     0s
+  40* -1.16540435e+02 -7.73635722e+28  2.19e-27 9.51e+01  6.12e-31     0s
+  41* -1.75489778e+02 -7.07156859e+28  3.21e-27 8.41e+01  5.91e-31     0s
+  42* -2.03775031e+02 -6.51681074e+28  4.07e-27 7.92e+01  5.80e-31     0s
+  43* -2.25859501e+02 -5.55508511e+28  4.75e-27 7.23e+01  5.70e-31     0s
+  44* -2.70064378e+02 -4.85894453e+28  5.73e-27 6.89e+01  5.64e-31     0s
+  45* -2.51416472e+02 -3.74752486e+28  6.95e-27 6.65e+01  5.71e-31     0s
+  46* -2.87968493e+02 -2.96402241e+28  7.96e-27 6.39e+01  5.67e-31     0s
+  47* -3.38758269e+02 -2.39327065e+28  9.26e-27 6.24e+01  5.65e-31     0s
+  48* -4.45775832e+02 -2.25922847e+28  1.10e-26 6.17e+01  5.67e-31     0s
+  49* -4.62499113e+02 -1.91400422e+28  1.43e-26 6.25e+01  5.80e-31     0s
+  50* -4.42763257e+02 -1.42492799e+28  1.55e-26 6.26e+01  5.86e-31     0s
+  51* -4.94273137e+02 -9.95059263e+27  1.62e-26 6.30e+01  5.89e-31     0s
+  52* -5.39295993e+02 -7.60040788e+27  1.90e-26 6.36e+01  5.93e-31     0s
+  53* -5.48098412e+02 -4.76840180e+27  2.02e-26 6.42e+01  5.99e-31     0s
+  54* -5.83487466e+02 -1.93434134e+27  2.19e-26 6.51e+01  6.07e-31     0s
+  55* -6.18943012e+02  9.02554840e+26  2.43e-26 6.59e+01  6.13e-31     0s
+  56* -6.48351249e+02  3.89786900e+27  2.65e-26 6.73e+01  6.22e-31     0s
+  57* -7.05876284e+02  7.61919499e+27  2.95e-26 6.98e+01  6.36e-31     0s
+  58* -8.14712516e+02  1.04290395e+28  3.47e-26 7.20e+01  6.46e-31     0s
+
+Barrier performed 58 iterations in 0.08 seconds (0.05 work units)
+Numerical trouble encountered
+
+
+User-callback calls 190, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:01:16 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:01:16 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0x4f0f0c9f
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e+00, 1e+01]
+Presolve removed 1536 rows and 1728 columns
+Presolve time: 0.00s
+
+Barrier solved model in 0 iterations and 0.00 seconds (0.00 work units)
+Model is infeasible or unbounded
+
+User-callback calls 58, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:01:31 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:01:31 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0x5824116f
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-01, 1e+01]
+Presolve removed 1536 rows and 1728 columns
+Presolve time: 0.00s
+
+Barrier solved model in 0 iterations and 0.00 seconds (0.00 work units)
+Model is infeasible or unbounded
+
+User-callback calls 58, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:01:44 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:01:44 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0x42ab16aa
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-01, 2e-01]
+Presolve removed 1536 rows and 1728 columns
+Presolve time: 0.00s
+
+Barrier solved model in 0 iterations and 0.00 seconds (0.00 work units)
+Model is infeasible or unbounded
+
+User-callback calls 58, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:01:59 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:01:59 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0x42ab16aa
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-01, 2e-01]
+Presolve removed 1536 rows and 1728 columns
+Presolve time: 0.00s
+
+Barrier solved model in 0 iterations and 0.00 seconds (0.00 work units)
+Model is infeasible or unbounded
+
+User-callback calls 58, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:02:39 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:02:39 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0x50d03275
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-01, 1e-01]
+Presolve removed 1536 rows and 1728 columns
+Presolve time: 0.00s
+Presolved: 1152 rows, 1440 columns, 3456 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.45963680e+02 -1.49867437e+01  1.04e+00 5.40e-01  2.22e-01     0s
+   1   2.52106903e+01  1.60186105e+00  1.45e-01 1.18e-01  4.41e-02     0s
+   2   3.61545463e+01  2.23298666e+02  1.15e-01 1.24e+01  6.27e-01     0s
+   3   8.08720772e+01  2.28776053e+01  3.11e-01 1.14e-11  9.25e+00     0s
+   4   3.73518822e+01  1.98842222e+04  1.91e-01 4.63e+03  1.45e+02     0s
+   5*  5.57201514e+01  6.08967734e+06  8.38e-06 3.83e+01  1.88e-07     0s
+   6*  1.33577510e+02  1.01109049e+07  4.66e-08 6.86e+00  6.67e-11     0s
+   7*  5.51625713e+01  1.12730721e+08  6.41e-09 3.68e-01  8.73e-12     0s
+   8*  5.21384533e+01  2.19373501e+11  2.61e-10 1.31e+02  2.67e-12     0s
+   9*  1.19927850e+02  2.29451974e+12  1.34e-10 2.28e+02  7.76e-12     0s
+  10*  3.27096460e+01  2.30439310e+12  1.18e-12 1.62e+00  8.46e-14     0s
+  11*  3.27109461e+01  1.68518274e+15  1.30e-15 5.35e-04  9.31e-17     0s
+  12*  3.27109461e+01  1.52074095e+18  1.43e-18 4.41e-02  1.02e-19     0s
+  13*  3.27109475e+01  1.39115483e+21  1.57e-21 4.74e-05  1.12e-22     0s
+
+Barrier performed 13 iterations in 0.02 seconds (0.01 work units)
+Infeasible model
+
+
+User-callback calls 101, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:03:15 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:03:15 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2496 rows, 3168 columns and 7104 nonzeros
+Model fingerprint: 0x2799e1e2
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-01, 1e-01]
+Presolve removed 1344 rows and 1344 columns
+Presolve time: 0.00s
+Presolved: 1152 rows, 1824 columns, 3840 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   8.20364739e+01  3.84000000e+00  1.78e+00 1.00e-01  9.13e-02     0s
+   1   3.86540359e+01  2.08591637e+01  4.59e-01 1.57e-02  2.70e-02     0s
+   2   1.63389580e+02  5.36747595e+02  1.73e+00 1.43e-01  8.95e+00     0s
+   3   5.93219078e+01  7.07265505e+01  6.80e-01 4.92e-07  1.15e+01     0s
+   4*  5.41273184e+01  2.72636112e+05  1.06e-04 8.90e-14  3.53e-07     0s
+   5*  5.36896226e+01  8.17163644e+07  1.18e-07 7.13e-15  1.63e-10     0s
+
+Barrier performed 5 iterations in 0.01 seconds (0.01 work units)
+Infeasible model
+
+
+User-callback calls 83, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:03:23 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:03:23 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2496 rows, 3168 columns and 7104 nonzeros
+Model fingerprint: 0x43989ddd
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [0e+00, 0e+00]
+Presolve removed 1536 rows and 1536 columns
+Presolve time: 0.00s
+Presolved: 960 rows, 1632 columns, 3936 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 3.168e+03
+ Factor NZ  : 5.280e+03 (roughly 1 MB of memory)
+ Factor Ops : 3.696e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0  -9.12194012e+00 -1.90104454e+01  1.11e+00 5.31e-01  2.55e-01     0s
+   1   3.66290866e+00 -5.90790811e-01  1.40e-01 1.20e-01  3.21e-02     0s
+   2  -4.70508014e+00 -9.59848218e-01  9.66e-03 6.34e-02  6.58e-03     0s
+   3  -5.18152806e+00 -4.20334609e+00  4.89e-03 2.70e-02  3.10e-03     0s
+   4  -5.88320125e+00 -5.85235567e+00  1.28e-03 9.65e-03  7.20e-04     0s
+   5  -6.14479408e+00 -6.16227691e+00  8.81e-05 2.56e-05  1.63e-05     0s
+   6  -6.14554395e+00 -6.14662829e+00  2.78e-06 6.77e-05  6.80e-07     0s
+   7  -6.14587858e+00 -6.14593062e+00  2.91e-07 1.39e-09  3.78e-08     0s
+   8  -6.14588886e+00 -6.14589596e+00  1.57e-08 6.97e-10  3.99e-09     0s
+
+Barrier solved model in 8 iterations and 0.01 seconds (0.01 work units)
+Optimal objective -6.14588886e+00
+
+
+User-callback calls 92, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:03:40 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Sun Jan 26 21:03:40 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0xddca038e
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-02, 1e-02]
+Presolve removed 1536 rows and 1728 columns
+Presolve time: 0.00s
+Presolved: 1152 rows, 1440 columns, 3456 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.49113808e+02 -1.45757377e+01  1.07e+00 5.40e-01  2.27e-01     0s
+   1   8.44934578e+00  2.07397966e-01  2.89e-02 1.37e-01  2.18e-02     0s
+   2   2.82464941e+00  1.95698749e-01  6.96e-03 7.94e-02  1.06e-02     0s
+   3   2.77674367e+00  1.44133251e+00  6.08e-05 1.00e-02  1.81e-03     0s
+   4   2.08781055e+00  2.02208295e+00  3.57e-06 2.37e-04  5.95e-05     0s
+   5   2.05269671e+00  2.02969307e+00  1.64e-07 8.32e-04  3.22e-05     0s
+   6   2.02349473e+00  2.02579120e+00  6.92e-10 6.79e-05  8.82e-06     0s
+   7   2.02033269e+00  2.01993245e+00  3.93e-10 1.91e-04  1.35e-06     0s
+   8   2.01956473e+00  2.01955827e+00  8.08e-10 8.40e-08  3.69e-09     0s
+   9   2.01956140e+00  2.01956135e+00  4.85e-10 3.87e-10  2.57e-11     0s
+
+Barrier solved model in 9 iterations and 0.02 seconds (0.01 work units)
+Optimal objective 2.01956140e+00
+
+
+User-callback calls 92, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Mon Jan 27 12:49:40 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Mon Jan 27 12:49:40 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0xddca038e
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [2e-01, 4e+00]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-02, 1e-02]
+Presolve removed 1536 rows and 1728 columns
+Presolve time: 0.02s
+Presolved: 1152 rows, 1440 columns, 3456 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.49113808e+02 -1.45757377e+01  1.07e+00 5.40e-01  2.27e-01     0s
+   1   8.44934578e+00  2.07397966e-01  2.89e-02 1.37e-01  2.18e-02     0s
+   2   2.82464941e+00  1.95698749e-01  6.96e-03 7.94e-02  1.06e-02     0s
+   3   2.77674367e+00  1.44133251e+00  6.08e-05 1.00e-02  1.81e-03     0s
+   4   2.08781055e+00  2.02208295e+00  3.57e-06 2.37e-04  5.95e-05     0s
+   5   2.05269671e+00  2.02969307e+00  1.64e-07 8.32e-04  3.22e-05     0s
+   6   2.02349473e+00  2.02579120e+00  6.92e-10 6.79e-05  8.82e-06     0s
+   7   2.02033269e+00  2.01993245e+00  2.58e-10 1.91e-04  1.35e-06     0s
+   8   2.01956473e+00  2.01955827e+00  7.25e-10 8.39e-08  3.69e-09     0s
+   9   2.01956140e+00  2.01956135e+00  3.85e-10 5.01e-10  2.56e-11     0s
+
+Barrier solved model in 9 iterations and 0.04 seconds (0.01 work units)
+Optimal objective 2.01956140e+00
+
+
+User-callback calls 96, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Mon Jan 27 13:39:54 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Mon Jan 27 13:39:54 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0xce0fef7a
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-02, 1e-02]
+Presolve removed 1536 rows and 1728 columns
+Presolve time: 0.00s
+Presolved: 1152 rows, 1440 columns, 3456 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.91107170e+02 -4.66083442e+01  1.44e+00 6.80e-01  5.03e-01     0s
+   1   2.65118742e+01 -2.40879384e+00  1.48e-01 1.15e-01  4.89e-02     0s
+   2   3.98312461e+00  1.62700470e-01  1.82e-02 1.55e-02  4.92e-03     0s
+   3   2.14263476e+00  1.98718245e+00  1.12e-04 2.77e-03  2.35e-04     0s
+   4   2.08072689e+00  1.97897209e+00  5.49e-05 8.78e-04  1.20e-04     0s
+   5   2.04218165e+00  1.97283854e+00  3.06e-06 4.90e-04  4.68e-05     0s
+   6   2.02684133e+00  2.01282993e+00  8.30e-08 4.46e-04  9.13e-06     0s
+   7   2.01996719e+00  2.01808104e+00  5.46e-09 5.21e-05  1.11e-06     0s
+   8   2.01942481e+00  2.01924827e+00  9.55e-10 3.03e-06  9.77e-08     0s
+   9   2.01936818e+00  2.01933524e+00  4.08e-09 1.18e-07  1.67e-08     0s
+  10   2.01934420e+00  2.01934005e+00  5.92e-10 2.18e-09  2.06e-09     0s
+  11   2.01934250e+00  2.01934209e+00  4.26e-12 1.29e-08  2.03e-10     0s
+
+Barrier solved model in 11 iterations and 0.02 seconds (0.01 work units)
+Optimal objective 2.01934250e+00
+
+
+User-callback calls 97, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Mon Jan 27 13:40:32 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Mon Jan 27 13:40:32 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0x1d40fb31
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-01, 1e-01]
+Presolve removed 1536 rows and 1728 columns
+Presolve time: 0.00s
+Presolved: 1152 rows, 1440 columns, 3456 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.97597062e+02 -3.01077371e+01  1.41e+00 6.89e-01  4.97e-01     0s
+   1   4.04981266e+01  1.67609537e+01  1.22e-01 9.68e-02  4.61e-02     0s
+   2   4.82169393e+01  2.97324644e+01  8.84e-02 5.97e-03  3.90e-02     0s
+   3   4.30491650e+01  3.93038169e+01  2.97e-01 3.52e-08  8.05e-01     0s
+   4   2.36095800e+02  3.03252107e+03  2.36e+00 5.43e+03  1.85e+03     0s
+   5   1.11189481e+02  1.15733547e+03  9.85e-01 2.34e+03  4.81e+02     0s
+   6   3.86043096e+01  2.30356213e+02  8.55e-02 2.54e+03  8.83e+01     0s
+   7   4.98233424e+01  3.21057382e+04  1.51e-01 3.27e+06  1.17e+05     0s
+   8*  5.13654807e+01  1.14451822e+05  3.36e-06 2.53e+02  5.33e-06     0s
+   9*  4.17508425e+01  7.01470620e+07  1.64e-08 9.43e+02  1.73e-07     0s
+  10*  4.29969178e+01  1.24630209e+09  2.02e-10 1.42e+01  2.17e-09     0s
+  11*  4.29972351e+01  1.09848812e+11  2.22e-12 1.57e-01  2.39e-11     0s
+  12*  4.29972351e+01  9.98276043e+12  2.45e-14 1.73e-03  2.63e-13     0s
+  13*  4.29972351e+01  9.07520174e+14  2.69e-16 3.10e-04  2.89e-15     0s
+  14*  4.29972351e+01  8.27421576e+16  2.96e-18 4.57e-01  3.19e-17     0s
+  15*  4.29972354e+01  7.52194233e+18  3.26e-20 4.54e-01  3.52e-19     0s
+  16*  4.29972357e+01  6.83809107e+20  3.58e-22 4.55e-01  3.88e-21     0s
+  17*  4.29972361e+01  6.21641785e+22  3.94e-24 4.57e-01  4.28e-23     0s
+  18*  4.29972364e+01  5.65092991e+24  4.33e-26 4.75e-01  4.72e-25     0s
+  19*  4.29972367e+01  5.10950121e+26  4.83e-28 2.03e+00  5.31e-27     0s
+  20*  3.93041144e+01  1.18163662e+28  4.07e-28 2.33e+04  1.75e-26     0s
+  21*  3.83250720e+01  1.10027677e+28  1.87e-27 3.80e+05  1.58e-26     0s
+  22*  3.83748535e+01  1.44544334e+28  1.40e-27 1.17e+07  6.37e-26     0s
+  23*  3.70718969e+01  3.03322628e+28  6.78e-27 1.59e+08  4.35e-25     0s
+  24*  3.64253780e+01  2.65496011e+28  1.57e-26 1.27e+09  2.21e-24     0s
+  25*  3.55746798e+01  2.42589469e+28  4.56e-26 3.94e+09  2.14e-24     0s
+  26*  3.53412785e+01  2.28591551e+28  5.52e-26 7.76e+09  3.94e-24     0s
+  27*  2.86175286e+01  2.30508151e+28  8.65e-25 1.22e+10  7.25e-23     0s
+  28*  3.81374914e+01  3.43609599e+28  1.56e-24 1.86e+10  1.63e-22     0s
+  29*  3.70815842e+01  4.09585191e+28  2.00e-24 2.42e+10  2.42e-22     0s
+  30*  3.20790867e+01  4.22594943e+29  3.32e-24 2.61e+11  1.67e-20     0s
+  31*  4.21264644e+01  3.39463669e+29  7.32e-22 3.61e+13  1.10e-16     0s
+  32*  4.47345691e+01  5.68858360e+29  1.43e-21 1.85e+15  2.21e-15     0s
+  33*  4.44141120e+01  5.12977341e+29  1.88e-21 1.53e+15  6.56e-15     0s
+  34*  3.91561246e+01  1.15294386e+31  3.42e-21 1.54e+17  3.96e-13     0s
+  35*  9.15329291e+01  1.44402607e+31  2.07e-20 2.50e+17  1.25e-12     0s
+  36*  9.55729704e+01  1.31852020e+31  2.25e-20 3.22e+17  2.33e-12     0s
+  37*  1.01650941e+02  1.37833889e+31  2.81e-20 3.94e+17  3.80e-12     0s
+  38*  1.26280877e+02  1.05560883e+32  3.52e-20 3.22e+22  2.06e-09     0s
+  39*  1.37552420e+02  6.59276477e+32  3.88e-19 3.23e+22  7.38e-09     0s
+  40*  1.35271121e+02  5.74184775e+33  6.82e-19 1.91e+23  7.11e-06     0s
+  41*  1.33964457e+02  4.33652168e+34  1.91e-17 1.05e+25  2.82e-04     0s
+  42*  1.33499315e+02  4.65776466e+34  2.77e-17 1.48e+25  3.66e-04     0s
+  43*  1.33498461e+02  4.65776466e+34  2.77e-17 1.48e+25  3.66e-04     0s
+  44   2.00213602e+05 -7.67808000e+04  1.10e+03 1.00e+03  1.05e+12     0s
+  45   2.17894698e+05 -4.77143563e+07  1.60e+03 2.21e+02  1.04e+12     0s
+  46   9.33508049e+04 -8.51018168e+07  7.05e+02 6.51e+01  1.48e+11     0s
+  47   4.01470038e+04 -6.71218812e+07  2.96e+02 2.95e+01  3.05e+10     0s
+  48   2.22677402e+04 -4.61369281e+07  1.64e+02 1.64e+01  9.50e+09     0s
+  49   1.35159371e+04 -3.09292214e+07  9.91e+01 9.98e+00  3.52e+09     0s
+  50   8.76381019e+03 -2.09227780e+07  6.38e+01 6.43e+00  1.52e+09     0s
+  51   5.76837830e+03 -1.40629283e+07  4.17e+01 4.20e+00  6.69e+08     0s
+  52   3.77556363e+03 -9.28248658e+06  2.70e+01 2.73e+00  2.90e+08     0s
+  53   2.45980102e+03 -6.04490384e+06  1.74e+01 1.76e+00  1.24e+08     0s
+  54   1.59667958e+03 -3.89159614e+06  1.11e+01 1.13e+00  5.24e+07     0s
+  55   1.01886937e+03 -2.43993588e+06  6.88e+00 7.07e-01  2.14e+07     0s
+  56   1.24487806e+02 -3.17918682e+05  4.45e-01 9.21e-02  1.98e+05     0s
+  57   8.53987979e+01 -1.65514105e+05  2.73e-01 4.80e-02  7.44e+04     0s
+  58   6.49068496e+01 -2.20574450e+04  2.16e-01 6.44e-03  1.03e+04     0s
+  59   1.03052011e+02 -6.31271461e+04  4.85e-01 1.87e-02  4.33e+04     0s
+  60   4.17200067e+01  1.19207968e+03  5.33e-02 1.09e-08  4.15e+03     0s
+  61   1.05381670e+02  1.87145009e+05  5.44e-01 1.57e+05  1.06e+06     0s
+  62   1.01086319e+02  1.40438777e+08  5.08e-01 8.14e+08  8.63e+08     0s
+  63*  5.53867631e+01  4.93357675e+10  1.63e-03 8.12e+09  1.28e+04     0s
+  64*  3.92139852e+01  6.28306124e+11  4.86e-05 1.19e+10  6.56e+02     0s
+  65*  3.73745795e+01  3.80062886e+13  1.10e-06 6.33e+10  5.00e+01     0s
+  66*  3.96588498e+01  1.10084990e+16  1.56e-08 1.00e+12  6.55e+00     0s
+  67*  3.74962150e+01  7.68698342e+15  5.86e-09 1.72e+12  7.29e+00     0s
+  68*  4.18973078e+01  6.02281523e+16  1.16e-09 6.15e+11  1.58e+00     0s
+  69*  4.55623125e+01  6.41208371e+18  1.74e-11 8.36e+10  2.32e-02     0s
+  70*  4.55549163e+01  6.18552430e+21  1.96e-14 4.25e+10  2.64e-05     0s
+  71*  4.55709927e+01  5.48783869e+24  2.17e-17 5.04e+09  2.92e-08     0s
+  72*  4.55714547e+01  4.97465660e+27  2.38e-20 2.00e+07  3.21e-11     0s
+  73*  3.50961359e+01  2.40163730e+27  5.38e-20 7.39e+11  9.64e-12     0s
+  74*  3.48403013e+01  1.34071927e+27  6.07e-20 1.62e+13  1.06e-11     0s
+  75*  3.49916968e+01  4.62399248e+25  1.75e-19 3.21e+13  5.48e-12     0s
+  76*  3.83192322e+01 -9.00641943e+26  1.74e-18 1.12e+14  4.41e-11     0s
+  77*  3.82974632e+01  4.75886193e+28  1.92e-18 1.17e+14  1.05e-09     0s
+  78*  3.69002748e+01  4.74429287e+28  1.72e-18 7.71e+15  2.04e-09     0s
+  79*  3.68071450e+01  4.48659812e+28  1.94e-18 3.31e+16  3.05e-09     0s
+  80*  3.72381515e+01  4.01488813e+28  2.68e-18 1.05e+17  4.71e-09     0s
+  81*  3.80083660e+01  3.38208728e+28  4.34e-18 3.51e+17  1.21e-08     0s
+  82*  4.56702548e+01  2.53431739e+28  2.68e-17 1.75e+18  1.84e-07     0s
+  83*  4.58026359e+01  1.33674003e+28  2.72e-17 3.25e+18  3.10e-07     0s
+  84*  4.61183851e+01  9.47720721e+28  3.15e-17 4.16e+19  3.14e-05     0s
+  85*  5.07772108e+01  9.56577930e+28  7.48e-17 4.90e+19  3.33e-05     0s
+  86*  6.54862157e+01  1.28473018e+31  2.02e-16 2.95e+22  2.59e-02     0s
+  87*  9.21769363e+01  1.38734431e+32  1.54e-15 1.12e+23  4.97e-02     0s
+  88*  5.40715527e+02  1.39545852e+32  1.24e-14 4.03e+23  1.48e-01     0s
+  89*  7.49426982e+02  1.40997786e+32  1.73e-14 4.03e+23  1.93e-01     0s
+  90*  7.57255401e+02  1.47096219e+32  1.75e-14 4.91e+23  2.76e-01     0s
+  91*  7.77599004e+02  1.47417276e+32  1.73e-14 6.32e+23  5.29e-01     0s
+  92*  1.27637852e+03  1.46590851e+32  3.18e-14 1.69e+24  1.45e+00     0s
+  93*  1.45876787e+03  1.45955918e+32  3.41e-14 3.41e+24  5.06e+00     0s
+  94*  2.52139851e+03  1.47029542e+32  6.54e-14 4.96e+24  6.95e+00     0s
+  95*  2.83312375e+03  1.97482843e+32  7.57e-14 1.06e+26  2.52e+02     0s
+  96*  3.91588772e+03  1.58860663e+32  3.31e-13 5.99e+26  4.00e+02     0s
+  97*  3.92648901e+03  1.58860663e+32  4.58e-13 9.74e+26  9.42e+02     0s
+  98*  3.92692503e+03  1.58842244e+35  5.47e-13 2.48e+29  1.93e+05     0s
+
+Barrier performed 98 iterations in 0.12 seconds (0.07 work units)
+Numerical trouble encountered
+
+
+User-callback calls 274, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Mon Jan 27 14:48:39 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Mon Jan 27 14:48:40 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0x1d40fb31
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-01, 1e-01]
+Presolve removed 1536 rows and 1728 columns
+Presolve time: 0.00s
+Presolved: 1152 rows, 1440 columns, 3456 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.97597062e+02 -3.01077371e+01  1.41e+00 6.89e-01  4.97e-01     0s
+   1   4.04981266e+01  1.67609537e+01  1.22e-01 9.68e-02  4.61e-02     0s
+   2   4.82169393e+01  2.97324644e+01  8.84e-02 5.97e-03  3.90e-02     0s
+   3   4.30491650e+01  3.93038169e+01  2.97e-01 3.52e-08  8.05e-01     0s
+   4   2.36095800e+02  3.03252107e+03  2.36e+00 5.43e+03  1.85e+03     0s
+   5   1.11189481e+02  1.15733547e+03  9.85e-01 2.34e+03  4.81e+02     0s
+   6   3.86043096e+01  2.30356213e+02  8.55e-02 2.54e+03  8.83e+01     0s
+   7   4.98233424e+01  3.21057382e+04  1.51e-01 3.27e+06  1.17e+05     0s
+   8*  5.13654807e+01  1.14451822e+05  3.36e-06 2.53e+02  5.33e-06     0s
+   9*  4.17508425e+01  7.01470620e+07  1.64e-08 9.43e+02  1.73e-07     0s
+  10*  4.29969178e+01  1.24630209e+09  2.02e-10 1.42e+01  2.17e-09     0s
+  11*  4.29972351e+01  1.09848812e+11  2.22e-12 1.57e-01  2.39e-11     0s
+  12*  4.29972351e+01  9.98276043e+12  2.45e-14 1.73e-03  2.63e-13     0s
+  13*  4.29972351e+01  9.07520174e+14  2.69e-16 3.10e-04  2.89e-15     0s
+  14*  4.29972351e+01  8.27421576e+16  2.96e-18 4.57e-01  3.19e-17     0s
+  15*  4.29972354e+01  7.52194233e+18  3.26e-20 4.54e-01  3.52e-19     0s
+  16*  4.29972357e+01  6.83809107e+20  3.58e-22 4.55e-01  3.88e-21     0s
+  17*  4.29972361e+01  6.21641785e+22  3.94e-24 4.57e-01  4.28e-23     0s
+  18*  4.29972364e+01  5.65092991e+24  4.33e-26 4.75e-01  4.72e-25     0s
+  19*  4.29972367e+01  5.10950121e+26  4.83e-28 2.03e+00  5.31e-27     0s
+  20*  3.93041144e+01  1.18163662e+28  4.07e-28 2.33e+04  1.75e-26     0s
+  21*  3.83250720e+01  1.10027677e+28  1.87e-27 3.80e+05  1.58e-26     0s
+  22*  3.83748535e+01  1.44544334e+28  1.40e-27 1.17e+07  6.37e-26     0s
+  23*  3.70718969e+01  3.03322628e+28  6.78e-27 1.59e+08  4.35e-25     0s
+  24*  3.64253780e+01  2.65496011e+28  1.57e-26 1.27e+09  2.21e-24     0s
+  25*  3.55746798e+01  2.42589469e+28  4.56e-26 3.94e+09  2.14e-24     0s
+  26*  3.53412785e+01  2.28591551e+28  5.52e-26 7.76e+09  3.94e-24     0s
+  27*  2.86175286e+01  2.30508151e+28  8.65e-25 1.22e+10  7.25e-23     0s
+  28*  3.81374914e+01  3.43609599e+28  1.56e-24 1.86e+10  1.63e-22     0s
+  29*  3.70815842e+01  4.09585191e+28  2.00e-24 2.42e+10  2.42e-22     0s
+  30*  3.20790867e+01  4.22594943e+29  3.32e-24 2.61e+11  1.67e-20     0s
+  31*  4.21264644e+01  3.39463669e+29  7.32e-22 3.61e+13  1.10e-16     0s
+  32*  4.47345691e+01  5.68858360e+29  1.43e-21 1.85e+15  2.21e-15     0s
+  33*  4.44141120e+01  5.12977341e+29  1.88e-21 1.53e+15  6.56e-15     0s
+  34*  3.91561246e+01  1.15294386e+31  3.42e-21 1.54e+17  3.96e-13     0s
+  35*  9.15329291e+01  1.44402607e+31  2.07e-20 2.50e+17  1.25e-12     0s
+  36*  9.55729704e+01  1.31852020e+31  2.25e-20 3.22e+17  2.33e-12     0s
+  37*  1.01650941e+02  1.37833889e+31  2.81e-20 3.94e+17  3.80e-12     0s
+  38*  1.26280877e+02  1.05560883e+32  3.52e-20 3.22e+22  2.06e-09     0s
+  39*  1.37552420e+02  6.59276477e+32  3.88e-19 3.23e+22  7.38e-09     0s
+  40*  1.35271121e+02  5.74184775e+33  6.82e-19 1.91e+23  7.11e-06     0s
+  41*  1.33964457e+02  4.33652168e+34  1.91e-17 1.05e+25  2.82e-04     0s
+  42*  1.33499315e+02  4.65776466e+34  2.77e-17 1.48e+25  3.66e-04     0s
+  43*  1.33498461e+02  4.65776466e+34  2.77e-17 1.48e+25  3.66e-04     0s
+  44   2.00213602e+05 -7.67808000e+04  1.10e+03 1.00e+03  1.05e+12     0s
+  45   2.17894698e+05 -4.77143563e+07  1.60e+03 2.21e+02  1.04e+12     0s
+  46   9.33508049e+04 -8.51018168e+07  7.05e+02 6.51e+01  1.48e+11     0s
+  47   4.01470038e+04 -6.71218812e+07  2.96e+02 2.95e+01  3.05e+10     0s
+  48   2.22677402e+04 -4.61369281e+07  1.64e+02 1.64e+01  9.50e+09     0s
+  49   1.35159371e+04 -3.09292214e+07  9.91e+01 9.98e+00  3.52e+09     0s
+  50   8.76381019e+03 -2.09227780e+07  6.38e+01 6.43e+00  1.52e+09     0s
+  51   5.76837830e+03 -1.40629283e+07  4.17e+01 4.20e+00  6.69e+08     0s
+  52   3.77556363e+03 -9.28248658e+06  2.70e+01 2.73e+00  2.90e+08     0s
+  53   2.45980102e+03 -6.04490384e+06  1.74e+01 1.76e+00  1.24e+08     0s
+  54   1.59667958e+03 -3.89159614e+06  1.11e+01 1.13e+00  5.24e+07     0s
+  55   1.01886937e+03 -2.43993588e+06  6.88e+00 7.07e-01  2.14e+07     0s
+  56   1.24487806e+02 -3.17918682e+05  4.45e-01 9.21e-02  1.98e+05     0s
+  57   8.53987979e+01 -1.65514105e+05  2.73e-01 4.80e-02  7.44e+04     0s
+  58   6.49068496e+01 -2.20574450e+04  2.16e-01 6.44e-03  1.03e+04     0s
+  59   1.03052011e+02 -6.31271461e+04  4.85e-01 1.87e-02  4.33e+04     0s
+  60   4.17200067e+01  1.19207968e+03  5.33e-02 1.09e-08  4.15e+03     0s
+  61   1.05381670e+02  1.87145009e+05  5.44e-01 1.57e+05  1.06e+06     0s
+  62   1.01086319e+02  1.40438777e+08  5.08e-01 8.14e+08  8.63e+08     0s
+  63*  5.53867631e+01  4.93357675e+10  1.63e-03 8.12e+09  1.28e+04     0s
+  64*  3.92139852e+01  6.28306124e+11  4.86e-05 1.19e+10  6.56e+02     0s
+  65*  3.73745795e+01  3.80062886e+13  1.10e-06 6.33e+10  5.00e+01     0s
+  66*  3.96588498e+01  1.10084990e+16  1.56e-08 1.00e+12  6.55e+00     0s
+  67*  3.74962150e+01  7.68698342e+15  5.86e-09 1.72e+12  7.29e+00     0s
+  68*  4.18973078e+01  6.02281523e+16  1.16e-09 6.15e+11  1.58e+00     0s
+  69*  4.55623125e+01  6.41208371e+18  1.74e-11 8.36e+10  2.32e-02     0s
+  70*  4.55549163e+01  6.18552430e+21  1.96e-14 4.25e+10  2.64e-05     0s
+  71*  4.55709927e+01  5.48783869e+24  2.17e-17 5.04e+09  2.92e-08     0s
+  72*  4.55714547e+01  4.97465660e+27  2.38e-20 2.00e+07  3.21e-11     0s
+  73*  3.50961359e+01  2.40163730e+27  5.38e-20 7.39e+11  9.64e-12     0s
+  74*  3.48403013e+01  1.34071927e+27  6.07e-20 1.62e+13  1.06e-11     0s
+  75*  3.49916968e+01  4.62399248e+25  1.75e-19 3.21e+13  5.48e-12     0s
+  76*  3.83192322e+01 -9.00641943e+26  1.74e-18 1.12e+14  4.41e-11     0s
+  77*  3.82974632e+01  4.75886193e+28  1.92e-18 1.17e+14  1.05e-09     0s
+  78*  3.69002748e+01  4.74429287e+28  1.72e-18 7.71e+15  2.04e-09     0s
+  79*  3.68071450e+01  4.48659812e+28  1.94e-18 3.31e+16  3.05e-09     0s
+  80*  3.72381515e+01  4.01488813e+28  2.68e-18 1.05e+17  4.71e-09     0s
+  81*  3.80083660e+01  3.38208728e+28  4.34e-18 3.51e+17  1.21e-08     0s
+  82*  4.56702548e+01  2.53431739e+28  2.68e-17 1.75e+18  1.84e-07     0s
+  83*  4.58026359e+01  1.33674003e+28  2.72e-17 3.25e+18  3.10e-07     0s
+  84*  4.61183851e+01  9.47720721e+28  3.15e-17 4.16e+19  3.14e-05     0s
+  85*  5.07772108e+01  9.56577930e+28  7.48e-17 4.90e+19  3.33e-05     0s
+  86*  6.54862157e+01  1.28473018e+31  2.02e-16 2.95e+22  2.59e-02     0s
+  87*  9.21769363e+01  1.38734431e+32  1.54e-15 1.12e+23  4.97e-02     0s
+  88*  5.40715527e+02  1.39545852e+32  1.24e-14 4.03e+23  1.48e-01     0s
+  89*  7.49426982e+02  1.40997786e+32  1.73e-14 4.03e+23  1.93e-01     0s
+  90*  7.57255401e+02  1.47096219e+32  1.75e-14 4.91e+23  2.76e-01     0s
+  91*  7.77599004e+02  1.47417276e+32  1.73e-14 6.32e+23  5.29e-01     0s
+  92*  1.27637852e+03  1.46590851e+32  3.18e-14 1.69e+24  1.45e+00     0s
+  93*  1.45876787e+03  1.45955918e+32  3.41e-14 3.41e+24  5.06e+00     0s
+  94*  2.52139851e+03  1.47029542e+32  6.54e-14 4.96e+24  6.95e+00     0s
+  95*  2.83312375e+03  1.97482843e+32  7.57e-14 1.06e+26  2.52e+02     0s
+  96*  3.91588772e+03  1.58860663e+32  3.31e-13 5.99e+26  4.00e+02     0s
+  97*  3.92648901e+03  1.58860663e+32  4.58e-13 9.74e+26  9.42e+02     0s
+  98*  3.92692503e+03  1.58842244e+35  5.47e-13 2.48e+29  1.93e+05     0s
+
+Barrier performed 98 iterations in 0.12 seconds (0.07 work units)
+Numerical trouble encountered
+
+
+User-callback calls 271, time in user-callback 0.00 sec
+
+Gurobi 12.0.0 (win64) logging started Mon Jan 27 15:07:30 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+
+Gurobi 12.0.0 (win64) logging started Mon Jan 27 15:07:31 2025
+
+Set parameter LogFile to value "my_log_file.txt"
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (win64 - Windows 11.0 (22631.2))
+
+CPU model: AMD Ryzen 9 5950X 16-Core Processor, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 32 logical processors, using up to 32 threads
+
+Non-default parameters:
+BarHomogeneous  1
+
+Optimize a model with 2688 rows, 3168 columns and 7296 nonzeros
+Model fingerprint: 0x1d40fb31
+Model has 288 quadratic constraints
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  QMatrix range    [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [8e-01, 1e+00]
+  RHS range        [1e-01, 1e-01]
+Presolve removed 1536 rows and 1728 columns
+Presolve time: 0.00s
+Presolved: 1152 rows, 1440 columns, 3456 nonzeros
+Presolved model has 288 second-order cone constraints
+Ordering time: 0.00s
+
+Barrier statistics:
+ AA' NZ     : 4.128e+03
+ Factor NZ  : 7.488e+03 (roughly 1 MB of memory)
+ Factor Ops : 6.240e+04 (less than 1 second per iteration)
+ Threads    : 1
+
+                  Objective                Residual
+Iter       Primal          Dual         Primal    Dual     Compl     Time
+   0   1.97597062e+02 -3.01077371e+01  1.41e+00 6.89e-01  4.97e-01     0s
+   1   4.04981266e+01  1.67609537e+01  1.22e-01 9.68e-02  4.61e-02     0s
+   2   4.82169393e+01  2.97324644e+01  8.84e-02 5.97e-03  3.90e-02     0s
+   3   4.30491650e+01  3.93038169e+01  2.97e-01 3.52e-08  8.05e-01     0s
+   4   2.36095800e+02  3.03252107e+03  2.36e+00 5.43e+03  1.85e+03     0s
+   5   1.11189481e+02  1.15733547e+03  9.85e-01 2.34e+03  4.81e+02     0s
+   6   3.86043096e+01  2.30356213e+02  8.55e-02 2.54e+03  8.83e+01     0s
+   7   4.98233424e+01  3.21057382e+04  1.51e-01 3.27e+06  1.17e+05     0s
+   8*  5.13654807e+01  1.14451822e+05  3.36e-06 2.53e+02  5.33e-06     0s
+   9*  4.17508425e+01  7.01470620e+07  1.64e-08 9.43e+02  1.73e-07     0s
+  10*  4.29969178e+01  1.24630209e+09  2.02e-10 1.42e+01  2.17e-09     0s
+  11*  4.29972351e+01  1.09848812e+11  2.22e-12 1.57e-01  2.39e-11     0s
+  12*  4.29972351e+01  9.98276043e+12  2.45e-14 1.73e-03  2.63e-13     0s
+  13*  4.29972351e+01  9.07520174e+14  2.69e-16 3.10e-04  2.89e-15     0s
+  14*  4.29972351e+01  8.27421576e+16  2.96e-18 4.57e-01  3.19e-17     0s
+  15*  4.29972354e+01  7.52194233e+18  3.26e-20 4.54e-01  3.52e-19     0s
+  16*  4.29972357e+01  6.83809107e+20  3.58e-22 4.55e-01  3.88e-21     0s
+  17*  4.29972361e+01  6.21641785e+22  3.94e-24 4.57e-01  4.28e-23     0s
+  18*  4.29972364e+01  5.65092991e+24  4.33e-26 4.75e-01  4.72e-25     0s
+  19*  4.29972367e+01  5.10950121e+26  4.83e-28 2.03e+00  5.31e-27     0s
+  20*  3.93041144e+01  1.18163662e+28  4.07e-28 2.33e+04  1.75e-26     0s
+  21*  3.83250720e+01  1.10027677e+28  1.87e-27 3.80e+05  1.58e-26     0s
+  22*  3.83748535e+01  1.44544334e+28  1.40e-27 1.17e+07  6.37e-26     0s
+  23*  3.70718969e+01  3.03322628e+28  6.78e-27 1.59e+08  4.35e-25     0s
+  24*  3.64253780e+01  2.65496011e+28  1.57e-26 1.27e+09  2.21e-24     0s
+  25*  3.55746798e+01  2.42589469e+28  4.56e-26 3.94e+09  2.14e-24     0s
+  26*  3.53412785e+01  2.28591551e+28  5.52e-26 7.76e+09  3.94e-24     0s
+  27*  2.86175286e+01  2.30508151e+28  8.65e-25 1.22e+10  7.25e-23     0s
+  28*  3.81374914e+01  3.43609599e+28  1.56e-24 1.86e+10  1.63e-22     0s
+  29*  3.70815842e+01  4.09585191e+28  2.00e-24 2.42e+10  2.42e-22     0s
+  30*  3.20790867e+01  4.22594943e+29  3.32e-24 2.61e+11  1.67e-20     0s
+  31*  4.21264644e+01  3.39463669e+29  7.32e-22 3.61e+13  1.10e-16     0s
+  32*  4.47345691e+01  5.68858360e+29  1.43e-21 1.85e+15  2.21e-15     0s
+  33*  4.44141120e+01  5.12977341e+29  1.88e-21 1.53e+15  6.56e-15     0s
+  34*  3.91561246e+01  1.15294386e+31  3.42e-21 1.54e+17  3.96e-13     0s
+  35*  9.15329291e+01  1.44402607e+31  2.07e-20 2.50e+17  1.25e-12     0s
+  36*  9.55729704e+01  1.31852020e+31  2.25e-20 3.22e+17  2.33e-12     0s
+  37*  1.01650941e+02  1.37833889e+31  2.81e-20 3.94e+17  3.80e-12     0s
+  38*  1.26280877e+02  1.05560883e+32  3.52e-20 3.22e+22  2.06e-09     0s
+  39*  1.37552420e+02  6.59276477e+32  3.88e-19 3.23e+22  7.38e-09     0s
+  40*  1.35271121e+02  5.74184775e+33  6.82e-19 1.91e+23  7.11e-06     0s
+  41*  1.33964457e+02  4.33652168e+34  1.91e-17 1.05e+25  2.82e-04     0s
+  42*  1.33499315e+02  4.65776466e+34  2.77e-17 1.48e+25  3.66e-04     0s
+  43*  1.33498461e+02  4.65776466e+34  2.77e-17 1.48e+25  3.66e-04     0s
+  44   2.00213602e+05 -7.67808000e+04  1.10e+03 1.00e+03  1.05e+12     0s
+  45   2.17894698e+05 -4.77143563e+07  1.60e+03 2.21e+02  1.04e+12     0s
+  46   9.33508049e+04 -8.51018168e+07  7.05e+02 6.51e+01  1.48e+11     0s
+  47   4.01470038e+04 -6.71218812e+07  2.96e+02 2.95e+01  3.05e+10     0s
+  48   2.22677402e+04 -4.61369281e+07  1.64e+02 1.64e+01  9.50e+09     0s
+  49   1.35159371e+04 -3.09292214e+07  9.91e+01 9.98e+00  3.52e+09     0s
+  50   8.76381019e+03 -2.09227780e+07  6.38e+01 6.43e+00  1.52e+09     0s
+  51   5.76837830e+03 -1.40629283e+07  4.17e+01 4.20e+00  6.69e+08     0s
+  52   3.77556363e+03 -9.28248658e+06  2.70e+01 2.73e+00  2.90e+08     0s
+  53   2.45980102e+03 -6.04490384e+06  1.74e+01 1.76e+00  1.24e+08     0s
+  54   1.59667958e+03 -3.89159614e+06  1.11e+01 1.13e+00  5.24e+07     0s
+  55   1.01886937e+03 -2.43993588e+06  6.88e+00 7.07e-01  2.14e+07     0s
+  56   1.24487806e+02 -3.17918682e+05  4.45e-01 9.21e-02  1.98e+05     0s
+  57   8.53987979e+01 -1.65514105e+05  2.73e-01 4.80e-02  7.44e+04     0s
+  58   6.49068496e+01 -2.20574450e+04  2.16e-01 6.44e-03  1.03e+04     0s
+  59   1.03052011e+02 -6.31271461e+04  4.85e-01 1.87e-02  4.33e+04     0s
+  60   4.17200067e+01  1.19207968e+03  5.33e-02 1.09e-08  4.15e+03     0s
+  61   1.05381670e+02  1.87145009e+05  5.44e-01 1.57e+05  1.06e+06     0s
+  62   1.01086319e+02  1.40438777e+08  5.08e-01 8.14e+08  8.63e+08     0s
+  63*  5.53867631e+01  4.93357675e+10  1.63e-03 8.12e+09  1.28e+04     0s
+  64*  3.92139852e+01  6.28306124e+11  4.86e-05 1.19e+10  6.56e+02     0s
+  65*  3.73745795e+01  3.80062886e+13  1.10e-06 6.33e+10  5.00e+01     0s
+  66*  3.96588498e+01  1.10084990e+16  1.56e-08 1.00e+12  6.55e+00     0s
+  67*  3.74962150e+01  7.68698342e+15  5.86e-09 1.72e+12  7.29e+00     0s
+  68*  4.18973078e+01  6.02281523e+16  1.16e-09 6.15e+11  1.58e+00     0s
+  69*  4.55623125e+01  6.41208371e+18  1.74e-11 8.36e+10  2.32e-02     0s
+  70*  4.55549163e+01  6.18552430e+21  1.96e-14 4.25e+10  2.64e-05     0s
+  71*  4.55709927e+01  5.48783869e+24  2.17e-17 5.04e+09  2.92e-08     0s
+  72*  4.55714547e+01  4.97465660e+27  2.38e-20 2.00e+07  3.21e-11     0s
+  73*  3.50961359e+01  2.40163730e+27  5.38e-20 7.39e+11  9.64e-12     0s
+  74*  3.48403013e+01  1.34071927e+27  6.07e-20 1.62e+13  1.06e-11     0s
+  75*  3.49916968e+01  4.62399248e+25  1.75e-19 3.21e+13  5.48e-12     0s
+  76*  3.83192322e+01 -9.00641943e+26  1.74e-18 1.12e+14  4.41e-11     0s
+  77*  3.82974632e+01  4.75886193e+28  1.92e-18 1.17e+14  1.05e-09     0s
+  78*  3.69002748e+01  4.74429287e+28  1.72e-18 7.71e+15  2.04e-09     0s
+  79*  3.68071450e+01  4.48659812e+28  1.94e-18 3.31e+16  3.05e-09     0s
+  80*  3.72381515e+01  4.01488813e+28  2.68e-18 1.05e+17  4.71e-09     0s
+  81*  3.80083660e+01  3.38208728e+28  4.34e-18 3.51e+17  1.21e-08     0s
+  82*  4.56702548e+01  2.53431739e+28  2.68e-17 1.75e+18  1.84e-07     0s
+  83*  4.58026359e+01  1.33674003e+28  2.72e-17 3.25e+18  3.10e-07     0s
+  84*  4.61183851e+01  9.47720721e+28  3.15e-17 4.16e+19  3.14e-05     0s
+  85*  5.07772108e+01  9.56577930e+28  7.48e-17 4.90e+19  3.33e-05     0s
+  86*  6.54862157e+01  1.28473018e+31  2.02e-16 2.95e+22  2.59e-02     0s
+  87*  9.21769363e+01  1.38734431e+32  1.54e-15 1.12e+23  4.97e-02     0s
+  88*  5.40715527e+02  1.39545852e+32  1.24e-14 4.03e+23  1.48e-01     0s
+  89*  7.49426982e+02  1.40997786e+32  1.73e-14 4.03e+23  1.93e-01     0s
+  90*  7.57255401e+02  1.47096219e+32  1.75e-14 4.91e+23  2.76e-01     0s
+  91*  7.77599004e+02  1.47417276e+32  1.73e-14 6.32e+23  5.29e-01     0s
+  92*  1.27637852e+03  1.46590851e+32  3.18e-14 1.69e+24  1.45e+00     0s
+  93*  1.45876787e+03  1.45955918e+32  3.41e-14 3.41e+24  5.06e+00     0s
+  94*  2.52139851e+03  1.47029542e+32  6.54e-14 4.96e+24  6.95e+00     0s
+  95*  2.83312375e+03  1.97482843e+32  7.57e-14 1.06e+26  2.52e+02     0s
+  96*  3.91588772e+03  1.58860663e+32  3.31e-13 5.99e+26  4.00e+02     0s
+  97*  3.92648901e+03  1.58860663e+32  4.58e-13 9.74e+26  9.42e+02     0s
+  98*  3.92692503e+03  1.58842244e+35  5.47e-13 2.48e+29  1.93e+05     0s
+
+Barrier performed 98 iterations in 0.12 seconds (0.07 work units)
+Numerical trouble encountered
+
+
+User-callback calls 278, time in user-callback 0.00 sec

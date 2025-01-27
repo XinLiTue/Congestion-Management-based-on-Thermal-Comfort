@@ -63,3 +63,18 @@ function interpolate_data(
     end
     return df_int
 end
+
+# function to convert power units from p.u. to base units
+function convert_pu_base(model::Model, V_base::Float64, S_base::Float64)
+    # get all variables
+    vars = all_variables(model)
+
+    # convert power units
+    for (var, val) in vars
+        if occursin("Power", var.base_name)
+            val = val * S_base
+        elseif occursin("Voltage", var.base_name)
+            val = val * V_base
+        end
+    end
+end
