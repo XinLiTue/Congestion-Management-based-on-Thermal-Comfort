@@ -127,9 +127,6 @@ function GEC(;
     @objective(model, Min, J_gen)
     set_attribute(model, "BarHomogeneous", 1)
     set_attribute(model, "Presolve", 0)
-    # # set_attribute(model, "NumericFocus", 3)
-    # set_optimizer_attribute(model, "LogFile", "my_log_file.txt")
-
 
     # optimize the model and return it
     optimize!(model)
