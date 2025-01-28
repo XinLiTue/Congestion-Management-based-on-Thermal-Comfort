@@ -83,7 +83,7 @@ function add_grid_model(;
     # load constraints
     @constraints(model, begin
         Transmission[i in B, t in T; i ∉ H && i ≠ SB], P[i, t] == 0
-        RealBaseLoad[i in H, t in T], P[i, t] == -P_base[t]
+        RealBaseLoad[i in H, t in T; i ∉ H_HP], P[i, t] == -P_base[t]
         RealHPBaseLoad[i in H_HP, t in T], P[i, t] == -P_base[t] - P_HP[i, t]
         ReactiveBaseLoad[i in H, t in T], Q[i, t] == -Q_base[t]
     end)

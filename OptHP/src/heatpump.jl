@@ -17,8 +17,8 @@ function add_heatpump_model(
 
     # get electrical HP variable from grid model 
     # the variable has unit [p.u.], which we need to convert to kW
-    P_HP = model[:P_HP] * S_base * -1E-3
-    println("P_HP: ", P_HP)
+    P_HP = model[:P_HP] * S_base * 1E-3
+    # println("P_HP: ", P_HP)
 
     @variables(model, begin
         Φ_CV[H_HP, T], (base_name = "CVthermalPower")
@@ -27,8 +27,8 @@ function add_heatpump_model(
         Φ_HP[H_HP, T], (base_name = "HPthermalPower")
         Te[H_HP, T, [:i, :e, :h]], (base_name = "StateSpaceModel")
     end)
-    set_lower_bound.(Te[:, :, :h], 0.0)
-    set_upper_bound.(Te[:, :, :h], 55)
+    # set_lower_bound.(Te[:, :, :h], 0.0)
+    # set_upper_bound.(Te[:, :, :h], 55)
 
     # if the boiler is not used, set z_CV to 0
     if !allow_boiler
@@ -71,9 +71,9 @@ function add_heatpump_model(
         B_d = bus.B
 
         @constraints(model, begin
-            # # operational constraints are in [kW]
-            # [t in T], Φ_CV[i, t] <= Φ_CV_max * z_CV[i, t]
-            # [t in T], Φ_CV[i, t] >= Φ_CV_min * z_CV[i, t]
+            # operational constraints are in [kW]
+            [t in T], Φ_CV[i, t] <= Φ_CV_max * z_CV[i, t]
+            [t in T], Φ_CV[i, t] >= Φ_CV_min * z_CV[i, t]
             [t in T], Φ_HP[i, t] <= Φ_HP_max * z_HP[i, t]
             [t in T], Φ_HP[i, t] >= Φ_HP_min * z_HP[i, t]
 
