@@ -40,13 +40,14 @@ function add_grid_model(;
         0 <= I_line[L, T], (base_name = "CurrentSquare")
 
         # heat pump electrical power consumption
-        # P_HP[H_HP, T], (base_name = "HPElectricalPower")
+        # P_HP[H_HP, T] <= P_HP_max, (base_name = "HPElectricalPower")
+        P_HP[H_HP, T], (base_name = "HPElectricalPower")
     end)
 
     # slack bus constraints
     @constraints(model, begin
         # TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
-        TrafoLimit[t in T], [S_max, P[SB, t], Q[SB, t]] in SecondOrderCone()
+        # TrafoLimit[t in T], [S_max, P[SB, t], Q[SB, t]] in SecondOrderCone()
     end)
 
     # bus / line constraints
@@ -76,13 +77,14 @@ function add_grid_model(;
         ] in SecondOrderCone()
 
         # line current limit eq. (6)
-        LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= Inom[(i, j)]
+        # LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= Inom[(i, j)]
     end)
 
     # load constraints
     @constraints(model, begin
         Transmission[i in B, t in T; i ∉ H && i ≠ SB], P[i, t] == 0
         RealBaseLoad[i in H, t in T], P[i, t] == -P_base[t]
+        RealHPBaseLoad[i in H_HP, t in T], P[i, t] == -P_base[t] - P_HP[i, t]
         ReactiveBaseLoad[i in H, t in T], Q[i, t] == -Q_base[t]
     end)
 end
@@ -107,7 +109,7 @@ function GEC(;
     # apply T to all inputs
     df = df[T, :]
 
-    # add grid model 
+    ### GRID ###
     grid = Grid(network, connections, meta, T)
     add_grid_model(model=model,
         grid=grid,
@@ -115,16 +117,22 @@ function GEC(;
         df=df
     )
 
+    ### HEAT PUMP ###
+    add_heatpump_model(model, grid, df)
+
     # variables
     I_line = model[:I_line]
     P = model[:P]
+    J_c_heat = model[:J_c_heat]
 
     # define objective functions
     @expressions(model, begin
         J_loss, sum(l.R * I_line[(l.start.node, l.stop.node), t] for t in grid.T, l in grid.lines)
         J_gen, sum(P[0, T])
+        J_c_heat_total, sum(J_c_heat)
     end)
     @objective(model, Min, J_gen)
+    # @objective(model, Min, J_c_heat_total)
     set_attribute(model, "BarHomogeneous", 1)
     set_attribute(model, "Presolve", 0)
 

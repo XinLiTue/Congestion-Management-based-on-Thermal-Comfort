@@ -19,5 +19,6 @@ include("utils.jl")
 # Main model 
 include("grid.jl")
 include("model.jl")
+include("heatpump.jl")
 
 end
