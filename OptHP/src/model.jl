@@ -40,13 +40,13 @@ function add_grid_model(;
         0 <= I_line[L, T], (base_name = "CurrentSquare")
 
         # heat pump electrical power consumption
-        # P_HP[H_HP, T] <= P_HP_max, (base_name = "HPElectricalPower")
         P_HP[H_HP, T], (base_name = "HPElectricalPower")
+        Q_HP[H_HP, T], (base_name = "HPReactivePower")
     end)
 
     # slack bus constraints
     @constraints(model, begin
-        # TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
+        TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
         # TrafoLimit[t in T], [S_max, P[SB, t], Q[SB, t]] in SecondOrderCone()
     end)
 
@@ -78,14 +78,22 @@ function add_grid_model(;
 
         # line current limit eq. (6)
         # LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= Inom[(i, j)]
+
+        # Q vs P 
+        QvsP[i in H_HP, t in T], Q_HP[i, t] == tan_phi_load * P_HP[i, t]
     end)
 
     # load constraints
     @constraints(model, begin
         Transmission[i in B, t in T; i ∉ H && i ≠ SB], P[i, t] == 0
+
+        # base load constraints
         RealBaseLoad[i in H, t in T; i ∉ H_HP], P[i, t] == -P_base[t]
+        ReactiveBaseLoad[i in H, t in T; i ∉ H_HP], Q[i, t] == -Q_base[t]
+
+        # heat pump user load constraints
         RealHPBaseLoad[i in H_HP, t in T], P[i, t] == -P_base[t] - P_HP[i, t]
-        ReactiveBaseLoad[i in H, t in T], Q[i, t] == -Q_base[t]
+        ReactiveHPBaseLoad[i in H_HP, t in T], Q[i, t] == -Q_base[t] - Q_HP[i, t]
     end)
 end
 
@@ -101,7 +109,6 @@ function GEC(;
 )
     # create the model
     model = Model(Gurobi.Optimizer)
-    # model = Model(Clarabel.Optimizer)
     if silent
         set_silent(model)
     end
@@ -123,16 +130,17 @@ function GEC(;
     # variables
     I_line = model[:I_line]
     P = model[:P]
-    J_c_heat = model[:J_c_heat]
 
-    # define objective functions
+    # define global model helper expressions
     @expressions(model, begin
         J_loss, sum(l.R * I_line[(l.start.node, l.stop.node), t] for t in grid.T, l in grid.lines)
         J_gen, sum(P[0, T])
-        J_c_heat_total, sum(J_c_heat)
     end)
+
+    # define objective function
     @objective(model, Min, J_gen)
-    # @objective(model, Min, J_c_heat_total)
+
+    # set solver options
     set_attribute(model, "BarHomogeneous", 1)
     set_attribute(model, "Presolve", 0)
 

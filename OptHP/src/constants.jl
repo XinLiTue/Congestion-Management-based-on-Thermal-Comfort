@@ -3,12 +3,12 @@
 ### Electrical grid parameters ###
 
 # p.u. base values
-S_base = 1E5 # [VA]
-V_base = 230.0 # [V]
-Z_base = V_base^2 / S_base # [Ohm]
-I_base = S_base / V_base # [A]
+const S_base = 1E5 # [VA]
+const V_base = 230.0 # [V]
+const Z_base = V_base^2 / S_base # [Ohm]
+const I_base = S_base / V_base # [A]
 
-S_max = 1E6 * 0.23 * 0.16 * 3 / S_base # [pu]
+const S_max = 2 * 1E6 * 0.23 * 0.16 * 3 / S_base # [pu]
 const pf = 0.92 # baseload & HP power factor
 const tan_phi_load = (sqrt(1 - pf^2)) / pf
 
