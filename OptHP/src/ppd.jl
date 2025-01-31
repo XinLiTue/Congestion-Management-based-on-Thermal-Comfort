@@ -23,7 +23,7 @@ function add_ppd(model::Model, grid::Grid, df::DataFrame)
     # prepare linear functions for outer approximation, i.e. f(x) = a + b * x
     # PPD ≥ a_i * ​x + b_i    ∀i=1,…,n, where n is the number of medians
     @constraint(model,
-        [t in T, i in H_HP, m in 1:length(medians)-1],
+        PPDOuterApprox[t in T, i in H_HP, m in 1:length(medians)-1],
         PPD[i, t] ≥ f(T_i[i, t], medians[m], medians[m+1])
     )
 end
