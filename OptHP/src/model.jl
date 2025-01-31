@@ -139,7 +139,7 @@ function GEC(;
     # define global model helper expressions
     @expressions(model, begin
         J_loss, sum(l.R * I_line[(l.start.node, l.stop.node), t] for t in grid.T, l in grid.lines)
-        J_gen, sum(1e3 * P[0, T])
+        J_gen, sum(7e2 * P[0, T])
         J_ppd, sum(PPD[:, :])
     end)
 
