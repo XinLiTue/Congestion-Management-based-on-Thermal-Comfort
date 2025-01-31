@@ -37,9 +37,9 @@ function add_heatpump_model(
 
     # set initial values for the state variables
     for (k, v) in (
-        :i => 21.0,
-        :e => 21.0,
-        :h => 21.0
+        :i => 25.0,
+        :e => 25.0,
+        :h => 25.0
     )
         fix.(Te[:, 1, k], v; force=true)
     end

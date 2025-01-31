@@ -44,11 +44,11 @@ function add_grid_model(;
         Q_HP[H_HP, T], (base_name = "HPReactivePower")
     end)
 
-    # slack bus constraints
-    @constraints(model, begin
-        TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
-        # TrafoLimit[t in T], [S_max, P[SB, t], Q[SB, t]] in SecondOrderCone()
-    end)
+    # # slack bus constraints
+    # @constraints(model, begin
+    #     TrafoPowerLimitForCongestion[t in limit[1]], P[SB, t] <= limit[2]
+    #     # TrafoLimit[t in T], [S_max, P[SB, t], Q[SB, t]] in SecondOrderCone()
+    # end)
 
     # bus / line constraints
     @constraints(model, begin
@@ -102,6 +102,7 @@ function GEC(;
     network::DataFrame,
     connections::DataFrame,
     df::DataFrame,
+    medians::DataFrame,
     limit::Tuple=(1:96, 250 * 1e3),
     meta::Dict=Dict(),
     silent=true,
@@ -127,18 +128,23 @@ function GEC(;
     ### HEAT PUMP ###
     add_heatpump_model(model, grid, df)
 
+    ### PPD ###
+    add_ppd(model, grid, medians)
+
     # variables
     I_line = model[:I_line]
     P = model[:P]
+    PPD = model[:PPD]
 
     # define global model helper expressions
     @expressions(model, begin
         J_loss, sum(l.R * I_line[(l.start.node, l.stop.node), t] for t in grid.T, l in grid.lines)
         J_gen, sum(P[0, T])
+        J_ppd, sum(10e3 * PPD[:, :])
     end)
 
     # define objective function
-    @objective(model, Min, J_gen)
+    @objective(model, Min, J_ppd + J_gen)
 
     # set solver options
     set_attribute(model, "BarHomogeneous", 1)
