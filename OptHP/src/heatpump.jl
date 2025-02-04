@@ -60,7 +60,8 @@ function add_heatpump_model(
         u[i in H_HP, t in T[1:end-1]], [df.T_a[t], Φ_h[i, t], df.Φ_s[t]]
 
         # cost function for providing heat
-        J_c_heat[i in H_HP], sum(df.λ_e[t] * P_HP[i, t] * Δt + λ_g * g[i, t] for t in T)
+        J_c_heat_t[i in H_HP, t in T], df.λ_e[t] * P_HP[i, t] * Δt + λ_g * g[i, t]
+        J_c_heat[i in H_HP], sum(J_c_heat_t[i, t] for t in T)
     end)
 
     # add constraints for each heat pump

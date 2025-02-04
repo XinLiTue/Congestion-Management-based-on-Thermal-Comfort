@@ -107,11 +107,13 @@ function add_grid_model(;
         # add heat pump model
         add_heatpump_model(model, grid, df)
         add_ppd(model, grid, medians)
+        J_c_heat = model[:J_c_heat] # heat cost per heatpump
+        PPD = model[:PPD] # PPD per heatpump
 
         @expressions(model, begin
             P_hp_user_load[t in T], sum(P_HP[i, t] for i in H_HP)
             P_non_hp_user_load[t in T], sum(P[i, t] for i in H if i ∉ H_HP)
-            J_heat, sum(J_heat) # in €
+            J_heat, sum(J_c_heat) # in €
             J_ppd, sum(0.27 * PPD[:, :]) # in %
         end)
     else
@@ -159,9 +161,8 @@ function GEC(;
 
     # variables
     P = model[:P]
-    # P_HP = model[:P_HP]
-    # PPD = model[:PPD]
-    # J_heat = model[:J_c_heat]
+    J_heat = model[:J_heat]
+    J_ppd = model[:J_ppd]
 
     # define global model helper expressions
     @expressions(model, begin
@@ -170,9 +171,8 @@ function GEC(;
     end)
 
     # define objective function
-    # c_gen = 1E-2
-    # @objective(model, Min, J_heat + c_gen * J_gen + J_ppd)
-    @objective(model, Min, J_gen)
+    c_gen = 1E-2
+    @objective(model, Min, 2 * J_heat + c_gen * J_gen + J_ppd)
 
     # set solver options
     set_attribute(model, "BarHomogeneous", 1)

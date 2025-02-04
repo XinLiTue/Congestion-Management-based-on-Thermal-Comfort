@@ -69,31 +69,42 @@ function convert_pu_base(model::Model,
     V_base::Float64,
     S_base::Float64;
     slack_bus=55,
+    user_bus=64,
     model_hp=false
 )
     N = length(model[:P][1, :])
     J_heat = zeros(N)
+    PPD = zeros(N)
 
     # convert variables to base units
-    P = Matrix(value.(model[:P]))[slack_bus, :] .* S_base .* 1E-3
-    Q = Matrix(value.(model[:Q]))[slack_bus, :] .* S_base .* 1E-3
+    P_kw = Matrix(value.(model[:P]))[slack_bus, :] .* S_base .* 1E-3
+    Q_kw = Matrix(value.(model[:Q]))[slack_bus, :] .* S_base .* 1E-3
     # J_heat
     if model_hp
-        J_heat = value.(model[:J_heat])
+        J_heat_euro = Vector(value.(model[:J_c_heat_t][user_bus, :]))
+        PPD = Vector(value.(model[:PPD][user_bus, :]))
+        T_i = Vector(value.(model[:Te])[user_bus, :, :i])
+        T_e = Vector(value.(model[:Te])[user_bus, :, :e])
+        T_h = Vector(value.(model[:Te])[user_bus, :, :h])
     end
 
     return DataFrame(
-        P=P,
-        Q=Q,
-        J_heat=J_heat
+        P_kw=P_kw,
+        Q_kw=Q_kw,
+        J_heat_euro=J_heat_euro,
+        PPD=PPD,
+        T_i=T_i,
+        T_e=T_e,
+        T_h=T_h
     )
 end
 
 # save all results to a CSV file with the given filename
 function save_result_csv(
     model::Model,
-    path::String,
+    path::String;
+    model_hp::Bool=false,
 )
-    df = convert_pu_base(model, V_base, S_base)
+    df = convert_pu_base(model, V_base, S_base, model_hp=model_hp)
     CSV.write(path, df)
 end
