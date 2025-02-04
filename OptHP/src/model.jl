@@ -4,7 +4,9 @@ function add_grid_model(;
     model::Model,
     grid::Grid,
     limit::Tuple,
-    df::DataFrame
+    df::DataFrame,
+    medians::DataFrame,
+    model_hp::Bool=false
 )
     # sets
     sets = get_sets(grid)
@@ -38,10 +40,6 @@ function add_grid_model(;
 
         # line current
         0 <= I_line[L, T], (base_name = "CurrentSquare")
-
-        # heat pump electrical power consumption
-        P_HP[H_HP, T], (base_name = "HPElectricalPower")
-        Q_HP[H_HP, T], (base_name = "HPReactivePower")
     end)
 
     # # slack bus constraints
@@ -78,9 +76,6 @@ function add_grid_model(;
 
         # line current limit eq. (6)
         # LineCurrentLimit[(i, j) in L, t in T], I_line[(i, j), t] <= Inom[(i, j)]
-
-        # Q vs P 
-        QvsP[i in H_HP, t in T], Q_HP[i, t] == tan_phi_load * P_HP[i, t]
     end)
 
     # load constraints
@@ -91,10 +86,40 @@ function add_grid_model(;
         RealBaseLoad[i in H, t in T; i ∉ H_HP], P[i, t] == -P_base[t]
         ReactiveBaseLoad[i in H, t in T; i ∉ H_HP], Q[i, t] == -Q_base[t]
 
-        # heat pump user load constraints
-        RealHPBaseLoad[i in H_HP, t in T], P[i, t] == -P_base[t] - P_HP[i, t]
-        ReactiveHPBaseLoad[i in H_HP, t in T], Q[i, t] == -Q_base[t] - Q_HP[i, t]
+        # grid congestion constraint 
+        # 1 heat pump consumes 1.8 kW electric
+        # in p.u. this is 1.8 / S_base = 1.8 / 1E5 = 1.8E-5
+        # CongestionLimit[t in limit[1]], sum(P_HP[:, t]) <= limit[2]
     end)
+
+    if model_hp
+        @variables(model, begin
+            P_HP[H_HP, T], (base_name = "HPElectricalPower")
+            Q_HP[H_HP, T], (base_name = "HPReactivePower")
+        end)
+
+        @constraints(model, begin
+            RealHPBaseLoad[i in H_HP, t in T], P[i, t] == -P_base[t] - P_HP[i, t]
+            ReactiveHPBaseLoad[i in H_HP, t in T], Q[i, t] == -Q_base[t] - Q_HP[i, t]
+            QvsP[i in H_HP, t in T], Q_HP[i, t] == tan_phi_load * P_HP[i, t]
+        end)
+
+        # add heat pump model
+        add_heatpump_model(model, grid, df)
+        add_ppd(model, grid, medians)
+
+        @expressions(model, begin
+            P_hp_user_load[t in T], sum(P_HP[i, t] for i in H_HP)
+            P_non_hp_user_load[t in T], sum(P[i, t] for i in H if i ∉ H_HP)
+            J_heat, sum(J_heat) # in €
+            J_ppd, sum(0.27 * PPD[:, :]) # in %
+        end)
+    else
+        @constraints(model, begin
+            RealHPBaseLoad[i in H_HP, t in T], P[i, t] == -P_base[t]
+            ReactiveHPBaseLoad[i in H_HP, t in T], Q[i, t] == -Q_base[t]
+        end)
+    end
 end
 
 
@@ -103,10 +128,11 @@ function GEC(;
     connections::DataFrame,
     df::DataFrame,
     medians::DataFrame,
-    limit::Tuple=(1:96, 250 * 1e3),
+    limit::Tuple=(40:48, 0.0),
     meta::Dict=Dict(),
     silent=true,
-    T=1:96
+    T=1:96,
+    model_hp::Bool=false
 )
     # create the model
     model = Model(Gurobi.Optimizer)
@@ -122,29 +148,31 @@ function GEC(;
     add_grid_model(model=model,
         grid=grid,
         limit=limit,
-        df=df
+        df=df,
+        medians=medians,
+        model_hp=model_hp
     )
 
-    ### HEAT PUMP ###
-    add_heatpump_model(model, grid, df)
-
-    ### PPD ###
-    add_ppd(model, grid, medians)
+    # sets 
+    sets = get_sets(grid)
+    B, H, H_HP, T = sets.B, sets.H, sets.H_HP, sets.T
 
     # variables
-    I_line = model[:I_line]
     P = model[:P]
-    PPD = model[:PPD]
+    # P_HP = model[:P_HP]
+    # PPD = model[:PPD]
+    # J_heat = model[:J_c_heat]
 
     # define global model helper expressions
     @expressions(model, begin
-        J_loss, sum(l.R * I_line[(l.start.node, l.stop.node), t] for t in grid.T, l in grid.lines)
-        J_gen, sum(7e2 * P[0, T])
-        J_ppd, sum(PPD[:, :])
+        J_gen, sum(P[0, T]) # in Wh
+        P_all_user_load[t in T], sum(P[i, t] for i in H)
     end)
 
     # define objective function
-    @objective(model, Min, J_ppd + J_gen)
+    # c_gen = 1E-2
+    # @objective(model, Min, J_heat + c_gen * J_gen + J_ppd)
+    @objective(model, Min, J_gen)
 
     # set solver options
     set_attribute(model, "BarHomogeneous", 1)

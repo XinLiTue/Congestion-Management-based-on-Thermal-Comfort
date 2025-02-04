@@ -7,7 +7,7 @@ function add_heatpump_model(
     model::Model,
     grid::Grid,
     df::DataFrame;
-    allow_boiler::Bool=false
+    allow_boiler::Bool=true
 )
     # sets
     sets = get_sets(grid)
@@ -18,7 +18,6 @@ function add_heatpump_model(
     # get electrical HP variable from grid model 
     # the variable has unit [p.u.], which we need to convert to kW
     P_HP = model[:P_HP] * S_base * 1E-3
-    # println("P_HP: ", P_HP)
 
     @variables(model, begin
         Φ_CV[H_HP, T], (base_name = "CVthermalPower")

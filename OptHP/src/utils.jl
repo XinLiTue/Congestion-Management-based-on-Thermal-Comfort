@@ -65,16 +65,35 @@ function interpolate_data(
 end
 
 # function to convert power units from p.u. to base units
-function convert_pu_base(model::Model, V_base::Float64, S_base::Float64)
-    # get all variables
-    vars = all_variables(model)
+function convert_pu_base(model::Model,
+    V_base::Float64,
+    S_base::Float64;
+    slack_bus=55,
+    model_hp=false
+)
+    N = length(model[:P][1, :])
+    J_heat = zeros(N)
 
-    # convert power units
-    for (var, val) in vars
-        if occursin("Power", var.base_name)
-            val = val * S_base
-        elseif occursin("Voltage", var.base_name)
-            val = val * V_base
-        end
+    # convert variables to base units
+    P = Matrix(value.(model[:P]))[slack_bus, :] .* S_base .* 1E-3
+    Q = Matrix(value.(model[:Q]))[slack_bus, :] .* S_base .* 1E-3
+    # J_heat
+    if model_hp
+        J_heat = value.(model[:J_heat])
     end
+
+    return DataFrame(
+        P=P,
+        Q=Q,
+        J_heat=J_heat
+    )
+end
+
+# save all results to a CSV file with the given filename
+function save_result_csv(
+    model::Model,
+    path::String,
+)
+    df = convert_pu_base(model, V_base, S_base)
+    CSV.write(path, df)
 end

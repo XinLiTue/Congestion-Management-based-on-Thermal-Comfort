@@ -5,9 +5,9 @@ using Interpolations
 using Dates
 using DataFrames
 using Gurobi
-using Clarabel
+using CSV
 
-export GEC, interpolate_data
+export GEC, interpolate_data, save_result_csv
 export S_base, V_base, Z_base, I_base
 
 # Constants used in the optimization problem
