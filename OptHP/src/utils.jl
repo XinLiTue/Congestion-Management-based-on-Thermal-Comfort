@@ -86,6 +86,9 @@ function convert_pu_base(model::Model,
         T_i = Vector(value.(model[:Te])[user_bus, :, :i])
         T_e = Vector(value.(model[:Te])[user_bus, :, :e])
         T_h = Vector(value.(model[:Te])[user_bus, :, :h])
+        P_HP = Vector(value.(model[:P_HP])[user_bus, :] .* S_base .* 1E-3)
+        Φ_HP = Vector(value.(model[:Φ_HP])[user_bus, :])
+        Φ_CV = Vector(value.(model[:Φ_CV])[user_bus, :])
     end
 
     return DataFrame(
@@ -95,7 +98,10 @@ function convert_pu_base(model::Model,
         PPD=PPD,
         T_i=T_i,
         T_e=T_e,
-        T_h=T_h
+        T_h=T_h,
+        P_HP=P_HP,
+        Φ_HP=Φ_HP,
+        Φ_CV=Φ_CV
     )
 end
 

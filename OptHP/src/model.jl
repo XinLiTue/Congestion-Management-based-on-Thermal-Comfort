@@ -85,17 +85,12 @@ function add_grid_model(;
         # base load constraints
         RealBaseLoad[i in H, t in T; i ∉ H_HP], P[i, t] == -P_base[t]
         ReactiveBaseLoad[i in H, t in T; i ∉ H_HP], Q[i, t] == -Q_base[t]
-
-        # grid congestion constraint 
-        # 1 heat pump consumes 1.8 kW electric
-        # in p.u. this is 1.8 / S_base = 1.8 / 1E5 = 1.8E-5
-        # CongestionLimit[t in limit[1]], sum(P_HP[:, t]) <= limit[2]
     end)
 
     if model_hp
         @variables(model, begin
-            P_HP[H_HP, T], (base_name = "HPElectricalPower")
-            Q_HP[H_HP, T], (base_name = "HPReactivePower")
+            P_HP[H_HP, T]
+            Q_HP[H_HP, T]
         end)
 
         @constraints(model, begin
@@ -116,6 +111,13 @@ function add_grid_model(;
             J_heat, sum(J_c_heat) # in €
             J_ppd, sum(0.27 * PPD[:, :]) # in %
         end)
+
+        # grid congestion constraint 
+        # 1 heat pump consumes 1.8 kW electric
+        # in p.u. this is 1.8 / S_base = 1.8 / 1E5 = 1.8E-5
+        @constraints(model, begin
+            CongestionLimit[t in limit[1]], sum(P_HP[:, t]) <= limit[2]
+        end)
     else
         @constraints(model, begin
             RealHPBaseLoad[i in H_HP, t in T], P[i, t] == -P_base[t]
@@ -130,7 +132,7 @@ function GEC(;
     connections::DataFrame,
     df::DataFrame,
     medians::DataFrame,
-    limit::Tuple=(40:48, 0.0),
+    limit::Tuple=(69:77, 0.0),
     meta::Dict=Dict(),
     silent=true,
     T=1:96,
@@ -172,7 +174,7 @@ function GEC(;
 
     # define objective function
     c_gen = 1E-2
-    @objective(model, Min, 2 * J_heat + c_gen * J_gen + J_ppd)
+    @objective(model, Min, J_heat + c_gen * J_gen + J_ppd)
 
     # set solver options
     set_attribute(model, "BarHomogeneous", 1)

@@ -26,8 +26,8 @@ function add_heatpump_model(
         Φ_HP[H_HP, T], (base_name = "HPthermalPower")
         Te[H_HP, T, [:i, :e, :h]], (base_name = "StateSpaceModel")
     end)
-    # set_lower_bound.(Te[:, :, :h], 0.0)
-    # set_upper_bound.(Te[:, :, :h], 55)
+    set_lower_bound.(Te[:, :, :h], 0.0)
+    set_upper_bound.(Te[:, :, :h], 55)
 
     # if the boiler is not used, set z_CV to 0
     if !allow_boiler
@@ -36,9 +36,9 @@ function add_heatpump_model(
 
     # set initial values for the state variables
     for (k, v) in (
-        :i => 21.0,
-        :e => 21.0,
-        :h => 21.0
+        :i => 20.0,
+        :e => 20.0,
+        :h => 20.0
     )
         fix.(Te[:, 1, k], v; force=true)
     end
@@ -81,11 +81,11 @@ function add_heatpump_model(
             [t in T], Φ_HP[i, t] == η_COP[i, t] * P_HP[i, t]
 
             # comfort 
-            # [t in T], Te[i, t, :i] <= T_i_max
+            [t in T], Te[i, t, :i] <= T_i_max
             [t in T], Te[i, t, :i] >= T_i_min
 
             # temperature at end can't be lower than at start 
-            Te[i, T[end], :i] >= Te[i, T[1], :i]
+            # Te[i, T[end], :i] >= Te[i, T[1], :i]
 
             # state-space model dynamics
             [t in T[1:end-1]], Te[i, t+1, :].data .== A_d * Te[i, t, :].data + B_d * u[i, t]

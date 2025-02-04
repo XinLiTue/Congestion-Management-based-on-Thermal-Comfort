@@ -38,5 +38,5 @@ const η_g = 0.95
 const H_g = 9.77
 
 # Comfort constraints
-const T_i_max = 25.0           # Maximum upper comfort violation [°C]
-const T_i_min = 18.0           # Maximum lower comfort violation [°C]
+const T_i_max = 21.0           # Maximum upper comfort violation [°C]
+const T_i_min = 17.0           # Maximum lower comfort violation [°C]
