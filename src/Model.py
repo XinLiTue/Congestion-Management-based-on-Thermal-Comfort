@@ -61,7 +61,7 @@ def build_model(Time_day, model_inf, add_opf_constraints, add_hhp_constraints, a
 
             add_opf_constraints(m, model_inf.network, PLine, QLine, l, v, p, q, n_bus, t, model_inf.congestion_limit, model_inf.s_trafo, model_inf.v_ref)
             add_hhp_constraints(m, p_hp, h_hp, b_hp, g_boil, h_boil, b_boil, Heat, model_inf.gas_LHV, model_inf.COP, n_user, t, model_inf.p_hp_max, model_inf.p_hp_min, model_inf.p_boil_max, model_inf.p_boil_min, hp_own)
-            add_indoor_constraints(m, T_ind, model_inf.Tem_ind, Heat, model_inf.T_amb, model_inf.C_house, model_inf.R_house, PPD, lambdas, model_inf.x_vals, model_inf.y_vals, model_inf.Pn, n_user, t)
+            add_indoor_constraints(m, T_ind, model_inf.Tem_ind, Heat, model_inf.T_amb, model_inf.C_house, model_inf.R_house, PPD, model_inf.x_vals, model_inf.y_vals, n_user, t, True)
 
             for i in range(n_bus):
                 if i not in user_index and i != 0:
