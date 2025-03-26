@@ -1,3 +1,7 @@
+# this is the overall model, which first defines the variables, then the constraints, and finally the objective function
+#the constrains are divided into three parts: opf, hhp, and indoor, in the following functions-mudule files:
+#add_opf_constraints from OpfModel.py, add_hhp_constraints from HHPmodel.py, add_indoor_constraints from ThermalModel.py
+
 import gurobipy as gp
 from gurobipy import GRB,quicksum
 
@@ -16,7 +20,7 @@ def build_model(Time_day, model_inf, add_opf_constraints, add_hhp_constraints, a
     pv_cap=model_inf.connect1["PV"]*1E-3 #pv capacity from dacs data
     pv_cap=pv_cap.tolist()
 
-    hp_own=model_inf.connect1["HP"].tolist()
+    
 
     m = gp.Model("GEC")
     m.Params.LogToConsole = 0
@@ -48,7 +52,7 @@ def build_model(Time_day, model_inf, add_opf_constraints, add_hhp_constraints, a
     Heat = m.addVars(n_user,Time_day, lb = 0, vtype = GRB.CONTINUOUS, name = "TotalHeat")
     T_ind = m.addVars(n_user,Time_day, lb = 0, vtype = GRB.CONTINUOUS, name = "IndoorTem")
     PPD  = m.addVars(n_user,Time_day, lb = 0, vtype = GRB.CONTINUOUS, name = "PPD")
-    lambdas = m.addVars(model_inf.Pn, lb=0, ub=1, name="lambda")  # SOS2 variables
+    
 
     # define constraints
     for t in range(Time_day):
@@ -59,9 +63,9 @@ def build_model(Time_day, model_inf, add_opf_constraints, add_hhp_constraints, a
             q_baseload=model_inf.LoadReact.iloc[run_time,1:]*1E-3
             q_baseload=q_baseload.tolist()
 
-            add_opf_constraints(m, model_inf.network, PLine, QLine, l, v, p, q, n_bus, t, model_inf.congestion_limit, model_inf.s_trafo, model_inf.v_ref)
-            add_hhp_constraints(m, p_hp, h_hp, b_hp, g_boil, h_boil, b_boil, Heat, model_inf.gas_LHV, model_inf.COP, n_user, t, model_inf.p_hp_max, model_inf.p_hp_min, model_inf.p_boil_max, model_inf.p_boil_min, hp_own)
-            add_indoor_constraints(m, T_ind, model_inf.Tem_ind, Heat, model_inf.T_amb, model_inf.C_house, model_inf.R_house, PPD, model_inf.x_vals, model_inf.y_vals, n_user, t, True)
+            add_opf_constraints(m, PLine, QLine, l, v, p, q, model_inf, n_bus, t)
+            add_hhp_constraints(m, p_hp, h_hp, b_hp, g_boil, h_boil, b_boil, Heat, model_inf, n_user, t)
+            add_indoor_constraints(m, T_ind, model_inf, Heat, PPD, n_user, t, False)
 
             for i in range(n_bus):
                 if i not in user_index and i != 0:
@@ -110,7 +114,7 @@ def build_model(Time_day, model_inf, add_opf_constraints, add_hhp_constraints, a
     "p_pv_down": [[p_pv_down[i,t].X for t in range(Time_day)]for i in range(n_user)], 
     "p_pv": [[p_pv[i,t].X for t in range(Time_day)]for i in range(n_user)],
     "T_ind": [[T_ind[i,t].X for t in range(Time_day)]for i in range(n_user)],
-    "g_boil": [[g_boil[i,t].X for t in range(Time_day)]for i in range(n_user)],
+    "h_boil": [[h_boil[i,t].X for t in range(Time_day)]for i in range(n_user)],
     "PPD": [[PPD[i,t].X for t in range(Time_day)]for i in range(n_user)]
     } 
 

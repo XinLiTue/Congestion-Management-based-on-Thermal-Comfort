@@ -61,7 +61,7 @@ import numpy as np
 
 
 
-def add_indoor_constraints(m, T_ind, Tem_ind, Heat, T_amb, C_house, R_house, PPD, x_vals, y_vals, n_user, t,IFRC=True):
+def add_indoor_constraints(m, T_ind, model_inf, Heat, PPD, n_user, t, IFRC=True):
     for i in range(n_user):
         # Indoor temperature dynamics    
 
@@ -81,29 +81,32 @@ def add_indoor_constraints(m, T_ind, Tem_ind, Heat, T_amb, C_house, R_house, PPD
         #simple RC model
             if t == 0:
                 m.addConstr(
-                    C_house * (T_ind[i, t] - Tem_ind[0]) == 1e3 * Heat[i, t] * 0.25 + (T_amb[0] - Tem_ind[0]) / R_house * 0.25,
+                    model_inf.C_house * (T_ind[i, t] - model_inf.Tem_ind[0]) == 
+                    1e3 * Heat[i, t] * 0.25 + (model_inf.T_amb[0] - model_inf.Tem_ind[0]) / model_inf.R_house * 0.25,
                     f"IndoorTemChange0{i}"
                 )
             else:
                 m.addConstr(
-                    C_house * (T_ind[i, t] - T_ind[i, t - 1]) == 1e3 * Heat[i, t] * 0.25 + (T_amb[t - 1] - T_ind[i, t - 1]) / R_house * 0.25,
+                    model_inf.C_house * (T_ind[i, t] - T_ind[i, t - 1]) == 
+                    1e3 * Heat[i, t] * 0.25 + (model_inf.T_amb[t - 1] - T_ind[i, t - 1]) / model_inf.R_house * 0.25,
                     f"IndoorTemChange{i,t}"
                 )
         else:
             # State-space model using A B U T
-            if t ==0:
+            if t == 0:
                 m.addConstr(
-                    T_ind[i, t] == A[0][0] * Tem_ind[0] + A[0][1] * T_h + A[0][2] * T_amb[t] + B[0][0] * T_amb[t] + B[0][1] * Heat[i, t] + B[0][2] * Solar[t],
+                    T_ind[i, t] == A[0][0] * model_inf.Tem_ind[0] + A[0][1] * T_h + A[0][2] * model_inf.T_amb[t] + 
+                                  B[0][0] * model_inf.T_amb[t] + B[0][1] * 1e3* Heat[i, t] + B[0][2] * model_inf.solar_output[t],
                     f"IndoorTemChange0{i}"
                 )
             else:
                 m.addConstr(
-                    T_ind[i, t] == A[0][0] * T_ind[i, t - 1] + A[0][1] * T_h + A[0][2] * T_amb[t] + B[0][0] * T_amb[t] + B[0][1] * Heat[i, t] + B[0][2] * Solar[t],
+                    T_ind[i, t] == A[0][0] * T_ind[i, t - 1] + A[0][1] * T_h + A[0][2] * model_inf.T_amb[t] + 
+                                  B[0][0] * model_inf.T_amb[t] + B[0][1] * 1e3* Heat[i, t] + B[0][2] * model_inf.solar_output[t],
                     f"IndoorTemChange{i,t}"
                 )
 
 
-        #state-space model
 
 
         # # Set indoor temperature
@@ -116,10 +119,12 @@ def add_indoor_constraints(m, T_ind, Tem_ind, Heat, T_amb, C_house, R_house, PPD
         # m.addConstr(T_ind[i, t] == sum(x_vals[j] * lambdas[j] for j in range(Pn)), "T_indEq")
         # m.addConstr(PPD[i, t] == sum(y_vals[j] * lambdas[j] for j in range(Pn)), "PPDEq")
         # m.addSOS(GRB.SOS_TYPE2, [lambdas[j] for j in range(Pn)])
-        Pn = len(x_vals)
+        Pn = len(model_inf.x_vals)
         for j in range(Pn - 1):
             m.addConstr(
-                PPD[i, t] >= y_vals[j] + (T_ind[i, t] - x_vals[j]) * (y_vals[j + 1] - y_vals[j]) / (x_vals[j + 1] - x_vals[j]),
+                PPD[i, t] >= model_inf.y_vals[j] + (T_ind[i, t] - model_inf.x_vals[j]) * 
+                                      (model_inf.y_vals[j + 1] - model_inf.y_vals[j]) / 
+                                      (model_inf.x_vals[j + 1] - model_inf.x_vals[j]),
                 f"PPD_Conic{j,t}"
             )
        

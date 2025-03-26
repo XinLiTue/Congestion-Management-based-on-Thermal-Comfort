@@ -32,6 +32,22 @@ LoadPower = read_power_data("data/UserPower.csv")
 LoadReact = read_power_data("data/UserReactivePower.csv")
 
 # pv factor
+weather = pd.read_csv('data/weather.csv')
+weather['timestamp'] = pd.to_datetime(weather['timestamp'])
+solar = weather.loc[weather['timestamp'].dt.date == pd.Timestamp('2024-02-01').date(), ['timestamp', 'P_solar']]
+
+# 15 min time index
+time_index_15min = pd.date_range(start=solar['timestamp'].min(), 
+                                 end=solar['timestamp'].max(), 
+                                 freq='15min')
+
+# reindex and interpolate
+solar_15min = solar.set_index('timestamp').reindex(time_index_15min).interpolate()
+solar_15min.reset_index(inplace=True)
+solar_15min.rename(columns={'index': 'timestamp'}, inplace=True)
+solar_output = solar_15min['P_solar'].values /1000
+
+
 pv_factor = np.repeat([
     0, 0, 0, 0, 0, 0, 0, 0, 0.006, 0.053, 0.129, 0.179,
     0.166, 0.14, 0.094, 0.046, 0.007, 0, 0, 0, 0, 0, 0, 0
@@ -62,6 +78,7 @@ class ModelInf:
         self.p_boil_min = 1e-3  # 1kw
         self.gas_LHV = 10.16  # kWh/m3
         self.COP = 4.5
+        self.hp_own=connect1["HP"].tolist()
 
         # indoor thermal
         self.C_house = 10 + 0.2 + 30
@@ -79,6 +96,7 @@ class ModelInf:
         self.LoadPower = LoadPower
         self.LoadReact = LoadReact
         self.pvFactor = pv_factor
+        self.solar_output = solar_output
 
         # congestiion
         self.congestion_limit = congestion_limit
