@@ -28,7 +28,8 @@ def read_power_data(file_path):
     df['time'] = pd.to_datetime(df['time'], format='%m/%d/%Y %I:%M %p')
     return df[df['time'].dt.date == pd.to_datetime("2024-02-01").date()].reset_index(drop=True)
 
-LoadPower = read_power_data("data/UserPower.csv")
+# LoadPower = read_power_data("data/UserPower.csv")
+LoadPower = pd.read_csv("data/user_load.csv")
 LoadReact = read_power_data("data/UserReactivePower.csv")
 
 # pv factor
@@ -55,8 +56,8 @@ pv_factor = np.repeat([
 pv_factor = pd.DataFrame(pv_factor, columns=["Quarter_Hourly_Data"])
 
 # congestion set
-congestion_limit = np.ones(96) * (-50 * 1e-3)
-congestion_limit[40:48] = -100 * 1e-3  # 设定拥塞区间
+congestion_limit = np.ones(96) * (-200 * 1e-3)
+congestion_limit[67:75] = -50 * 1e-3  # 设定拥塞区间
 
 
 class ModelInf:
@@ -68,8 +69,8 @@ class ModelInf:
         self.pf = 0.9
         self.tan_phi_load = (np.sqrt(1 - self.pf**2)) / self.pf
         self.v_ref = 0.23
-        self.v_lb = 0.96
-        self.v_ub = 1.04
+        self.v_lb = 0.9
+        self.v_ub = 1.1
 
         # HHP
         self.p_hp_max = 5e-3  # 5kw
@@ -83,8 +84,8 @@ class ModelInf:
         # indoor thermal
         self.C_house = 10 + 0.2 + 30
         self.R_house = 1 / (1/7 + 1/6 + 1/2)
-        self.x_vals = list(range(19, 24))
-        self.y_vals = [12.3, 9.9, 8.2, 7.2, 6.6]
+        self.x_vals = list(range(19, 26))
+        self.y_vals = [12.3, 9.9, 8.2, 7.2, 6.6,6.6,7.2]
         self.Pn = len(self.x_vals)
 
         # price
